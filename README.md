@@ -6,7 +6,7 @@ Source: https://www.mongodb.com/resources/languages/mern-stack-tutorial
 3. In /server, run:
    
 ```
-  node server
+  npm run dev
 ```
 
 4. In /client, run:
