@@ -6,7 +6,7 @@ Source: https://www.mongodb.com/resources/languages/mern-stack-tutorial
 3. In /server, run:
    
 ```
-  node --env-file=config.env server
+  node server
 ```
 
 4. In /client, run:
