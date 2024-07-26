@@ -1,22 +1,20 @@
-// import styles
-import GemListItem from "./GemListItem";
+// import style
 
-const GemList = (props) => {
-  const {title, desc, city, location, owner, date_shared, images, score} = props;
 
-  return (
-    <div className="gem-list__item">
-      <img src={} className="gem-list__image"/>
-      {/* need to map above line */}
-      <div className="gem-list__user-details">
-        <img src={} className="photo-list__user-profile" />
-        <div className="gem-list__user-info">
-          <p>{owner}</p>
-          <div className="gem-list__user-location">
-            <p>{location.city}, {location.country}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+const GemListItem = (props) => {
+  return(
+    <ul className="gem-list">
+      {props.photos.map(photo =>
+        <PhotoListItem 
+        key={photo.id} 
+        photo={photo} 
+        toggleFavourite={props.toggleFavourite} 
+        favourites={props.favourites} 
+        toggleModal={props.toggleModal}
+        updateModalPhoto={props.updateModalPhoto}/>
+      )}
+    </ul>
   );
 };
+
+export default GemListItem;
