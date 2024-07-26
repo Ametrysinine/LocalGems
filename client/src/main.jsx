@@ -10,6 +10,10 @@ import RecordList from "./components/RecordList";
 import "./index.css";
 
 const router = createBrowserRouter([
+
+  // ------------------ LocalGems React router paths ------------------------- 
+
+
   {
     path: "/",
     element: <App />,
@@ -21,21 +25,53 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/edit/:id",
+    path: "/login",
     element: <App />,
     children: [
       {
-        path: "/edit/:id",
+        path: "/login",
+        element: <RecordList />,
+      },
+    ],
+  },
+  {
+    path: "/sign-up",
+    element: <App />,
+    children: [
+      {
+        path: "/sign-up",
+        element: <RecordList />,
+      },
+    ],
+  },
+
+  // ------------------ Initial react router paths ------------------------- 
+  {
+    path: "/mongoDB_record",
+    element: <App />,
+    children: [
+      {
+        path: "/mongoDB_record",
+        element: <RecordList />,
+      },
+    ],
+  },
+  {
+    path: "/mongoDB_record/edit/:id",
+    element: <App />,
+    children: [
+      {
+        path: "/mongoDB_record/edit/:id",
         element: <Record />,
       },
     ],
   },
   {
-    path: "/create",
+    path: "/mongoDB_record/create",
     element: <App />,
     children: [
       {
-        path: "/create",
+        path: "/mongoDB_record/create",
         element: <Record />,
       },
     ],
