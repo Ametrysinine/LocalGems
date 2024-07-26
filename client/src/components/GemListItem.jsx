@@ -5,16 +5,19 @@ const GemList = (props) => {
 
   return (
     <div className="gem-list__item">
-      <div className="gem-list__title">
+      <div className="gem-list__title-score">
         {title}
+        {score}
       </div>
 
       <div className="gem-list__user-details">
         <img className="gem-list__user-profile" />
-        <p className="gem-list__user-info"> {owner} </p>
+        <p className="gem-list__user-name"> {owner} </p>
       </div>
 
-      {/* map list of image to img tag, className="gem-list__image" */}
+      <div className="gem-list__images">
+      {/* map list of image to img tag */}
+      </div>
 
       <div className="gem-list__description">
         <p>{date_shared}</p>
