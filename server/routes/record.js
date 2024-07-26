@@ -5,6 +5,7 @@ import { ObjectId } from "mongodb";       // This help convert the id from strin
 // The router will be added as a middleware and will take control of requests starting with path /record.
 const router = express.Router();     // router is an instance of the express router. We use it to define our routes.
 
+
 // This section will help you get a list of all the records.
 router.get("/", async (req, res) => {
   let collection = await db.collection("records");
