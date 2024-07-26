@@ -1,17 +1,13 @@
 // import style
 import GemListItem from "./GemListItem";
 
+// props will be array of Gems from Gem db
 const GemList = (props) => {
   return(
     <ul className="gem-list">
-      {props.photos.map(photo =>
+      {props.map(gem =>
         <GemListItem 
-        key={photo.id} 
-        photo={photo} 
-        toggleFavourite={props.toggleFavourite} 
-        favourites={props.favourites} 
-        toggleModal={props.toggleModal}
-        updateModalPhoto={props.updateModalPhoto}/>
+        data={gem}/>
       )}
     </ul>
   );
