@@ -1,5 +1,4 @@
 // import styles
-import GemListItem from "./GemListItem";
 
 const GemList = (props) => {
   const { title, desc, city, location, owner, date_shared, images, score } = props;

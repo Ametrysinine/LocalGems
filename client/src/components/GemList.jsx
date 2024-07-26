@@ -1,11 +1,11 @@
 // import style
+import GemListItem from "./GemListItem";
 
-
-const GemListItem = (props) => {
+const GemList = (props) => {
   return(
     <ul className="gem-list">
       {props.photos.map(photo =>
-        <PhotoListItem 
+        <GemListItem 
         key={photo.id} 
         photo={photo} 
         toggleFavourite={props.toggleFavourite} 
@@ -17,4 +17,4 @@ const GemListItem = (props) => {
   );
 };
 
-export default GemListItem;
+export default GemList;
