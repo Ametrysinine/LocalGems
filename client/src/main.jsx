@@ -14,8 +14,8 @@ import RecordList from "./components/RecordList";
 // ------ Import Localgems components to render in our router ------ 
 import LandingHeader from "./components/LandingHeader"
 import LandingFeatures from "./components/LandingFeatures";
-import Login from "./components/Login"
-import SignUp from "./components/SignUp"
+import LoginForm from "./components/SignUpForm";
+import SignUpForm from "./components/SignUpForm";
 import MyGems from "./components/MyGems";
 import Explore from "./components/Explore";
 
@@ -37,8 +37,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/",  element: <LandingPageComponents />},
-      { path: "/login", element: <Login />},
-      { path: "/sign-up", element: <SignUp />},
+      { path: "/login", element: <LoginForm />},
+      { path: "/sign-up", element: <SignUpForm />},
       { path: "/my-gems", element: <MyGems />},
       { path: "/explore", element: <Explore />}
     ]
