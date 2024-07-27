@@ -16,7 +16,7 @@ import LandingHeader from "./components/LandingHeader"
 import LandingFeatures from "./components/LandingFeatures";
 import LoginForm from "./components/SignUpForm";
 import SignUpForm from "./components/SignUpForm";
-import MyGems from "./components/MyGems";
+import MyGems from "./components/GemList";
 import Explore from "./components/Explore";
 
 
