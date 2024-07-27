@@ -16,7 +16,7 @@ import LandingHeader from "./components/LandingHeader"
 import LandingFeatures from "./components/LandingFeatures";
 import LoginForm from "./components/SignUpForm";
 import SignUpForm from "./components/SignUpForm";
-import MyGems from "./components/GemList";
+import GemList from "./components/GemList";
 import Explore from "./components/Explore";
 
 
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       { path: "/",  element: <LandingPageComponents />},
       { path: "/login", element: <LoginForm />},
       { path: "/sign-up", element: <SignUpForm />},
-      { path: "/my-gems", element: <MyGems />},
+      { path: "/my-gems", element: <GemList />},
       { path: "/explore", element: <Explore />}
     ]
   },

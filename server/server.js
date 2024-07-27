@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-import record from "./routes/record.js";
+// import record from "./routes/record.js";
+import gems from "./routes/gems.js";
 import landing_page from "./routes/landing_page.js";
 import login from "./routes/login.js";
 import sign_up from "./routes/sign-up.js";
@@ -17,7 +18,8 @@ app.use(express.urlencoded({ extended: true }));  // for parsing incoming req hh
 app.use(morgan('dev'));                           // Setup morgan to log http data for express, setup in dev mode
 
 // ----------- Express router to corresponding pages in the /routes folder ----------- 
-app.use("/record", record);
+// app.use("/record", record);
+app.use("/gems", gems);
 app.use("/landing-page", landing_page);
 app.use("/login", login);
 app.use("/sign-up", sign_up);
