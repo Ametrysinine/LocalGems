@@ -13,8 +13,11 @@ import RecordList from "./components/RecordList";
 
 // ------ Import Localgems components to render in our router ------ 
 import LandingHeader from "./components/LandingHeader"
+import LandingFeatures from "./components/LandingFeatures";
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
+import MyGems from "./components/MyGems";
+import Explore from "./components/Explore";
 
 
 const router = createBrowserRouter([
@@ -24,31 +27,12 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <LandingHeader />,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <App />,
-    children: [
-      {
-        path: "/login",
-        element: <Login />,
-      },
-    ],
-  },
-  {
-    path: "/sign-up",
-    element: <App />,
-    children: [
-      {
-        path: "/sign-up",
-        element: <SignUp />,
-      },
-    ],
+      { path: "/",  element: <LandingHeader />},
+      { path: "/login", element: <Login />},
+      { path: "/sign-up", element: <SignUp />},
+      { path: "/my-gems", element: <MyGems />},
+      { path: "/explore", element: <Explore />}
+    ]
   },
 
   // ------------------ Initial react router paths ------------------------- 
