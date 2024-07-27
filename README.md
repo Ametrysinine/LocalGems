@@ -2,7 +2,7 @@
 Source: https://www.mongodb.com/resources/languages/mern-stack-tutorial
 
 1. npm install in both /server and /client
-2. Set up .env file in /server if not present
+2. Set up .env file in /server if not present and in /client
 3. In /server, run:
    
 ```
