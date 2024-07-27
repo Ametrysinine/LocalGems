@@ -69,8 +69,8 @@ export default function GemList() {
       return (
         <GemListItem
           gem={gem}
-          deleteGem={() => deleteGem(gem._id)}
-          key={gems._id}
+          // deleteGem={() => deleteGem(gem._id)}
+          key={gem._id}
         />
       );
     });
