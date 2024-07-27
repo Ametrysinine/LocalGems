@@ -23,7 +23,7 @@ try {
   console.error(err);
 }
 
-let db = client.db("employees");
-let db_gems = client.db("LocalGems");
+// let db = client.db("employees");
+let db = client.db("LocalGems");
 
-export default { db, db_gems };
+export default db;
