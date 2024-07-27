@@ -4,23 +4,29 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import "./index.css";
+
 import App from "./App";
+
 import Record from "./components/ModifyRecord";
 import RecordList from "./components/RecordList";
-import "./index.css";
+
+// ------ Import Localgems components to render in our router ------ 
+import LandingHeader from "./components/LandingHeader"
+import Login from "./components/Login"
+import SignUp from "./components/SignUp"
+
 
 const router = createBrowserRouter([
 
-  // ------------------ LocalGems React router paths ------------------------- 
-
-
+  // ------ LocalGems React router paths ------ 
   {
     path: "/",
     element: <App />,
     children: [
       {
         path: "/",
-        element: <RecordList />,
+        element: <LandingHeader />,
       },
     ],
   },
@@ -30,7 +36,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/login",
-        element: <RecordList />,
+        element: <Login />,
       },
     ],
   },
@@ -40,7 +46,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/sign-up",
-        element: <RecordList />,
+        element: <SignUp />,
       },
     ],
   },
