@@ -1,13 +1,27 @@
 import express from "express";
 import cors from "cors";
-import records from "./routes/record.js";
+import morgan from "morgan";
+
+import record from "./routes/record.js";
+import landing_page from "./routes/landing_page.js";
+import login from "./routes/login.js";
+import sign_up from "./routes/sign-up.js";
+
 
 const PORT = process.env.PORT || 5050;
 const app = express();
+ 
+app.use(cors());                                  // enable cross origin resourrce sharing across all express routes
+app.use(express.json());                          // for parsing incoming json requests
+app.use(express.urlencoded({ extended: true }));  // for parsing incoming req hhtp data with URL-encoded payloads, allows objects and arrays.
+app.use(morgan('dev'));                           // Setup morgan to log http data for express, setup in dev mode
 
-app.use(cors());
-app.use(express.json());
-app.use("/record", records);
+// ----------- Express router to corresponding pages in the /routes folder ----------- 
+app.use("/record", record);
+app.use("/landing-page", landing_page);
+app.use("/login", login);
+app.use("/sign-up", sign_up);
+
 
 // start the Express server
 app.listen(PORT, () => {
