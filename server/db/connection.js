@@ -24,5 +24,6 @@ try {
 }
 
 let db = client.db("employees");
+let db_gems = client.db("LocalGems.gems")
 
-export default db;
+export default { db, db_gems };
