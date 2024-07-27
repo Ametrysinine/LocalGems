@@ -24,6 +24,6 @@ try {
 }
 
 let db = client.db("employees");
-let db_gems = client.db("LocalGems.gems")
+let db_gems = client.db("LocalGems");
 
 export default { db, db_gems };
