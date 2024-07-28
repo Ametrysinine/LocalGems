@@ -37,7 +37,7 @@ export default function GemList() {
       <h3 className="text-lg font-semibold p-4">Gems</h3>
       <div className="border rounded-lg overflow-hidden">
         <div className="relative w-full overflow-auto">
-          <ul className="photo-list">
+          <ul className="gem-list">
             {gems.map(gem =>
               <GemListItem
                 key={gem.id}
