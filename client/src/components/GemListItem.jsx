@@ -1,3 +1,4 @@
+// takes in a single Gem as props
 const GemListItem = (props) => (
   <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
     <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
