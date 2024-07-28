@@ -37,28 +37,13 @@ export default function GemList() {
       <h3 className="text-lg font-semibold p-4">Gems</h3>
       <div className="border rounded-lg overflow-hidden">
         <div className="relative w-full overflow-auto">
-          <table className="w-full caption-bottom text-sm">
-            <thead className="[&_tr]:border-b">
-              <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">
-                  Name
-                </th>
-                <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">
-                  Description
-                </th>
-                <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">
-                  City
-                </th>
-              </tr>
-            </thead>
-            <tbody className="[&_tr:last-child]:border-0">
-                {gems.map(gem =>
-                  <GemListItem
-                    key={gem.id}
-                    gem={gem} />
-                )}
-            </tbody>
-          </table>
+          <ul className="photo-list">
+            {gems.map(gem =>
+              <GemListItem
+                key={gem.id}
+                gem={gem} />
+            )}
+            </ul>
         </div>
       </div>
     </>
