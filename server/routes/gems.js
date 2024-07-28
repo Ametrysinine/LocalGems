@@ -13,6 +13,12 @@ router.get("/", async (req, res) => {
   res.send(results).status(200);
 });
 
+router.get("/posted_gems", async (req, res) => {
+  let users = await db.collection('users');
+  let results = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> can change to needed
+  res.json(results[0].posted_gems).status(200); // just posted_Gems
+});
+
 export default router;
 
 // recommended to use curl to double check it before connecting to frontend
