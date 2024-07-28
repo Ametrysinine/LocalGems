@@ -18,6 +18,7 @@ import LoginForm from "./components/SignUpForm";
 import SignUpForm from "./components/SignUpForm";
 import GemList from "./components/GemList";
 import Explore from "./components/Explore";
+import MyGems from "./components/MyGems";
 
 
 //Note - Rendering multiple components on the same app level requires a function like this
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       { path: "/",  element: <LandingPageComponents />},
       { path: "/login", element: <LoginForm />},
       { path: "/sign-up", element: <SignUpForm />},
-      { path: "/my-gems", element: <GemList />},
+      { path: "/my-gems", element: <MyGems />},
       { path: "/explore", element: <Explore />}
     ]
   },
