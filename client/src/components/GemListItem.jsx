@@ -1,5 +1,7 @@
 // takes in a single Gem as props
-const GemListItem = (props) => (
+const GemListItem = (props) => {
+
+  return(
   <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
     <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
       {props.gem.name}
@@ -9,6 +11,15 @@ const GemListItem = (props) => (
     </td>
     <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
       {props.gem.city}
+    </td>
+    <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+      {props.gem.images}
+    </td>
+    <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+      {props.gem.total_score}
+    </td>
+    <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+      {props.gem.date_shared}
     </td>
     {/* <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
       <div className="flex gap-2">
@@ -31,6 +42,7 @@ const GemListItem = (props) => (
       </div>
     </td> */}
   </tr>
-);
+  );
+};
 
 export default GemListItem;
