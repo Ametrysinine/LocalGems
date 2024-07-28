@@ -31,19 +31,6 @@ export default function GemList() {
   //   setGems(newGems);
   // }
 
-  // This method will map out the gems on the table
-  function gemList() {
-    return gems.map((gem) => {
-      return (
-        <GemListItem
-          gem={gem}
-          // deleteGem={() => deleteGem(gem._id)}
-          key={gem._id}
-        />
-      );
-    });
-  }
-
   // This following section will display the table with the gems of individuals.
   return (
     <>
@@ -65,7 +52,11 @@ export default function GemList() {
               </tr>
             </thead>
             <tbody className="[&_tr:last-child]:border-0">
-              {gemList()}
+                {gems.map(gem =>
+                  <GemListItem
+                    key={gem.id}
+                    gem={gem} />
+                )}
             </tbody>
           </table>
         </div>
