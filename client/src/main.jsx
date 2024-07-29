@@ -14,7 +14,7 @@ import RecordList from "./components/RecordList";
 // ------ Import Localgems components to render in our router ------ 
 import LandingHeader from "./components/LandingHeader"
 import LandingFeatures from "./components/LandingFeatures";
-import LoginForm from "./components/SignUpForm";
+import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
 import GemList from "./components/GemList";
 import Explore from "./components/Explore";
