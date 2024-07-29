@@ -19,6 +19,7 @@ const SearchForm = function() {
           // onChange={(ev) => setEmail(ev.target.value)}
           />
           <p>Dropdown for Gem type here</p>
+          <button>Submit</button>
         </form>
       </div>
     </>
