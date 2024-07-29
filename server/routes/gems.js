@@ -15,8 +15,14 @@ router.get("/", async (req, res) => {
 
 router.get("/posted_gems", async (req, res) => {
   let users = await db.collection('users');
-  let results = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> can change to needed
-  res.json(results[0].posted_gems).status(200); // just posted_Gems
+  let results = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> change to name of current user
+  res.json(results[0].posted_gems).status(200);
+});
+
+router.get("/unlocked_gems", async (req, res) => {
+  let users = await db.collection('users');
+  let results = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> change to name of current user
+  res.json(results[0].unlocked_gems).status(200);
 });
 
 export default router;
