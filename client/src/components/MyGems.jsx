@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const MyGems = () => {
   const [gems, setGems] = useState([]);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('posted_gems');
 
   // This method fetches the gems from the database.
   useEffect(() => {
@@ -25,14 +25,12 @@ const MyGems = () => {
     <>
       <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">The entire my-gem page component</h1>
       <br />
-      {/* <p onClick={() => setFilter("my")}>My Gems (default)</p> */}
-      MyGems
+      <button onClick={() => setFilter("posted_gems")}>My Gems</button>
       <br />
-      <button onClick={() => setFilter("posted_gems")}>Favourited Gems</button>
-      {/* Favourited Gems */}
+      {/* <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button> */}
+      Don't have favourited gems in db yet
       <br />
-      {/* <p onClick={() => setFilter("my")}>Unlocked Gems</p> */}
-      Unlocked Gems
+      <button onClick={() => setFilter("unlocked_gems")}>Unlocked Gems</button>
       <GemList gems={gems}
       />
     </>
