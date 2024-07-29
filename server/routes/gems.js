@@ -25,6 +25,10 @@ router.get("/unlocked_gems", async (req, res) => {
   res.json(results[0].unlocked_gems).status(200);
 });
 
-export default router;
+router.get("/liked_gems", async (req, res) => {
+  let users = await db.collection('users');
+  let results = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> change to name of current user
+  res.json(results[0].liked_gems).status(200);
+});
 
-// recommended to use curl to double check it before connecting to frontend
+export default router;
