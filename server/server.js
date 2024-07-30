@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));  // for parsing incoming req hh
 app.use(morgan('dev'));                           // Setup morgan to log http data for express, setup in dev mode
 
 // ----------- Express router to corresponding pages in the /routes folder ----------- 
-app.use("/record", record);
+app.use("/mongoDB_record", record);
 app.use("/landing-page", landing_page);
 app.use("/login", login);
 app.use("/sign-up", sign_up);
@@ -25,5 +25,5 @@ app.use("/sign-up", sign_up);
 
 // start the Express server
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Express server now listening on port ${PORT}`);
 });
