@@ -9,7 +9,6 @@ const router = express.Router();     // router is an instance of the express rou
 router.get("/", async (req, res) => {
   const queryCity = req.query.city || '';
   const queryKeyword = req.query.keyword || '';
-  console.log("query:", queryCity, queryKeyword);
 
   let gems = await db.collection('gems');
   // let resultsCity = await gems.find( {city: { $regex: queryCity, $options: 'i' } } ).toArray();
@@ -23,9 +22,7 @@ router.get("/", async (req, res) => {
       ]
     }).toArray();
   } else {
-    console.log("no query");
     results = await gems.find().toArray();
-    console.log(results);
   }
   res.status(200).json(results);
 });
