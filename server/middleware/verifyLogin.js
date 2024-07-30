@@ -1,34 +1,22 @@
 const verifyLogin = (emailField, passwordField, databaseReturn) => {  
-  console.log(`04- verifyLogin email is: ${formEmail}, Password is: ${formPassword}, and database returned:\n`, dbReturn);
+  console.log(`
+  In middleware verifyLogin function
+  user email input is: ${emailField},
+  user password input is: ${passwordField},
+  and DB returned:\n`, databaseReturn);
 
+  if (!databaseReturn[0]){                        
+    console.error(`No content from DB, cannot validate`);   
+    return false;
+  }
+  else if (emailField === databaseReturn[0].email && passwordField === databaseReturn[0].password) {
+    console.log(`Success we have a match!`);  
+    return true;
+  } 
+  else{
+    console.log(`Credentials are not a match`);
+    return false;
+  }  
 };
 
-
-/*   Shoplight validator for reference
-
-
-
- const verifyLogin = (formEmail, formPassword, dbReturn) => {  
-  console.log(`04- verifyLogin email is: ${formEmail}, Password is: ${formPassword}, and database returned:\n`, dbReturn);
-  if (dbReturn[0] === undefined){                        
-    console.log(`06- Empty array from DB, Credentials are not a match`);   //Works but is very WET, clean up later
-    return {verified: false};
-  }
-  
-  const dbID = dbReturn[0].id;
-  const dbEmail = dbReturn[0].email;
-  const dbPass = dbReturn[0].password; 
-  console.log(`05- Our dbID is,`, dbID,`Our dbEmail is,`, dbEmail,`Our dbPass is,`, dbPass,);
-
-  if (formEmail === dbEmail && formPassword === dbPass) {
-    console.log(`06- Your Email and password matches our database!!!`);
-    return {verified: true, id: dbID};  
-  } else {
-    console.log(`06- Credentials are not a match`);
-    return {verified: false};  
-  }
-}; 
-*/
-
-
-module.exports = verifyLogin;
+export default verifyLogin;
