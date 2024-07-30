@@ -8,15 +8,20 @@ const router = express.Router();     // router is an instance of the express rou
 
 // Renders the login page
 router.get("/", async (req, res) => {
-
-  
+  console.log(`\nEntered the GET login route`);
+  res.status(201).send({helloMsg: 'welcome to login'});  
 });
 
 
 // Used for posting data to server from the login form
-router.post("/", async (req, res) => { 
-  
-  
+  router.post("/", async (req, res) => {  
+    console.log(`\nEntered the POST login route with the following data:`, req.body);
+    const { emailField, passwordField} = req.body;
+    console.log(`Our email is: `, emailField);
+    console.log(`Our password is: `, passwordField);
+
+
+
 });
 
 

@@ -7,8 +7,9 @@ const router = express.Router();     // router is an instance of the express rou
 
 
 // Renders the landing page, passes in any vars relating to user to display on the nav
-router.get("/", async (req, res) => {
-    
+router.get("/", (req, res) => {
+  console.log('\nEntered GET route for landing pg in landing_page.js via router');  
+  res.status(200).send({hello: 'welcome from router'});
 });
 
 
