@@ -14,8 +14,17 @@ router.get("/", async (req, res) => {
 
 
 // Used for posting data to server from the sign-up form
-router.post("/", async (req, res) => { 
+router.post("/", async (req, res) => { // POST to sign-up/
+  let users = await db.collection('users');
+  console.log(req.body)
+  let emailTaken = await users.findOne({email: req.body.email})
   
+  if (emailTaken) { //Check for duplicate email
+    console.log(`user exists: ${req.body.email}`)
+    res.status(400).json({ errors: [{ msg: "User already exists" }] });
+  }
+
+  // else: give user JWT, write to DB
   
 });
 

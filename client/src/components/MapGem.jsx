@@ -13,7 +13,7 @@ export const MapGem = (gem) => {
         position={position}
         options={{icon: type}}
         title={'AdvancedMarker that opens an Infowindow when clicked.'}>
-          <Pin background={'#FF0000'} glyphColor={'#FF0000'} borderColor={'#000'} />
+          <img src='./assets/bar.svg' height='20px' width='20px'/>
         </AdvancedMarker>
       
 
