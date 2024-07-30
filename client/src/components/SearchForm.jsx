@@ -1,25 +1,33 @@
-const SearchForm = function() {
+import { useState } from "react";
+
+const SearchForm = (props) => {
+  const [city, setCity] = useState('');
+  const [keyword, setKeyword] = useState('');
+
+  const onSearch = props.onSearch;
+
   return (
     <>
-      <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">The search form for /explore page</h1>
+      <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4">The search form for /explore page</h1>
 
       <div className="searchFormContainer">
-        <form className="searchForm">
           <label>Search by city:</label>
           <input
             className='inputBox'
             placeholder="Toronto"
-          // onChange={(ev) => setEmail(ev.target.value)}
+            value={city}
+            onChange={(ev) => setCity(ev.target.value)}
           />
-          <br/>
+          <br />
           <label>Search by keyword:</label>
           <input
             className='inputBox'
             placeholder="Pizza"
-          // onChange={(ev) => setEmail(ev.target.value)}
+            value={keyword}
+            onChange={(ev) => setKeyword(ev.target.value)}
           />
           <p>Dropdown for Gem type here</p>
-        </form>
+          <button onClick={() => onSearch(city, keyword)}>Submit</button>
       </div>
     </>
   );
