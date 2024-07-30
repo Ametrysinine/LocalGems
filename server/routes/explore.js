@@ -40,11 +40,4 @@ router.get("/", async (req, res) => {
   res.status(200).json(results);
 });
 
-// random route to test regex query
-router.get("/izza", async (req, res) => {
-  let gems = await db.collection('gems');
-  let results = await gems.find({ description: { $regex: 'izza', $options: 'i' } }).toArray();
-  res.status(200).json(results);
-});
-
 export default router;
