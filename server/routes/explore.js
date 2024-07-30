@@ -9,28 +9,34 @@ const router = express.Router();     // router is an instance of the express rou
 router.get("/", async (req, res) => {
   const queryCity = req.query.city || '';
   const queryKeyword = req.query.keyword || '';
+  const queryType = req.query.type || '';
 
   let gems = await db.collection('gems');
-  // let resultsCity = await gems.find( {city: { $regex: queryCity, $options: 'i' } } ).toArray();
-  // let resultsKeyword = await gems.find( {description: { $regex: queryKeyword, $options: 'i' } } ).toArray();
-  let results = null;
-  if (queryCity || queryKeyword) {
-    results = await gems.find( 
-      {$and: [ 
-        {city: { $regex: queryCity, $options: 'i' }}, 
-        {description: { $regex: queryKeyword, $options: 'i' }}
+  let results = [];
+  let filters = [];
+
+  if (queryCity) {
+    filters.push({ city: { $regex: queryCity, $options: 'i' } });
+  }
+
+  if (queryKeyword) {
+    filters.push({
+      $or: [
+        { description: { $regex: queryKeyword, $options: 'i' } },
+        { name: { $regex: queryKeyword, $options: 'i' } }
       ]
-    }).toArray();
+    });
+  }
+
+  if (queryType) {
+    filters.push({ type: queryType });
+  }
+
+  if (filters.length > 0) {
+    results = await gems.find({ $and: filters }).toArray();
   } else {
     results = await gems.find().toArray();
   }
-  res.status(200).json(results);
-});
-
-// random route to test regex query
-router.get("/izza", async (req, res) => {
-  let gems = await db.collection('gems');
-  let results = await gems.find({description: { $regex: `izza`} }).toArray();
   res.status(200).json(results);
 });
 
