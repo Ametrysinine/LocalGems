@@ -23,10 +23,11 @@ const Explore = function() {
     return;
   }, [filter]);
 
-  const handleSearch = (city, keyword) => {
+  const handleSearch = (city, keyword, type) => {
     const query = [];
     if (city) query.push(`city=${city}`);
     if (keyword) query.push(`keyword=${keyword}`);
+    if (type) query.push(`type=${type}`);
     setFilter(query.join('&'));
   };
 

@@ -9,40 +9,34 @@ const router = express.Router();     // router is an instance of the express rou
 router.get("/", async (req, res) => {
   const queryCity = req.query.city || '';
   const queryKeyword = req.query.keyword || '';
+  const queryType = req.query.type || '';
 
   let gems = await db.collection('gems');
   let results = [];
+  let filters = [];
 
-  // both city and keyword
-  if (queryCity && queryKeyword) {
-    results = await gems.find({
-      $and: [
-        { city: { $regex: queryCity, $options: 'i' } },
-        {
-          $or: [
-            { description: { $regex: queryKeyword, $options: 'i' } },
-            { name: { $regex: queryKeyword, $options: 'i' } }
-          ]
-        }
-      ]
-    }).toArray();
+  if (queryCity) {
+    filters.push({ city: { $regex: queryCity, $options: 'i' } });
+  }
 
-    //only city
-  } else if (queryCity) {
-    results = await gems.find({ city: { $regex: queryCity, $options: 'i' } }).toArray();
-
-    //only keyword
-  } else if (queryKeyword) {
-    results = await gems.find({
+  if (queryKeyword) {
+    filters.push({
       $or: [
         { description: { $regex: queryKeyword, $options: 'i' } },
         { name: { $regex: queryKeyword, $options: 'i' } }
       ]
-    }).toArray();
+    });
+  }
+
+  if (queryType) {
+    filters.push({ type: queryType });
+  }
+
+  if (filters.length > 0) {
+    results = await gems.find({ $and: filters }).toArray();
   } else {
     results = await gems.find().toArray();
   }
-
   res.status(200).json(results);
 });
 
