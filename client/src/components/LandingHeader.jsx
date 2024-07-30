@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import "../styles/Main.scss";
+import "../styles/LandingHeader.scss";
 
 
 const landingHeader = function() {
