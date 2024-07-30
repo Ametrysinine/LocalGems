@@ -1,0 +1,12 @@
+@import 'variables';
+
+html {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(154,200,183,1);
+  background: radial-gradient(circle, rgba(244,230,186,1) 0%, rgba(247,195,184,1) 45%, rgba(154,200,183,1) 90%); 
+  padding-top: 100px;
+}
