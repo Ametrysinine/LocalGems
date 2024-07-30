@@ -20,10 +20,28 @@ const login = function() {
     return;
   }, []);
   
-  const handleSubmit = (event) => {
+  async function handleSubmit (event){
     event.preventDefault();
-    console.log('Login clicked!');
     console.log(`Our emailField is: `, emailField, `\nOur passwordField is: `, passwordField);
+
+    try {
+      let response;
+        // if we are adding a new record we will POST to /record.
+        response = await fetch("http://localhost:5050/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emailField, passwordField}),
+        });    
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('A problem occurred with your fetch operation: ', error);
+    } finally {
+      navigate("/");
+    }
   };
 
   return (
@@ -31,7 +49,7 @@ const login = function() {
       <h1 className="text-lg font-semibold text-green-600 italic text-2xl p-4">Login to your LocalGems Account Here!</h1>
       <p>this file is in /client/src/components/Login.jsx</p>
 
-      <form method="POST" action="/login" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
           <div>
               <label htmlFor="email"><b>E-mail</b> </label>
               <input type="email" 
