@@ -6,7 +6,7 @@ import record from "./routes/record.js";
 import landing_page from "./routes/landing_page.js";
 import login from "./routes/login.js";
 import sign_up from "./routes/sign-up.js";
-
+import user_verify from "./routes/user_verify.js";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -21,6 +21,7 @@ app.use("/mongoDB_record", record);
 app.use("/landing-page", landing_page);
 app.use("/login", login);
 app.use("/sign-up", sign_up);
+app.use("/user-verify", user_verify);
 
 
 // start the Express server
