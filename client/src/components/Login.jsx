@@ -25,9 +25,7 @@ const login = function() {
     console.log(`Our emailField is: `, emailField, `\nOur passwordField is: `, passwordField);
 
     try {
-      let response;
-        // if we are adding a new record we will POST to /record.
-        response = await fetch("http://localhost:5050/login", {
+      let response = await fetch("http://localhost:5050/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -37,10 +35,20 @@ const login = function() {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-    } catch (error) {
+
+      const data = await response.json();
+
+      if (response.ok && data.token) {
+        // Store the token in localStorage
+        localStorage.setItem('token', data.token);
+        console.log('Token stored in localStorage:', data.token);
+      } else {
+        setError('Invalid credentials');
+      }
+    } 
+    
+    catch (error) {
       console.error('A problem occurred with your fetch operation: ', error);
-    } finally {
-      navigate("/");
     }
   };
 
