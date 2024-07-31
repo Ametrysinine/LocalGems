@@ -5,13 +5,24 @@ import "../styles/LandingHeader.scss";
 
 const landingHeader = function() {
     return (
-    <>
-      <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">Landing Page</h1>
-      <p>this file is in /client/src/components/LandingHeader.jsx</p>
+      <>
+      <div className="landing-header">
+        <div className="landing-header-title">
+          <svg width="600" height="200" xmlns="http://www.w3.org/2000/svg">
+            <path id="text-path" d="M73.2,148.6c6-4.1,45-45,175-45
+c111.3,1.2,170.8,45,175,45"/>
+            <text>
+              <textPath href="#text-path" startOffset="50%" textAnchor="middle">
+                Local Gems
+              </textPath>
+            </text>
+          </svg>
+        </div>
+      </div>
 
-    </>
+      <div className="landing-header-img"></div>
+      </>
   );
-  
 };
 
 export default landingHeader;
