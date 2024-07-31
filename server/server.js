@@ -21,7 +21,7 @@ app.use("/mongoDB_record", record);
 app.use("/landing-page", landing_page);
 app.use("/login", login);
 app.use("/sign-up", sign_up);
-app.use("/user-verify", user_verify);
+app.use("/api/user-verify", user_verify);
 
 
 // start the Express server
