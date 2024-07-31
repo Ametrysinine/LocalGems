@@ -1,7 +1,16 @@
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
+import useValidateToken from "../hooks/useValidateToken";
 
 export default function Navbar() {  
+
+  const { user, error, validateToken } = useValidateToken();    //runs the localstore through the custom 
+
+  useEffect(()=> {
+      console.log(`Our decrypted data associated under localStorage is: `, user);
+    } ,[user])
+
   return (
     <div>
       <nav className="flex justify-between items-center mb-6">
@@ -9,6 +18,10 @@ export default function Navbar() {
           <img alt="LocalGems logo" className="h-10 inline" src="https://i.imgur.com/Awp6faW.png"></img>
         </NavLink>
 
+        {/* test for conditional rendering after reading stored token*/}
+        <h3>{user ? user.name : <></>}</h3>  
+
+        <button onClick={() => validateToken(localStorage.getItem(`token`))}>Click me to check localstore</button>
 
         {/*Reminder to set up conditional rendering when signed in later */}
 

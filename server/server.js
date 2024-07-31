@@ -8,7 +8,7 @@ import explore from "./routes/explore.js";
 import landing_page from "./routes/landing_page.js";
 import login from "./routes/login.js";
 import sign_up from "./routes/sign-up.js";
-
+import user_verify from "./routes/user_verify.js";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -22,12 +22,14 @@ app.use(morgan('dev'));                           // Setup morgan to log http da
 // app.use("/record", record);
 app.use("/gems", gems);
 app.use("/explore", explore);
+app.use("/mongoDB_record", record);
 app.use("/landing-page", landing_page);
 app.use("/login", login);
 app.use("/sign-up", sign_up);
+app.use("/api/user-verify", user_verify);
 
 
 // start the Express server
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Express server now listening on port ${PORT}`);
 });
