@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-export default function useValidateUser() {
+export default function useValidateToken() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
-  async function validateUser(token) {
+  async function validateToken(token) {
     try {
       const response = await fetch(`http://localhost:5050/api/user-verify`, {
         method: "POST",
@@ -39,5 +39,5 @@ export default function useValidateUser() {
     }
   }
 
-  return { user, error, validateUser };
+  return { user, error, validateToken };
 }
