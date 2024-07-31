@@ -22,7 +22,7 @@ app.use(morgan('dev'));                           // Setup morgan to log http da
 // app.use("/record", record);
 app.use("/gems", gems);
 app.use("/explore", explore);
-app.use("/mongoDB_record", record);
+// app.use("/mongoDB_record", record);
 app.use("/landing-page", landing_page);
 app.use("/login", login);
 app.use("/sign-up", sign_up);
