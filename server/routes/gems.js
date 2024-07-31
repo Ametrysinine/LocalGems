@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.get("/posted_gems", async (req, res) => {
   let users = await db.collection('users');
   let results = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> change to name of current user
-  res.json(results[0].posted_gems).status(200);
+  res.json(results[0].posted_gems).status(200); // change this to searching by ID (like favourited_gems)
 });
 
 router.get("/unlocked_gems", async (req, res) => {
@@ -28,11 +28,9 @@ router.get("/unlocked_gems", async (req, res) => {
 router.get("/favourited_gems", async (req, res) => {
   let usersCollection = await db.collection('users');
   let currentUser = await usersCollection.find({name: "Alex"}).toArray(); //after chris sets up cookies -> change to name of current user
-  console.log("currentuser: ", currentUser);
 
   // list of the objectIDs
   let favouritedIds = currentUser[0].favourited_gems; 
-  console.log("fav ids type:", typeof(favouritedIds));
   // if they come out as strings, will need the following line
   // let favouritedObjectIds = favouritedIds.map(id => ObjectId(id));
 
