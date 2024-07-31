@@ -1,1 +1,31 @@
 @import 'variables';
+
+.landing-header {
+  width: 100%; 
+  margin-top: 30px;
+  display: grid;
+  justify-content: center;
+}
+
+.landing-header-title {
+  font: 3em $display-font;
+  scale: 2;
+  padding-left: 2em;
+
+  path {
+    fill: transparent;
+  }
+  
+  text {
+    fill: #ffffff;
+    text-transform: uppercase;
+  }
+}
+
+.landing-header-img {
+  min-height: 500px;
+  background: no-repeat url("https://images2.imgbox.com/56/de/MDj6u5BW_o.png");
+  background-size: 70vw;
+  background-position: center;
+  margin-top: -40px;
+}
