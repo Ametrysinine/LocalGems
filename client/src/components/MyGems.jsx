@@ -27,8 +27,7 @@ const MyGems = () => {
       <br />
       <button onClick={() => setFilter("posted_gems")}>My Gems</button>
       <br />
-      {/* <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button> */}
-      Don't have favourited gems in db yet
+      <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button>
       <br />
       <button onClick={() => setFilter("unlocked_gems")}>Unlocked Gems</button>
       <GemList gems={gems}
