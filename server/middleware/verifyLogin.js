@@ -14,7 +14,7 @@ const verifyLogin = (emailField, passwordField, databaseReturn) => {
     return { 
       user_id: databaseReturn[0].user_id,
       name: databaseReturn[0].name,
-      email: databaseReturn[0].name,
+      email: databaseReturn[0].email,
       pfp: databaseReturn[0].pfp
       }
   } 
