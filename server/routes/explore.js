@@ -15,6 +15,10 @@ router.get("/", async (req, res) => {
   let results = [];
   let filters = [];
 
+  // exclude gems owned by the current user
+  const loggedInUserId = "a8Z3b1-H9k4L5"; // change this when i get log ins working
+  filters.push({ user_id: { $ne: loggedInUserId } });
+
   if (queryCity) {
     filters.push({ city: { $regex: queryCity, $options: 'i' } });
   }
