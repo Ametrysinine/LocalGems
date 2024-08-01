@@ -1,29 +1,36 @@
 import GemList from "./GemList";
 import { useEffect, useState } from "react";
-
-import useValidateToken from "../hooks/useValidateToken";
+import { useToken } from "../contexts/TokenContext";
 
 const MyGems = () => {
   const [gems, setGems] = useState([]);
   const [filter, setFilter] = useState('posted_gems');
 
-  const { user, error } = useValidateToken(localStorage.getItem(`token`)); 
+  const { user, error, validateToken } = useToken();
+
+  useEffect(() => {
+    if (!user) {
+      validateToken(localStorage.getItem(`token`));
+    }
+  }, [user]);
 
   // This method fetches the gems from the database.
   useEffect(() => {
     async function getGems() {
-      const response = await fetch(`http://localhost:5050/gems/${filter}?user=${user.name}`);
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        console.error(message);
-        return;
+      if (user) {
+        const response = await fetch(`http://localhost:5050/gems/${filter}?user=${user.name}`);
+        if (!response.ok) {
+          const message = `An error occurred: ${response.statusText}`;
+          console.error(message);
+          return;
+        }
+        const gems = await response.json();
+        setGems(gems);
       }
-      const gems = await response.json();
-      setGems(gems);
     }
     getGems();
     return;
-  }, [filter]);
+  }, [filter, user]);
 
   return (
     <>
