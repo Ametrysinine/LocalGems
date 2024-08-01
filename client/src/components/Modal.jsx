@@ -13,8 +13,8 @@ export default function Component(props) {
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
         <Modal.Header>{props.name}</Modal.Header>
         <Modal.Body>
-          <div class="w-[400px] h-[400px]">
-          <MapContainer gem={props}/>
+          <div className="w-[400px] h-[400px]">
+          <MapContainer gems={[props.gem]}/>
           </div>
         </Modal.Body>
         <Modal.Footer>

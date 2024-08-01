@@ -9,7 +9,6 @@ const App = () => {
     <div className="w-full p-6">
       <Navbar />
       <Outlet />
-      <MapContainer /> {/*Note: Current height is height of container (i.e. 0 px)*/}
     </div>
     </TokenProvider>
   );

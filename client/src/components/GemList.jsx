@@ -11,7 +11,7 @@ export default function GemList(props) {
     }
     return props.gems.map(gem =>
       <GemListItem
-        key={gem.id}
+        key={gem._id}
         gem={gem} />
     );
   }
