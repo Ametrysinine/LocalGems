@@ -4,7 +4,8 @@
   background: $background-color;
   width: calc(100vw - 40px);
   padding: 0px 2.5em 0px 2.5em;
-  position: absolute;
+  position: fixed;
+  z-index: 100000;
   top: 20px;
   left: 20px;
   height: 4em;
@@ -33,11 +34,10 @@
 
 .nav-bar-link a {
   font: 0.8em $mono-font;
-  padding: 2px 10px 2px 10px;
+  padding: 2px 12px 2px 12px;
   border-radius: 5px;
 
   &:hover {
-    cursor: pointer;
     background: $peach;
   }
 }
