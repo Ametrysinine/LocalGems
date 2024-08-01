@@ -10,6 +10,8 @@
 
 .landing-header-title {
   font: 3vw $display-font;
+  // font-size: clamp(40px, 2vw, 200px);
+  // font-size: max(3vw, 30px);
   text-shadow: 0em 0.1em .1em rgba($drop-shadow, .25);
   scale: 2.25;
   padding-left: 2em;
@@ -23,6 +25,13 @@
     fill: $background-color;
     text-transform: uppercase;
   }
+}
+
+.landing-header-slogan {
+  font: 1.15em $mono-font;
+  text-align: center;
+  margin-top: -1.5em;
+  color: $dark-green;
 }
 
 .landing-header-img {
