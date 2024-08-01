@@ -1,3 +1,4 @@
+import Modal from "./Modal";
 // takes in a single Gem as props
 const GemListItem = (props) => {
 
@@ -21,6 +22,10 @@ const GemListItem = (props) => {
     <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
       {props.gem.date_shared}
     </td>
+
+    <Modal/>
+
+
     {/* <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
       <div className="flex gap-2">
         <Link
