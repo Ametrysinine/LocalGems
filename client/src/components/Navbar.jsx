@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-import "../styles/Navbar.scss";import { useEffect } from "react";
+import { useEffect } from "react";
+import "../styles/Navbar.scss";
 
 import useValidateToken from "../hooks/useValidateToken";
 
@@ -30,13 +31,12 @@ export default function Navbar() {
         </div>
       </div>
 
-        {/* test for conditional rendering after reading stored token*/}
+        {/* test for conditional rendering after reading stored token
         <h3>{user ? user.name : <></>}</h3>  
 
         <button onClick={() => validateToken(localStorage.getItem(`token`))}>Click me to check localstore</button>
 
-        {/*Reminder to set up conditional rendering when signed in later */}
-
+        Reminder to set up conditional rendering when signed in later */}
 
     </div>
   );
