@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
+import { useToken } from "../contexts/TokenContext";
+import { useNavigate } from "react-router-dom";
 
 
 const login = function() {  
   const [emailField, setEmailField] = useState('');
   const [passwordField, setPasswordField] = useState('');
+
+  const { validateToken } = useToken()
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loginGET() {
@@ -42,6 +47,8 @@ const login = function() {
         // Store the token in localStorage
         localStorage.setItem('token', data.token);
         console.log('Token stored in localStorage:', data.token);
+        validateToken(data.token)
+        navigate('/my-gems')
       } else {
         setError('Invalid credentials');
       }
