@@ -14,6 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/posted_gems", async (req, res) => {
+  console.log(`entered GET for posted gems`);
   const users = await db.collection('users');
   const results = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> change to name of current user
   res.json(results[0].posted_gems).status(200); // change this to searching by ID (like favourited_gems)

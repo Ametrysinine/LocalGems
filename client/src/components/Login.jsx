@@ -42,6 +42,7 @@ const login = function() {
         // Store the token in localStorage
         localStorage.setItem('token', data.token);
         console.log('Token stored in localStorage:', data.token);
+        //make sure to redirect!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       } else {
         setError('Invalid credentials');
       }
