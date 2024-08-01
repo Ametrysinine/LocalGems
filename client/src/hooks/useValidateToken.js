@@ -1,43 +1,49 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function useValidateToken() {
+export default function useValidateToken(props) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
-  async function validateToken(token) {
-    try {
-      const response = await fetch(`http://localhost:5050/api/user-verify`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user_token: token }),
-      });
-
-      if (!response.ok) {
-        if (response.status === 400) {
-          throw new Error('Bad Request: Please check the provided token.');
-        } else if (response.status === 401) {
-          throw new Error('Unauthorized: Invalid token.');
-        } else if (response.status === 404) {
-          throw new Error('Not Found: API endpoint not found.');
-        } else {
-          throw new Error(`An error occurred: ${response.statusText}`);
+  useEffect(() => {
+    async function validateToken(token) {
+      try {
+        const response = await fetch(`http://localhost:5050/api/user-verify`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_token: token }),
+        });
+  
+        if (!response.ok) {
+          if (response.status === 400) {
+            throw new Error('Bad Request: Please check the provided token.');
+          } else if (response.status === 401) {
+            throw new Error('Unauthorized: Invalid token.');
+          } else if (response.status === 404) {
+            throw new Error('Not Found: API endpoint not found.');
+          } else {
+            throw new Error(`An error occurred: ${response.statusText}`);
+          }
         }
+  
+        const data = await response.json();
+        console.log('Decrypted data:', data);
+        setUser(data);
+        return data;
+      } catch (error) {
+        if (error.name === 'TypeError') {
+          setError('Network error: Please check your connection.');
+        } else {
+          setError(error.message);
+        }
+        console.error(error.message);
       }
-
-      const data = await response.json();
-      setUser(data);
-      return data;
-    } catch (error) {
-      if (error.name === 'TypeError') {
-        setError('Network error: Please check your connection.');
-      } else {
-        setError(error.message);
-      }
-      console.error(error.message);
     }
-  }
+    if (props) {
+    validateToken(props);
+    }
+  }, [props]);
 
-  return { user, error, validateToken };
+  return { user, error};
 }

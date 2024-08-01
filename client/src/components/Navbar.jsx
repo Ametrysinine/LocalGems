@@ -6,7 +6,7 @@ import useValidateToken from "../hooks/useValidateToken";
 
 export default function Navbar() {  
 
-  const { user, error, validateToken } = useValidateToken(localStorage.getItem(`token`)); 
+  const { user, error } = useValidateToken(localStorage.getItem(`token`)); 
  
 
   useEffect (() => {
@@ -16,31 +16,35 @@ export default function Navbar() {
     }
     else {
       console.log(`----------------- token exists---------------------`); 
-      await validateToken(localStorage.getItem(`token`));    
-      console.log(`Our decrypted data associated under localStorage is: `, user);
-       
-      try {        
-        let response = await fetch("http://localhost:5050/gems/posted_gems", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({user}),
-          });    
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+      // const data = await validateToken(localStorage.getItem(`token`));    
+      // console.log(data)
+      if (user) {
+        console.log(`Our decrypted data associated under localStorage is: `, user);
+        try {  
+          console.log("In Try")     
+  
+          let response = await fetch(`http://localhost:5050/gems/posted_gems?user=${user.name}`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },              
+            });    
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          else{
+            console.log(`got something back from server!!!!!!!`);
+          }
+  
+        } catch (error) {
+          console.error(`Error validating token: ${error}`);
         }
-        else{
-          console.log(`got something back from server!!!!!!!`);
-        }
-
-      } catch (error) {
-        console.error(`Error validating token: ${error}`);
       }
+       
     }       
   } 
   checkToken();
- } ,[])
+ } ,[user])
 
 
 
@@ -74,7 +78,7 @@ export default function Navbar() {
 
         <button onClick={() => validateToken(localStorage.getItem(`token`))}>Click me to check localstore</button>
 
-        Reminder to set up conditional rendering when signed in later */}
+        {/*Reminder to set up conditional rendering when signed in later */}
 
     </div>
   );
