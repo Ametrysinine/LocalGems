@@ -15,24 +15,31 @@ router.get("/", async (req, res) => {
 // This will retrieve gems based on user_id and filters
 router.get("/:filter", async (req, res) => {
   const filter = req.params.filter;
+  const userId = req.query.user_id;
+  console.log("userid: ", userId);
 
   const users = await db.collection('users');
-  const currentUser = await users.find({name: "Alex"}).toArray();
+  const currentUser = await users.find({user_id: userId}).toArray();
+
+  if (!currentUser) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
   console.log("currentUser: ", currentUser);
 
   let filteredGemIds = [];
-    if (filter === 'posted_gems') {
-      filteredGemIds = currentUser[0].posted_gems;
-    } else if (filter === 'favourited_gems') {
-      filteredGemIds = currentUser[0].favourited_gems;
-    } else if (filter === 'unlocked_gems') {
-      filteredGemIds = currentUser[0].unlocked_gems;
-    }
-    console.log("filter: ", filter, "filtered gem ids: ", filteredGemIds);
+  if (filter === 'posted_gems') {
+    filteredGemIds = currentUser[0].posted_gems;
+  } else if (filter === 'favourited_gems') {
+    filteredGemIds = currentUser[0].favourited_gems;
+  } else if (filter === 'unlocked_gems') {
+    filteredGemIds = currentUser[0].unlocked_gems;
+  }
+  console.log("filter: ", filter, "filtered gem ids: ", filteredGemIds);
 
   const gems = await db.collection('gems');
-  const filteredGems = await gems.find({ _id: { $in: filteredGemIds } }).toArray(); 
-  
+  const filteredGems = await gems.find({ _id: { $in: filteredGemIds } }).toArray();
+
   res.json(filteredGems).status(200);
 });
 
