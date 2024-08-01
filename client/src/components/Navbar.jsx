@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <div className="nav-bar">
       <div className="nav-bar-logo">
-        <img src="https://placehold.co/40x40"/>
+        <a href="/"><img src="https://placehold.co/40x40"/></a>
       </div>
 
       <div className="nav-bar-link">
