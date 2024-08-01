@@ -36,6 +36,10 @@ c111.3,1.2,170.8,45,175,45"/>
           </svg>
         </div>
 
+        <div className="landing-header-slogan">
+          Find the sparkle in your city!
+        </div>
+
         <div className="landing-header-img">
           <img src="https://images2.imgbox.com/56/de/MDj6u5BW_o.png"></img>
         </div>
