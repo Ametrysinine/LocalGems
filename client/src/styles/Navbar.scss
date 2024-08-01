@@ -1,0 +1,59 @@
+@import 'variables';
+
+.nav-bar {
+  background: $background-color;
+  width: calc(100vw - 40px);
+  padding: 0px 2.5em 0px 2.5em;
+  position: fixed;
+  z-index: 100000;
+  top: 20px;
+  left: 20px;
+  height: 4em;
+  border-radius: 4em;
+  box-sizing: border-box;
+  box-shadow: .3em .3em .75em $drop-shadow;
+  display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    justify-items: stretch;
+    align-items: center;
+}
+
+.nav-bar-logo {
+  img {
+    height: 44px;
+    width: 44px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+}
+
+.nav-bar-link {
+  justify-self: end;
+  padding-right: 34px;
+}
+
+.nav-bar-link a {
+  font: 0.8em $mono-font;
+  padding: 2px 12px 2px 12px;
+  border-radius: 5px;
+
+  &:hover {
+    background: $peach;
+  }
+}
+
+.nav-bar-user {
+  justify-self: end;
+  
+  img {
+    height: 36px;
+    width: 36px;
+    object-fit: cover;
+    border-radius: 100%;
+    outline: 4px solid $mint;
+  }
+}
+
+.nav-bar-user-dropdown {
+  display: none;
+}

@@ -33,9 +33,13 @@ const Explore = function() {
 
   return (
     <>
-      <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4">The entire explore page component</h1>
-      <SearchForm onSearch={handleSearch} />
-      <GemList gems={gems} />
+        {/* The entire explore page component */}
+        <article className="page-body">
+        <section className="page-body-content">
+          <SearchForm onSearch={handleSearch} />
+          <GemList gems={gems} />
+        </section>
+      </article>
     </>
   );
 };
