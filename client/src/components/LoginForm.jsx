@@ -54,27 +54,30 @@ const login = function() {
 
   return (
     <>
-      <h1 className="text-lg font-semibold text-green-600 italic text-2xl p-4">Login to your LocalGems Account Here!</h1>
-      <p>this file is in /client/src/components/Login.jsx</p>
+      <article className="page-body">
+        <section className="page-body-content">
+          <h1 className="text-lg font-semibold text-green-600 italic text-2xl p-4">Login to your LocalGems Account Here!</h1>
+          <p>this file is in /client/src/components/Login.jsx</p>
 
-      <form onSubmit={handleSubmit}>
-          <div>
-              <label htmlFor="email"><b>E-mail</b> </label>
-              <input type="email" 
-                id="email" 
-                name="email" required
-                onChange={(e) => setEmailField(e.target.value)} />
-          </div>
-          <div>
-              <label htmlFor="password"> <b>Password</b> </label>
-              <input type="password" 
-                id="password" 
-                name="password" required 
-                onChange={(p) => setPasswordField(p.target.value)} />
-          </div>
-          <button type="submit" className="btn btn-primary">Login</button>
-      </form>
-
+          <form onSubmit={handleSubmit}>
+              <div>
+                  <label htmlFor="email"><b>E-mail</b> </label>
+                  <input type="email" 
+                    id="email" 
+                    name="email" required
+                    onChange={(e) => setEmailField(e.target.value)} />
+              </div>
+              <div>
+                  <label htmlFor="password"> <b>Password</b> </label>
+                  <input type="password" 
+                    id="password" 
+                    name="password" required 
+                    onChange={(p) => setPasswordField(p.target.value)} />
+              </div>
+              <button type="submit" className="btn btn-primary">Login</button>
+          </form>
+        </section>
+      </article>
     </>
   );  
   

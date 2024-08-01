@@ -23,15 +23,18 @@ const MyGems = () => {
 
   return (
     <>
-      <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">The entire my-gem page component</h1>
-      <br />
-      <button onClick={() => setFilter("posted_gems")}>My Gems</button>
-      <br />
-      <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button>
-      <br />
-      <button onClick={() => setFilter("unlocked_gems")}>Unlocked Gems</button>
-      <GemList gems={gems}
-      />
+      <article className="page-body">
+        <section className="page-body-content">
+          <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">The entire my-gem page component</h1>
+          <br />
+          <button onClick={() => setFilter("posted_gems")}>My Gems</button>
+          <br />
+          <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button>
+          <br />
+          <button onClick={() => setFilter("unlocked_gems")}>Unlocked Gems</button>
+          <GemList gems={gems}/>
+        </section>
+      </article>
     </>
   );
 };

@@ -34,8 +34,12 @@ const Explore = function() {
   return (
     <>
         {/* The entire explore page component */}
-        <SearchForm onSearch={handleSearch} />
-        <GemList gems={gems} />
+        <article className="page-body">
+        <section className="page-body-content">
+          <SearchForm onSearch={handleSearch} />
+          <GemList gems={gems} />
+        </section>
+      </article>
     </>
   );
 };
