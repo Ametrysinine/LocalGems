@@ -15,8 +15,14 @@ router.get("/", async (req, res) => {
 
 router.get("/posted_gems", async (req, res) => {
   const users = await db.collection('users');
-  const results = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> change to name of current user
-  res.json(results[0].posted_gems).status(200); // change this to searching by ID (like favourited_gems)
+  const currentUser = await users.find({name: "Alex"}).toArray(); //after chris sets up cookies -> change to name of current user
+  const ownedIds = currentUser[0].posted_gems; 
+
+  const gemsCollection = await db.collection('gems');
+  // this will be the list of all gems corresponding to the gem objectIDs
+  const ownedGems = await gemsCollection.find({ _id: { $in: ownedIds } }).toArray(); 
+
+  res.json(ownedGems).status(200); // change this to searching by ID (like favourited_gems)
 });
 
 router.get("/unlocked_gems", async (req, res) => {
