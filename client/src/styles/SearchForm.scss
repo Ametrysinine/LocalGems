@@ -1,0 +1,10 @@
+.searchFormContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+
+  div {
+    flex-grow: 1;
+  }
+}
