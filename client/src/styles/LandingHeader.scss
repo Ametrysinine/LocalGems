@@ -1,0 +1,37 @@
+@import 'variables';
+
+.landing-header {
+  width: 100%; 
+  height: calc(100vh - 120px);
+  display: grid;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.landing-header-title {
+  font: 3vw $display-font;
+  text-shadow: 0em 0.1em .1em rgba($drop-shadow, .25);
+  scale: 2.25;
+  padding-left: 2em;
+  margin: auto;
+
+  path {
+    fill: transparent;
+  }
+  
+  text {
+    fill: $background-color;
+    text-transform: uppercase;
+  }
+}
+
+.landing-header-img {
+  // height: min-content;
+  // display: grid;
+  // justify-content: center;
+
+  img {
+    width: 60vw;
+    max-width: 1090px;
+  }
+}
