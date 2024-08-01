@@ -12,6 +12,7 @@ const validateToken = (req, res, next) => {
 
   jwt.verify(user_token, SECRET, (error, decoded) => {
       if(error){
+        console.log(`Our error is: `, error);
           return res.status(401).json({message: 'Unauthorized'});
       }
       req.userData = {

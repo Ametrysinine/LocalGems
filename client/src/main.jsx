@@ -20,16 +20,6 @@ import GemList from "./components/GemList";
 import Explore from "./components/Explore";
 import MyGems from "./components/MyGems";
 
-
-//Note - Rendering multiple components on the same app level requires a function like this
-const LandingPageComponents = () => (
-  <>
-    <LandingHeader />
-    <LandingFeatures />
-  </>
-);
-
-
 const router = createBrowserRouter([
 
   // ------ LocalGems React router paths ------ 
@@ -37,7 +27,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "/",  element: <LandingPageComponents />},
+      { path: "/",  element: 
+      <>
+        <LandingHeader />
+        <LandingFeatures />
+      </>},
       { path: "/login", element: <LoginForm />},
       { path: "/sign-up", element: <SignUpForm />},
       { path: "/my-gems", element: <MyGems />},

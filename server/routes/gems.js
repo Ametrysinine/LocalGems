@@ -15,9 +15,11 @@ router.get("/", async (req, res) => {
 // This will retrieve gems based on user_id and filters
 router.get("/:filter", async (req, res) => {
   const filter = req.params.filter;
+  const queryToSendToDBSuperImportant = req.query.user;
+  console.log(`Our queryToSendToDBSuperImportant is: `, queryToSendToDBSuperImportant);
 
   const users = await db.collection('users');
-  const currentUser = await users.find({name: "Alex"}).toArray();
+  const currentUser = await users.find({name: queryToSendToDBSuperImportant}).toArray();
   console.log("currentUser: ", currentUser);
 
   let filteredGemIds = [];
