@@ -41,13 +41,11 @@ router.get("/:filter", async (req, res) => {
 
 // This will create a new Gem in the db
 router.post('/create', async (req, res) => {
-  console.log("-------POST REQUEST TO /GEMS/CREATE-------");
   const gems = await db.collection("gems");
   
   const { name, description, city, address, latitude, longitude, images, type } = req.body;
   const userId = req.query.user_id;
   console.log("userid: ", userId);
-  
 
   const newGem = {
     _id: new ObjectId(),
@@ -65,8 +63,6 @@ router.post('/create', async (req, res) => {
     total_score: 0,
     owner_id: userId
   };
-  console.log("newGem is: ", newGem);
-  
 
   try {
     const result = await gems.insertOne(newGem);
