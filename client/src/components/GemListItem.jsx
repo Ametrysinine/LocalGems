@@ -4,19 +4,19 @@ const GemListItem = (props) => {
   const gemImage = () => {
     switch (props.gem.type) {
       case 'food':
-        return <img src="../../public/assets/flaticons/gem_ruby.png" alt="Food - ruby" />;
+        return <img src="/assets/flaticons/gem_ruby.png" alt="Food - ruby" />;
       case 'entertainment':
-        return <img src="../../public/assets/flaticons/gem_sapphire.png" alt="Entertainment - sapphire" />;
+        return <img src="/assets/flaticons/gem_sapphire.png" alt="Entertainment - sapphire" />;
       case 'outdoors':
-        return <img src="../../public/assets/flaticons/gem_emerald.png" alt="Outdoors - emerald" />;
+        return <img src="/assets/flaticons/gem_emerald.png" alt="Outdoors - emerald" />;
       case 'shopping':
         // need to change to topaz
-        return <img src="../../public/assets/flaticons/gem_topaz.png" alt="Shopping - topaz" />;
+        return <img src="/assets/flaticons/gem_topaz.png" alt="Shopping - topaz" />;
       case 'nightlife':
-        return <img src="../../public/assets/flaticons/gem_amethyst.png" alt="Nightlife - amethyst" />;
+        return <img src="/assets/flaticons/gem_amethyst.png" alt="Nightlife - amethyst" />;
       case 'services':
         // need to change to citrine
-        return <img src="../../public/assets/flaticons/gem_citrine.png" alt="Services - citrine" />;
+        return <img src="/assets/flaticons/gem_citrine.png" alt="Services - citrine" />;
     }
   };
 
