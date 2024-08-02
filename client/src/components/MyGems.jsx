@@ -24,7 +24,7 @@ const MyGems = () => {
   useEffect(() => {
     async function getGems() {
       if (user) {
-        const response = await fetch(`http://localhost:5050/gems/${filter}?user=${user.name}`);
+        const response = await fetch(`http://localhost:5050/gems/${filter}?user=${user.user_id}`);
         if (!response.ok) {
           const message = `An error occurred: ${response.statusText}`;
           console.error(message);

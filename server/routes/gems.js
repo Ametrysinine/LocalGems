@@ -6,21 +6,21 @@ import { ObjectId } from "mongodb";
 const router = express.Router();     // router is an instance of the express router. We use it to define our routes.
 
 
-// This section will help you get a list of all the records when no filter is applied
+// Retrieve all gems when no filter is applied------------------------------------------------------------------------------
 router.get("/", async (req, res) => {
   const collection = await db.collection("gems");
   const results = await collection.find({}).toArray();
   res.send(results).status(200);
 });
 
-// This will retrieve gems based on user_id and filters
+// Retrieve gems based on user_id for favourited and unlocked----------------------------------------------------------------
 router.get("/:filter", async (req, res) => {
   const filter = req.params.filter;
-  const queryToSendToDBSuperImportant = req.query.user;
-  console.log(`Our queryToSendToDBSuperImportant is: `, queryToSendToDBSuperImportant);
+  const userIDToSendToDBSuperImportant = req.query.user;
+  // console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
 
   const users = await db.collection('users');
-  const currentUser = await users.find({name: queryToSendToDBSuperImportant}).toArray();
+  const currentUser = await users.find({user_id: userIDToSendToDBSuperImportant}).toArray();
   // console.log("currentUser: ", currentUser);
 
   let filteredGemIds = [];
@@ -39,7 +39,19 @@ router.get("/:filter", async (req, res) => {
   res.json(filteredGems).status(200);
 });
 
-// This will create a new Gem in the db
+// Retrieve gems for posted_gems----------------------------------------------------------------------------------------
+// router.get("/posted_gems", async (req, res) => {
+//   const userIDToSendToDBSuperImportant = req.query.user_id;
+//   console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
+  
+//   const gems = await db.collection('gems');
+//   const filteredGems = await gems.find({ owner_id: userIDToSendToDBSuperImportant }).toArray(); 
+  
+//   console.log("filter: ", filter, "filtered gem ids: ", filteredGemIds);
+//   res.json(filteredGems).status(200);
+// });
+
+// This will create a new Gem in the db--------------------------------------------------------------------------------
 router.post('/create', async (req, res) => {
   const gems = await db.collection("gems");
   
