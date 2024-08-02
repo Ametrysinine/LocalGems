@@ -13,9 +13,6 @@ const Explore = function() {
     }
   }, [user]);
 
-  console.log("Explore.jsx user was set: ", user);
-  
-
   const [gems, setGems] = useState([]);
   const [filter, setFilter] = useState('');
 
@@ -23,8 +20,6 @@ const Explore = function() {
   useEffect(() => {
     async function getGems() {
       if (user) {
-        console.log("userid from Explore.jsx is: ", user.user_id);
-        
         const response = await fetch(`http://localhost:5050/explore?user=${user.user_id}&${filter}`);
         if (!response.ok) {
           const message = `An error occurred: ${response.statusText}`;
@@ -32,7 +27,6 @@ const Explore = function() {
           return;
         }
         const gems = await response.json();
-        console.log("gems: ", gems);
         setGems(gems);
       }
     }
