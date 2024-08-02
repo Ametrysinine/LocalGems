@@ -33,7 +33,7 @@ const CreateGemForm = function({ onSuccess }) {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+    if (user) {try {
       const response = await fetch(`http://localhost:5050/gems/create?user_id=${user.user_id}`, {
         method: 'POST',
         headers: {
@@ -50,7 +50,7 @@ const handleSubmit = async (e) => {
       onSuccess(newGem);
     } catch (error) {
       console.error('Failed to create gem:', error);
-    }
+    }}
   };
 
   return (
