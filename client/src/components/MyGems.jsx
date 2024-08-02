@@ -1,10 +1,12 @@
 import GemList from "./GemList";
+import CreateGemForm from "./CreateGemForm";
 import { useEffect, useState } from "react";
 import { useToken } from "../contexts/TokenContext";
 
 const MyGems = () => {
   const [gems, setGems] = useState([]);
   const [filter, setFilter] = useState('posted_gems');
+  const [showCreateGem, setShowCreateGem] = useState(false);
 
   const { user, error, validateToken } = useToken();
 
@@ -37,6 +39,9 @@ const MyGems = () => {
       <article className="page-body">
         <section className="page-body-content">
           <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">The entire my-gem page component</h1>
+          {showCreateGem && <CreateGemForm />}
+          <br />
+          <button onClick={() => setShowCreateGem(true)}>Create a Gem</button>
           <br />
           <button onClick={() => setFilter("posted_gems")}>My Gems</button>
           <br />
