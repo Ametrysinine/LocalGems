@@ -25,7 +25,7 @@ const Explore = function() {
       if (user) {
         console.log("userid from Explore.jsx is: ", user.user_id);
         
-        const response = await fetch(`http://localhost:5050/explore?${filter}&user=${user.user_id}`);
+        const response = await fetch(`http://localhost:5050/explore?user=${user.user_id}&${filter}`);
         if (!response.ok) {
           const message = `An error occurred: ${response.statusText}`;
           console.error(message);
@@ -38,7 +38,7 @@ const Explore = function() {
     }
     getGems();
     return;
-  }, [filter]);
+  }, [filter, user]);
 
   const handleSearch = (city, keyword, type) => {
     const query = [];
