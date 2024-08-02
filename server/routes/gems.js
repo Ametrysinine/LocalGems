@@ -13,6 +13,20 @@ router.get("/", async (req, res) => {
   res.send(results).status(200);
 });
 
+// Retrieve gems for posted_gems----------------------------------------------------------------------------------------
+router.get("/posted_gems", async (req, res) => {
+  console.log("-----correct path to posted_gems!-----");
+  
+  const userIDToSendToDBSuperImportant = req.query.user;
+  console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
+  
+  const gems = await db.collection('gems');
+  const filteredGems = await gems.find({ owner_id: userIDToSendToDBSuperImportant }).toArray(); 
+  
+  console.log("filtered gems: ", filteredGems);
+  res.json(filteredGems).status(200);
+});
+
 // Retrieve gems based on user_id for favourited and unlocked----------------------------------------------------------------
 router.get("/:filter", async (req, res) => {
   const filter = req.params.filter;
@@ -24,9 +38,7 @@ router.get("/:filter", async (req, res) => {
   // console.log("currentUser: ", currentUser);
 
   let filteredGemIds = [];
-    if (filter === 'posted_gems') {
-      filteredGemIds = currentUser[0].posted_gems;
-    } else if (filter === 'favourited_gems') {
+    if (filter === 'favourited_gems') {
       filteredGemIds = currentUser[0].favourited_gems;
     } else if (filter === 'unlocked_gems') {
       filteredGemIds = currentUser[0].unlocked_gems;
@@ -38,18 +50,6 @@ router.get("/:filter", async (req, res) => {
   
   res.json(filteredGems).status(200);
 });
-
-// Retrieve gems for posted_gems----------------------------------------------------------------------------------------
-// router.get("/posted_gems", async (req, res) => {
-//   const userIDToSendToDBSuperImportant = req.query.user_id;
-//   console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
-  
-//   const gems = await db.collection('gems');
-//   const filteredGems = await gems.find({ owner_id: userIDToSendToDBSuperImportant }).toArray(); 
-  
-//   console.log("filter: ", filter, "filtered gem ids: ", filteredGemIds);
-//   res.json(filteredGems).status(200);
-// });
 
 // This will create a new Gem in the db--------------------------------------------------------------------------------
 router.post('/create', async (req, res) => {
