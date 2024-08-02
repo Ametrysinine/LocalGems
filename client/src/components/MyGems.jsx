@@ -10,6 +10,10 @@ const MyGems = () => {
 
   const { user, error, validateToken } = useToken();
 
+  const toggleCreateGemForm = () => {
+    setShowCreateGem(!showCreateGem);
+  }
+
   useEffect(() => {
     if (!user) {
       validateToken(localStorage.getItem(`token`));
@@ -34,14 +38,19 @@ const MyGems = () => {
     return;
   }, [filter, user]);
 
+  const handleCreateGemSuccess = (newGem) => {
+    setGems([...gems, newGem]);
+    setShowCreateGem(false);
+  };
+
   return (
     <>
       <article className="page-body">
         <section className="page-body-content">
           <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">The entire my-gem page component</h1>
-          {showCreateGem && <CreateGemForm />}
+          {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess}/>}
           <br />
-          <button onClick={() => setShowCreateGem(true)}>Create a Gem</button>
+          <button onClick={toggleCreateGemForm}>Create a Gem</button>
           <br />
           <button onClick={() => setFilter("posted_gems")}>My Gems</button>
           <br />
