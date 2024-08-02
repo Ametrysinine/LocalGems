@@ -7,17 +7,20 @@ const router = express.Router();     // router is an instance of the express rou
 
 // Route to get gems filtered by city and keyword
 router.get("/", async (req, res) => {
+  console.log("----entered get for /explore");
+  
   const queryCity = req.query.city || '';
   const queryKeyword = req.query.keyword || '';
   const queryType = req.query.type || '';
+  const userId = req.query.user;
 
   let gems = await db.collection('gems');
   let results = [];
   let filters = [];
 
   // exclude gems owned by the current user
-  const loggedInUserId = "a8Z3b1-H9k4L5"; // change this when i get log ins working
-  filters.push({ user_id: { $ne: loggedInUserId } });
+  // const loggedInUserId = "a8Z3b1-H9k4L5"; // change this when i get log ins working
+  filters.push({ owner_id: { $ne: userId } });
 
   if (queryCity) {
     filters.push({ city: { $regex: queryCity, $options: 'i' } });
