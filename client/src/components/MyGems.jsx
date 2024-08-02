@@ -36,7 +36,7 @@ const MyGems = () => {
     }
     getGems();
     return;
-  }, [filter, user]);
+  }, [filter, user, gems.length]);
 
   const handleCreateGemSuccess = (newGem) => {
     setGems([...gems, newGem]);
