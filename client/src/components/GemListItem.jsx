@@ -1,4 +1,6 @@
 import Modal from "./Modal";
+import "../styles/GemListItem.scss";
+
 // takes in a single Gem as props
 const GemListItem = (props) => {
   const gemImage = () => {
@@ -10,12 +12,10 @@ const GemListItem = (props) => {
       case 'outdoors':
         return <img src="/assets/flaticons/gem_emerald.png" alt="Outdoors - emerald" />;
       case 'shopping':
-        // need to change to topaz
         return <img src="/assets/flaticons/gem_topaz.png" alt="Shopping - topaz" />;
       case 'nightlife':
         return <img src="/assets/flaticons/gem_amethyst.png" alt="Nightlife - amethyst" />;
       case 'services':
-        // need to change to citrine
         return <img src="/assets/flaticons/gem_citrine.png" alt="Services - citrine" />;
     }
   };
