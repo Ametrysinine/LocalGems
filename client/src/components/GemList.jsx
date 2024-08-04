@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/GemListItem.scss";
+import "../styles/GemList.scss";
 import GemListItem from "./GemListItem";
 
 
