@@ -2,7 +2,7 @@
 
 .nav-bar {
   background: $background-color;
-  width: calc(100vw - 40px);
+  width: calc(100vw - 60px);
   padding: 0px 2.5em 0px 2.5em;
   position: fixed;
   z-index: 100000;
@@ -12,20 +12,41 @@
   border-radius: 4em;
   box-sizing: border-box;
   box-shadow: .3em .3em .75em $drop-shadow;
-  display: grid;
+  display: flex;
     grid-template-columns: 1fr 1fr auto;
     justify-items: stretch;
     align-items: center;
 }
 
 .nav-bar-logo {
+  border: 3px dashed limegreen;
   img {
-    height: 44px;
-    width: 44px;
+    height: 60px;
     object-fit: cover;
-    border-radius: 100%;
   }
 }
+
+.nav-bar-conditional{
+ border: 3px dashed rgb(31, 95, 234);
+ display: flex;
+ justify-content: center;  /* Aligns child elements horizontally (left and right) */
+ align-items: center;      /* Aligns child elements vertically (up and down) */
+}
+
+.nav-currency-bar{
+  display: flex;
+  border: 3px dashed orangered;
+  .nav-currency{
+    max-width: 120px;
+    img{
+      height: 40px;
+    }
+  }
+  p{
+    border: 3px dashed limegreen;
+  }
+}
+
 
 .nav-bar-link {
   justify-self: end;
