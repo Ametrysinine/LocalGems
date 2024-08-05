@@ -1,22 +1,25 @@
 import Modal from "./Modal";
+import { dateConversion, xssSanitize } from "./helpers/helperFunctions";
 import "../styles/GemListItem.scss";
+
 
 // takes in a single Gem as props
 const GemListItem = (props) => {
+
   const gemImage = () => {
     switch (props.gem.type) {
       case 'food':
-        return <img src="/assets/flaticons/gem_ruby.png" alt="Food - ruby" />;
+        return <img src="/assets/flaticons/gem_ruby.png" alt="Ruby - Food" />;
       case 'entertainment':
-        return <img src="/assets/flaticons/gem_sapphire.png" alt="Entertainment - sapphire" />;
+        return <img src="/assets/flaticons/gem_sapphire.png" alt="Sapphire - Entertainment" />;
       case 'outdoors':
-        return <img src="/assets/flaticons/gem_emerald.png" alt="Outdoors - emerald" />;
+        return <img src="/assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity" />;
       case 'shopping':
-        return <img src="/assets/flaticons/gem_topaz.png" alt="Shopping - topaz" />;
+        return <img src="/assets/flaticons/gem_topaz.png" alt="Topaz - Shopping" />;
       case 'nightlife':
-        return <img src="/assets/flaticons/gem_amethyst.png" alt="Nightlife - amethyst" />;
+        return <img src="/assets/flaticons/gem_amethyst.png" alt="Amethyst - Nightlife" />;
       case 'services':
-        return <img src="/assets/flaticons/gem_citrine.png" alt="Services - citrine" />;
+        return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" />;
     }
   };
 
@@ -39,7 +42,7 @@ const GemListItem = (props) => {
       {props.gem.total_score}
     </td>
     <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-      {props.gem.date_shared}
+      {dateConversion(props.gem.date_shared)}
     </td>
     <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
         <button>Reveal {gemImage()}</button>

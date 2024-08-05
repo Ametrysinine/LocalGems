@@ -64,7 +64,6 @@ const login = function() {
       <article className="page-body">
         <section className="page-body-content">
           <h1 className="text-lg font-semibold text-green-600 italic text-2xl p-4">Login to your LocalGems Account Here!</h1>
-          <p>this file is in /client/src/components/Login.jsx</p>
 
           <form onSubmit={handleSubmit}>
               <div>
@@ -82,6 +81,7 @@ const login = function() {
                     onChange={(p) => setPasswordField(p.target.value)} />
               </div>
               <button type="submit" className="btn btn-primary">Login</button>
+              <p className="text-blue-400"><i>forgot your password?</i></p>
           </form>
         </section>
       </article>

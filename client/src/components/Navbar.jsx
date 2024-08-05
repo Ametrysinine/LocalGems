@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import "../styles/Navbar.scss";
 import { useToken } from "../contexts/TokenContext";
+import NavGemCounter from "./NavGemCounter";
 
 // import useValidateToken from "../hooks/useValidateToken";
 
@@ -39,6 +40,7 @@ export default function Navbar() {
             }
             else{
               console.log(`got something back from server!!!!!!!`);
+              console.log(`Our in useEffect for navbar.jsx is: `, response.body);
             }    
           } catch (error) {
             console.error(`Error validating token: ${error}`);
@@ -52,30 +54,58 @@ export default function Navbar() {
 
   return (
     <div className="nav-bar">
-      <div className="nav-bar-logo">
-        <a href="/"><img src="https://placehold.co/40x40"/></a>
-      </div>
+        <a href="/"><img className="nav-bar-logo" src="assets/nav_logo.png"/></a>
 
-      <div className="nav-bar-link">
-        <a href="/explore">Explore</a>
-      </div> 
+      {user ?
+        <div className="nav-bar-signed-in">   
 
-      <div className="nav-bar-user">
-        <img src="https://placehold.co/40x40"/>
-        <div className="nav-bar-user-dropdown">
-          <a href="/my-gems">My Gems</a>
-          <a href="/my-gems">Settings</a>
-          <a href="/logout">Log out</a>
+          <NavGemCounter />
+
+          <div className="nav-bar-main">
+            <div className="nav-bar-buttons">
+              {/* <div className="nav-bar-link">
+                <a href="/">Friends</a>
+              </div>  */}
+              <div className="nav-bar-link">
+                <a href="/my-gems">My Gems</a>
+              </div> 
+              <div className="nav-bar-link">
+                <a href="/explore">Explore</a>
+              </div> 
+            </div>
+
+            <div className="nav-bar-user">
+              <div className="nav-bar-user-info">
+                <p>Signed in as: <b>{user.name}</b></p>
+                <p>A true local of {}</p>
+              </div>
+              <div className="nav-bar-user-dropdown" role="button" tabindex="0" aria-pressed="false">
+                <img className="nav-bar-user-pfp"  src={user.pfp}/>
+                <div className="nav-bar-user-dropdown-content">
+                  <a href="/my-gems">                    
+                    <img src="/icon_settings_thicc.svg" alt="settings"/>
+                    <p>Settings</p>
+                  </a>
+                  <a href="/logout">
+                    <img src="/icon_logout_thicc.svg" alt="logout" />
+                    <p>Log out</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>      
+        : 
+        <div className="nav-bar-logged-out">
+          <div className="nav-bar-link">
+            <a href="/login">Log In</a>
+          </div>      
+          <div className="nav-bar-link">
+            <a href="/sign-up">Sign Up</a>
+          </div>     
         </div>
-      </div>
 
-        {/* test for conditional rendering after reading stored token*/}
-        <h3>{user ? user.email : <></>}</h3>  
-
-        <button onClick={() => validateToken(localStorage.getItem(`token`))}>Click me to check localstore</button>
-
-        {/*Reminder to set up conditional rendering when signed in later */}
-
+      }
     </div>
   );
 }

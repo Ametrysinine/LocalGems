@@ -41,7 +41,8 @@ c111.3,1.2,170.8,45,175,45"/>
         </div>
 
         <div className="landing-header-img">
-          <img src="https://images2.imgbox.com/56/de/MDj6u5BW_o.png"></img>
+          {/* <img src="https://images2.imgbox.com/56/de/MDj6u5BW_o.png"></img> */}
+          <img src="assets/landing_splash_v2.png"></img>
         </div>
       </div>
       </>

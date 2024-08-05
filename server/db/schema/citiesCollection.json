@@ -1,0 +1,27 @@
+
+{"citiesCollection": [
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9ed"},"name":"Toronto","location":{"latitude":{"$numberDecimal":"43.6532"},"longitude":{"$numberDecimal":"79.3832"}}},
+
+  {"_id":{"$oid":"64b3c9f0a1d3e72b9a4e7b9f"},"name":"Montreal","location":{"latitude":{"$numberDecimal":"45.5016"},"longitude":{"$numberDecimal":"73.5672"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9f0"},"name":"Oshawa","location":{"latitude":{"$numberDecimal":"48.4284"},"longitude":{"$numberDecimal":"-123.3656"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9f5"},"name":"Vancouver","location":{"latitude":{"$numberDecimal":"49.2827"},"longitude":{"$numberDecimal":"-123.1207"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9ee"},"name":"Niagara Falls","location":{"latitude":{"$numberDecimal":"43.0895"},"longitude":{"$numberDecimal":"-79.0849"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9ef"},"name":"Ottawa","location":{"latitude":{"$numberDecimal":"45.4215"},"longitude":{"$numberDecimal":"-75.6971"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9f2"},"name":"Calgary","location":{"latitude":{"$numberDecimal":"51.0447"},"longitude":{"$numberDecimal":"-114.0718"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9f6"},"name":"Pickering","location":{"latitude":{"$numberDecimal":"44.648618"},"longitude":{"$numberDecimal":"-63.5859"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9f1"},"name":"St. Catharines","location":{"latitude":{"$numberDecimal":"43.1593"},"longitude":{"$numberDecimal":"-79.2468"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9f3"},"name":"Dorset","location":{"latitude":{"$numberDecimal":"49.8951"},"longitude":{"$numberDecimal":"-97.1383"}}},
+
+  {"_id":{"$oid":"66a1b094cc7c0aa29f04a9f4"},"name":"Hamilton","location":{"latitude":{"$numberDecimal":"43.2557"},"longitude":{"$numberDecimal":"-79.8711"}}}
+
+]
+}
