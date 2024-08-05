@@ -108,15 +108,15 @@
   }
 }
 
+// For the dropdown on the PFP
+
 .nav-bar-user-dropdown {
   position: relative;
   display: inline-block;
-  offset-anchor: -30px;  
 }
 
 .nav-bar-user-dropdown-content {
   position: absolute;
-  // transform: translateX(-20px);
   transform: translate(-70px, 20px);
   background-color: #f9f9f9;
   display: flex;
@@ -144,7 +144,41 @@
   }
 }
 
-.nav-bar-user-dropdown:hover .nav-bar-user-dropdown-content{
+.nav-bar-user-dropdown:hover .nav-bar-user-dropdown-content, .nav-bar-user-dropdown:focus .nav-bar-user-dropdown-content{
+  max-height: 200px; /* Adjust based on your content height */
+  padding: 12px 16px;
+}
+
+// -------- For the dropdown on the GemCounter component
+
+.nav-currency {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-currency-content {
+  position: absolute;
+  // border: 3px dashed gold;
+  transform: translate(0px, 90px);
+  width: 237px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 0px 16px;
+  z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+
+  p{
+    padding-left: 10px;
+  }
+}
+
+
+.nav-currency:hover .nav-currency-content{
   max-height: 200px; /* Adjust based on your content height */
   padding: 12px 16px;
 }
