@@ -79,8 +79,8 @@ export default function Navbar() {
                 <p>Signed in as: <b>{user.name}</b></p>
                 <p>A true local of {}</p>
               </div>
-              <div className="nav-bar-user-dropdown">
-                <img className="nav-bar-user-pfp" src={user.pfp}/>
+              <div className="nav-bar-user-dropdown" role="button" tabindex="0" aria-pressed="false">
+                <img className="nav-bar-user-pfp"  src={user.pfp}/>
                 <div className="nav-bar-user-dropdown-content">
                   <a href="/my-gems">                    
                     <img src="/icon_settings_thicc.svg" alt="settings"/>
