@@ -21,23 +21,29 @@
 .nav-bar-logo {
   border: 3px dashed limegreen;
   img {
-    height: 60px;
+    width: 180px;
     object-fit: cover;
   }
 }
 
 .nav-bar-conditional{
- border: 3px dashed rgb(31, 95, 234);
- display: flex;
- justify-content: center;  /* Aligns child elements horizontally (left and right) */
- align-items: center;      /* Aligns child elements vertically (up and down) */
+  width: inherit;
+  border: 3px dashed rgb(31, 95, 234);
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;      
 }
+
 
 .nav-currency-bar{
   display: flex;
   border: 3px dashed orangered;
   .nav-currency{
-    max-width: 120px;
+    min-width: 111px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     img{
       height: 40px;
     }
@@ -48,30 +54,53 @@
 }
 
 
+.nav-bar-main{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  border: 3px dashed khaki;
+}
+
+.nav-bar-buttons{
+  border: 3px dashed black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;     
+}
+
 .nav-bar-link {
   justify-self: end;
   padding-right: 34px;
-}
-
-.nav-bar-link a {
-  font: 0.8em $mono-font;
-  padding: 2px 12px 2px 12px;
-  border-radius: 5px;
-
-  &:hover {
-    background: $peach;
+  a {
+    font: 0.8em $mono-font;
+    padding: 2px 12px 2px 12px;
+    border-radius: 5px;
+    
+    &:hover {
+      background: $peach;
+    }
   }
 }
 
+
+
 .nav-bar-user {
   justify-self: end;
+  border: 3px dashed teal;
+  display: flex;
+  justify-content: center;  
+  align-items: center;    
   
+  .nav-bar-user-info{
+    border: 3px dashed saddlebrown;
+    padding-right: 30px;
+  }
   img {
-    height: 36px;
-    width: 36px;
+    height: 55px;
+    width: 55px;
     object-fit: cover;
     border-radius: 100%;
-    outline: 4px solid $mint;
+    outline: 3px solid $stone;
   }
 }
 
