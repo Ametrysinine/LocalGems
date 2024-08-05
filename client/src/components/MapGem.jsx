@@ -56,19 +56,17 @@ export const MapGem = (props) => {
 
       {infowindowOpen && (
         <InfoWindow
-          className="size-full flex flex-row"
+          className="size-full flex flex-row bg-blue-300"
           anchor={marker}
           onCloseClick={() => setInfowindowOpen(false)}>
           <div className="flex flex-col font-sans text-xl p-2">
             <img src={images[0]} alt="location image" className="size-48"></img>
             <div className="p-1 self-center">{name}</div>
           </div>
-          <div className="flex flex-col font-sans">
+          <div className="flex flex-col font-sans bg-blue-200">
             <div className="font-serif text-base content-center text-right">{location.address}</div>
             <div className="font-sans text-lg content-center">{description}</div>
           </div>
-
-
         </InfoWindow>
       )}
     </>
