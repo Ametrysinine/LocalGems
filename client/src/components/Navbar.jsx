@@ -54,16 +54,18 @@ export default function Navbar() {
 
   return (
     <div className="nav-bar">
-      <div className="nav-bar-logo">
-        <a href="/"><img src="assets/nav_logo.png"/></a>
-      </div>
+        <a href="/"><img className="nav-bar-logo" src="assets/nav_logo.png"/></a>
+
       {user ?
-        <div className="nav-bar-conditional">   
+        <div className="nav-bar-signed-in">   
 
           <NavGemCounter />
 
           <div className="nav-bar-main">
             <div className="nav-bar-buttons">
+              {/* <div className="nav-bar-link">
+                <a href="/">Friends</a>
+              </div>  */}
               <div className="nav-bar-link">
                 <a href="/my-gems">My Gems</a>
               </div> 
@@ -77,19 +79,30 @@ export default function Navbar() {
                 <p>Signed in as: <b>{user.name}</b></p>
                 <p>A true local of {}</p>
               </div>
-              <img src={user.pfp}/>
               <div className="nav-bar-user-dropdown">
-                <a href="/my-gems">Settings</a>
-                <a href="/logout">Log out</a>
+                <img className="nav-bar-user-pfp" src={user.pfp}/>
+                <div className="nav-bar-user-dropdown-content">
+                  <a href="/my-gems">                    
+                    <img src="/icon_settings_thicc.svg" alt="settings"/>
+                    <p>Settings</p>
+                  </a>
+                  <a href="/logout">
+                    <img src="/icon_logout_thicc.svg" alt="logout" />
+                    <p>Log out</p>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>      
         : 
-        <div>
+        <div className="nav-bar-logged-out">
           <div className="nav-bar-link">
-            <a href="/login">Sign In</a>
-          </div>       
+            <a href="/login">Log In</a>
+          </div>      
+          <div className="nav-bar-link">
+            <a href="/sign-up">Sign Up</a>
+          </div>     
         </div>
 
       }
