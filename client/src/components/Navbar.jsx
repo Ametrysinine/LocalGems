@@ -86,7 +86,7 @@ export default function Navbar() {
                     <img src="/icon_settings_thicc.svg" alt="settings"/>
                     <p>Settings</p>
                   </a>
-                  <a href="/logout">
+                  <a href="/" onClick={()=>localStorage.clear()}>
                     <img src="/icon_logout_thicc.svg" alt="logout" />
                     <p>Log out</p>
                   </a>
