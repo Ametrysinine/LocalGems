@@ -1,5 +1,6 @@
 import Modal from "./Modal";
 import { dateConversion, xssSanitize } from "./helpers/helperFunctions";
+import "../styles/GemListItem.scss";
 
 
 // takes in a single Gem as props

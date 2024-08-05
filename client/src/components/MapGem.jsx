@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {AdvancedMarker, InfoWindow, useAdvancedMarkerRef, Pin} from '@vis.gl/react-google-maps';
 
 export const MapGem = (props) => {
   const [infowindowOpen, setInfowindowOpen] = useState(true);
+  const [img, setImg] = useState();
   const [markerRef, marker] = useAdvancedMarkerRef();
 
   const {location, description, name, type, images} = props;
@@ -42,9 +43,6 @@ export const MapGem = (props) => {
         break;
   };
 
-  console.log('im there')
-  console.log('im far')
-  console.log('fdjsaklfdjsakfldsa' + parseFloat(location.latitude.$numberDecimal), parseFloat(location.longitude.$numberDecimal))
   return (
     <>
       <AdvancedMarker
@@ -58,11 +56,17 @@ export const MapGem = (props) => {
 
       {infowindowOpen && (
         <InfoWindow
+          className="size-full flex flex-row bg-blue-300"
           anchor={marker}
-          maxWidth={'20px'}
           onCloseClick={() => setInfowindowOpen(false)}>
-          <div>{name}</div>
-          <div>{description}</div>
+          <div className="flex flex-col font-sans text-xl p-2">
+            <img src={images[0]} alt="location image" className="size-48"></img>
+            <div className="p-1 self-center">{name}</div>
+          </div>
+          <div className="flex flex-col font-sans bg-blue-200">
+            <div className="font-serif text-base content-center text-right">{location.address}</div>
+            <div className="font-sans text-lg content-center">{description}</div>
+          </div>
         </InfoWindow>
       )}
     </>

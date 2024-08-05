@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
+import "../styles/GemListItem.scss";
 import GemListItem from "./GemListItem";
 
 
