@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import "../styles/Navbar.scss";
 import { useToken } from "../contexts/TokenContext";
+import NavGemCounter from "./NavGemCounter";
 
 // import useValidateToken from "../hooks/useValidateToken";
 
@@ -54,50 +55,27 @@ export default function Navbar() {
   return (
     <div className="nav-bar">
       <div className="nav-bar-logo">
-        <a href="/"><img src="../../public/assets/nav_logo.png"/></a>
+        <a href="/"><img src="assets/nav_logo.png"/></a>
       </div>
       {user ?
         <div className="nav-bar-conditional">   
 
-            <div className="nav-currency-bar">
-              <div className="nav-currency">
-                <img src="../../public/assets/flaticons/gem_ruby.png"/>
-                <p>Rubies: {}</p>
-              </div>
-              <div className="nav-currency">
-                <img src="../../public/assets/flaticons/gem_sapphire.png"/>
-                <p>Sapphires: {}</p>
-              </div>
-              <div className="nav-currency">
-                <img src="../../public/assets/flaticons/gem_emerald.png"/>
-                <p>Emerald: {}</p>
-              </div>
-              <div className="nav-currency">
-                <img src="../../public/assets/flaticons/gem_topaz.png"/>
-                <p>Topazs: {}</p>
-              </div>
-              <div className="nav-currency">
-                <img src="../../public/assets/flaticons/gem_amethyst.png"/>
-                <p>Amethysts: {}</p>
-              </div>
-              <div className="nav-currency">
-                <img src="../../public/assets/flaticons/gem_citrine.png"/>
-                <p>Citrines: {}</p>
-              </div>
-            </div> 
+          <NavGemCounter />
 
-            <div className="nav-bar-link">
-              <a href="/my-gems">My Gems</a>
-            </div> 
-
-            <div className="nav-bar-link">
-              <a href="/explore">Explore</a>
-            </div> 
+          <div className="nav-bar-main">
+            <div className="nav-bar-buttons">
+              <div className="nav-bar-link">
+                <a href="/my-gems">My Gems</a>
+              </div> 
+              <div className="nav-bar-link">
+                <a href="/explore">Explore</a>
+              </div> 
+            </div>
 
             <div className="nav-bar-user">
-              <div className="nav-bar-username">
+              <div className="nav-bar-user-info">
                 <p>Signed in as: <b>{user.name}</b></p>
-                <p>A true local of {user.city}</p>
+                <p>A true local of {}</p>
               </div>
               <img src={user.pfp}/>
               <div className="nav-bar-user-dropdown">
@@ -105,6 +83,7 @@ export default function Navbar() {
                 <a href="/logout">Log out</a>
               </div>
             </div>
+          </div>
         </div>      
         : 
         <div>
@@ -117,5 +96,3 @@ export default function Navbar() {
     </div>
   );
 }
-
-{/* <h3>{user ? user.email : <></>}</h3>   */}
