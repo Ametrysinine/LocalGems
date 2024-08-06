@@ -26,36 +26,37 @@ const GemListItem = (props) => {
   return (
 
     <div className="gem-list__item">
-      <div className="location">
-        {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} | {props.gem.city}
-      </div>
-
-      <div className="images">
+      <div className="gem-image-left">
         <img src={props.gem.images[0]}></img>
       </div>
 
-      {props.gem.tags && (
-        <div className="gem-tags">
-          {props.gem.tags.map((tag, index) => (
-            <span key={index} className="gem-tag">#{tag}</span>
-          ))}
-        </div>
-      )}
-
-      <div className="bottom-row">
-        Posted: {dateConversion(props.gem.date_shared)}
-        <div className="upvote-counter">
-          <img src="thumbsup.png" alt="thumbs up" className="thumbs-image" />
-          {props.gem.total_score}
+      <div className="gem-details-right">
+        <div className="location">
+          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} | {props.gem.city}
         </div>
 
-        <div className="reveal-button">
-          Reveal {gemImage()}
+        {props.gem.tags && (
+          <div className="gem-tags">
+            {props.gem.tags.map((tag, index) => (
+              <span key={index} className="gem-tag">#{tag}</span>
+            ))}
+          </div>
+        )}
+
+        <div className="bottom-row">
+          Posted: {dateConversion(props.gem.date_shared)}
+          <div className="upvote-counter">
+            <img src="thumbsup.png" alt="thumbs up" className="thumbs-image" />
+            {props.gem.total_score}
+          </div>
+
+          <div className="reveal-button">
+            Reveal {gemImage()}
+          </div>
         </div>
+
+        <Modal gem={props.gem} />
       </div>
-
-      <Modal gem={props.gem} />
-
 
 
     </div>
