@@ -48,7 +48,7 @@ useEffect(() => {
       else {
         console.log(`----------------- token exists---------------------`); 
         if (user) {
-          console.log(`Our decrypted data associated under localStorage is: `, user);
+          // console.log(`Our decrypted data associated under localStorage is: `, user);
           try {  
             console.log("In Try for Navbar.JSX")     
     
