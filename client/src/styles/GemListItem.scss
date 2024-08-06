@@ -4,11 +4,13 @@
   display: flex;
   align-items: space-between;
   flex: 0 1 calc(33.33% - 10px);
-  margin: 24px;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 16px;
   padding: 8px;
   border-width: 0.5px;
   border: 1px solid $peach;
-  border-radius: 10px;
+  border-radius: 15px;
   overflow-wrap: break-word;
   border-style: solid;
   border-radius: 4px;
@@ -21,6 +23,12 @@
   padding-right: 10px;
 }
 
+.gem-details-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .type-location{
   font-weight: bold;
 }
@@ -28,13 +36,13 @@
 .bottom-row {
   display: flex;
   align-items: row;
-  
+  justify-content: space-between;
 }
 
 .upvote-counter {
   display: flex;
   width: 50px;
-  height: 30px;
+  height: 25px;
   justify-content: center;
   align-items: center;
   font-size: 1.0em;
@@ -59,7 +67,7 @@
 .reveal-button {
   display: flex;
   width: 94px;
-  height: 30px;
+  height: 25px;
   justify-content: center;
   align-items: center;
   font-size: 1.0em;
