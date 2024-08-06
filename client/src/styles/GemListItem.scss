@@ -1,4 +1,5 @@
 .gem-list__item {
+  display: flex;
   flex: 0 1 calc(33.33% - 10px);
   margin: 24px;
   padding: 8px;
@@ -9,9 +10,8 @@
   max-width: 20vw;
 }
 
-.thumbs-image {
-  width: 10px;
-  height: 10px;
+.gem-image-left{
+  width: 400px;
 }
 
 .type-location{
@@ -36,6 +36,11 @@
   padding: 5px 10px;
   background-color: #000000;
   transition: background-color 0.3s ease;
+}
+
+.thumbs-image {
+  width: 10px;
+  height: 10px;
 }
 
 .gem-currency-image {
