@@ -12,3 +12,25 @@
   width: 10px;
   height: 10px;
 }
+
+.bottom-row {
+
+}
+
+.upvote-counter {
+  display: flex;
+  width: 50px;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.2em; /* Adjust font size as needed */
+  color: #151414; /* Adjust color as needed */
+  border: 1px solid #ddd; /* Add border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px 10px; /* Padding */
+  background-color: #f9f9f9; /* Background color */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.upvote-counter:hover {
+  background-color: #7b7b7b; /* Background color on hover */
+}

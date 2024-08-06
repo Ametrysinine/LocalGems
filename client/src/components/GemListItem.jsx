@@ -30,10 +30,11 @@ const GemListItem = (props) => {
       {props.gem.city}
       {props.gem.images}
       {dateConversion(props.gem.date_shared)}
-      <div className="gem-list__item_bottom-row">
-
-        <img src="thumbsup.png" alt="thumbs up" className="thumbs-image"/>
-        {props.gem.total_score}
+      <div className="bottom-row">
+        <div className="upvote-counter">
+          <img src="thumbsup.png" alt="thumbs up" className="thumbs-image" />
+          {props.gem.total_score}
+        </div>
         <button>Reveal {gemImage()}</button>
       </div>
 
