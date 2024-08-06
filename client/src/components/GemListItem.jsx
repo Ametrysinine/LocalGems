@@ -9,39 +9,49 @@ const GemListItem = (props) => {
   const gemImage = () => {
     switch (props.gem.type) {
       case 'food':
-        return <img src="/assets/flaticons/gem_ruby.png" alt="Ruby - Food" />;
+        return <img src="/assets/flaticons/gem_ruby.png" alt="Ruby - Food" className="gem-currency-image" />;
       case 'entertainment':
-        return <img src="/assets/flaticons/gem_sapphire.png" alt="Sapphire - Entertainment" />;
+        return <img src="/assets/flaticons/gem_sapphire.png" alt="Sapphire - Entertainment" className="gem-currency-image" />;
       case 'outdoors':
-        return <img src="/assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity" />;
+        return <img src="/assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity" className="gem-currency-image" />;
       case 'shopping':
-        return <img src="/assets/flaticons/gem_topaz.png" alt="Topaz - Shopping" />;
+        return <img src="/assets/flaticons/gem_topaz.png" alt="Topaz - Shopping" className="gem-currency-image" />;
       case 'nightlife':
-        return <img src="/assets/flaticons/gem_amethyst.png" alt="Amethyst - Nightlife" />;
+        return <img src="/assets/flaticons/gem_amethyst.png" alt="Amethyst - Nightlife" className="gem-currency-image" />;
       case 'services':
-        return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" />;
+        return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" className="gem-currency-image" />;
     }
   };
 
   return (
 
     <div className="gem-list__item">
-      <div className="description-location">
-      {props.gem.description}
-      {props.gem.city}
+      <div className="location">
+        {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} | {props.gem.city}
       </div>
 
       <div className="images">
-      {props.gem.images}
+        <img src={props.gem.images[0]}></img>
       </div>
 
-      {dateConversion(props.gem.date_shared)}
+      {props.gem.tags && (
+        <div className="gem-tags">
+          {props.gem.tags.map((tag, index) => (
+            <span key={index} className="gem-tag">#{tag}</span>
+          ))}
+        </div>
+      )}
+
       <div className="bottom-row">
+        Posted: {dateConversion(props.gem.date_shared)}
         <div className="upvote-counter">
           <img src="thumbsup.png" alt="thumbs up" className="thumbs-image" />
           {props.gem.total_score}
         </div>
-        <button>Reveal {gemImage()}</button>
+
+        <div className="reveal-button">
+          Reveal {gemImage()}
+        </div>
       </div>
 
       <Modal gem={props.gem} />

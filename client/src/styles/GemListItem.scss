@@ -1,10 +1,11 @@
 .gem-list__item {
+  flex: 0 1 calc(33.33% - 10px);
   margin: 24px;
   padding: 8px;
   border-width: 0.5px;
   border-color: lightgray;
   border-style: solid;
-  border-radius: 8px;
+  border-radius: 4px;
   max-width: 20vw;
 }
 
@@ -14,15 +15,17 @@
 }
 
 .bottom-row {
-
+  display: flex;
+  align-items: row;
 }
 
 .upvote-counter {
   display: flex;
   width: 50px;
+  height: 36px;
   justify-content: space-around;
   align-items: center;
-  font-size: 1.2em; /* Adjust font size as needed */
+  font-size: 1.0em; /* Adjust font size as needed */
   color: #151414; /* Adjust color as needed */
   border: 1px solid #ddd; /* Add border */
   border-radius: 5px; /* Rounded corners */
@@ -33,4 +36,24 @@
 
 .upvote-counter:hover {
   background-color: #7b7b7b; /* Background color on hover */
+}
+
+.gem-currency-image {
+  width: 25px;
+  height: 25px;
+}
+
+.reveal-button {
+  display: flex;
+  width: 94px;
+  height: 36px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.0em; /* Adjust font size as needed */
+  color: #151414; /* Adjust color as needed */
+  border: 1px solid #ddd; /* Add border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px 10px; /* Padding */
+  background-color: #f9f9f9; /* Background color */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
 }
