@@ -43,6 +43,7 @@ const GemListItem = (props) => {
           </div>
         )}
 
+        <br />
         <div className="bottom-row">
           Posted: {dateConversion(props.gem.date_shared)}
           <div className="upvote-counter">
