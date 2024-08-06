@@ -1,10 +1,20 @@
 import Modal from "./Modal";
 import { dateConversion, xssSanitize } from "./helpers/helperFunctions";
 import "../styles/GemListItem.scss";
+import { useEffect } from "react";
+import { useToken } from "../contexts/TokenContext";
 
 
 // takes in a single Gem as props
 const GemListItem = (props) => {
+
+  const { user, error, validateToken } = useToken();
+
+  useEffect(() => {
+    if (!user) {
+      validateToken(localStorage.getItem(`token`));
+    }
+  }, [user]);
 
   const gemImage = () => {
     switch (props.gem.type) {
@@ -21,6 +31,34 @@ const GemListItem = (props) => {
       case 'services':
         return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" className="gem-currency-image" />;
     }
+  };
+
+  const bottomRowRight = () => {
+    if (user.user_id === props.gem.owner_id) {
+      return (
+        <div className="bottom-row-right">
+          <div className="edit-button">
+            Edit
+          </div>
+          <div className="delete-button">
+            Delete
+          </div>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className="bottom-row-right">
+          <div className="upvote-counter">
+            <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
+            {props.gem.total_score}
+          </div>
+          <div className="reveal-button">
+            Reveal {gemImage()}
+          </div>
+        </div>
+      );
+    };
   };
 
   return (
@@ -46,14 +84,7 @@ const GemListItem = (props) => {
         <br />
         <div className="bottom-row">
           Posted: {dateConversion(props.gem.date_shared)}
-          <div className="upvote-counter">
-            <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
-            {props.gem.total_score}
-          </div>
-
-          <div className="reveal-button">
-            Reveal {gemImage()}
-          </div>
+          {bottomRowRight()}
         </div>
 
         <Modal gem={props.gem} />
