@@ -1,0 +1,81 @@
+@import 'variables';
+
+.gem-list__item {
+  display: flex;
+  align-items: space-between;
+  flex: 0 1 calc(33.33% - 10px);
+  margin: 24px;
+  padding: 8px;
+  border-width: 0.5px;
+  border: 1px solid $peach;
+  border-radius: 10px;
+  overflow-wrap: break-word;
+  border-style: solid;
+  border-radius: 4px;
+  max-width: 20vw;
+  font-size: x-small;
+}
+
+.gem-image-left{
+  width: 400px;
+  padding-right: 10px;
+}
+
+.type-location{
+  font-weight: bold;
+}
+
+.bottom-row {
+  display: flex;
+  align-items: row;
+  
+}
+
+.upvote-counter {
+  display: flex;
+  width: 50px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #000000;
+  transition: background-color 0.3s ease;
+}
+
+.thumbs-image {
+  width: 10px;
+  height: 10px;
+}
+
+.gem-currency-image {
+  width: 20px;
+  height: 20px;
+}
+
+.reveal-button {
+  display: flex;
+  width: 94px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #151414;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s ease;
+  overflow-wrap: break-word;
+}
+
+.reveal-button:hover {
+  background-color: #aeecab;
+}
+
+.gem-tag {
+  color: #9dc8b6;
+}
