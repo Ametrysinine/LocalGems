@@ -55,7 +55,7 @@ const GemListItem = (props) => {
           </div>
         </div>
 
-        <Modal gem={props.gem} />
+        {/* <Modal gem={props.gem} /> */}
       </div>
 
 
