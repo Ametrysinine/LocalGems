@@ -31,8 +31,8 @@ const GemListItem = (props) => {
       </div>
 
       <div className="gem-details-right">
-        <div className="location">
-          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} | {props.gem.city}
+        <div className="type-location">
+          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
         </div>
 
         {props.gem.tags && (
