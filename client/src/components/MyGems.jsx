@@ -30,8 +30,8 @@ const MyGems = () => {
           console.error(message);
           return;
         }
-        const gems = await response.json();
-        setGems(gems);
+        const results = await response.json();
+        setGems(results);
       }
     }
     getGems();
