@@ -25,10 +25,16 @@ const GemListItem = (props) => {
 
   return (
 
-    <div>
+    <div className="gem-list__item">
+      <div className="description-location">
       {props.gem.description}
       {props.gem.city}
+      </div>
+
+      <div className="images">
       {props.gem.images}
+      </div>
+
       {dateConversion(props.gem.date_shared)}
       <div className="bottom-row">
         <div className="upvote-counter">
