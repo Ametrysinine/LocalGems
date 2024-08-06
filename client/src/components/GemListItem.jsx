@@ -38,7 +38,7 @@ const GemListItem = (props) => {
         {props.gem.tags && (
           <div className="gem-tags">
             {props.gem.tags.map((tag, index) => (
-              <span key={index} className="gem-tag">#{tag}</span>
+              <span key={index} className="gem-tag">#{tag} </span>
             ))}
           </div>
         )}
