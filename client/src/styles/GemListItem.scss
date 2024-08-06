@@ -25,17 +25,13 @@
   height: 36px;
   justify-content: space-around;
   align-items: center;
-  font-size: 1.0em; /* Adjust font size as needed */
-  color: #151414; /* Adjust color as needed */
-  border: 1px solid #ddd; /* Add border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 5px 10px; /* Padding */
-  background-color: #f9f9f9; /* Background color */
-  transition: background-color 0.3s ease; /* Smooth background color transition */
-}
-
-.upvote-counter:hover {
-  background-color: #7b7b7b; /* Background color on hover */
+  font-size: 1.0em;
+  color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #000000;
+  transition: background-color 0.3s ease;
 }
 
 .gem-currency-image {
@@ -49,11 +45,15 @@
   height: 36px;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.0em; /* Adjust font size as needed */
-  color: #151414; /* Adjust color as needed */
-  border: 1px solid #ddd; /* Add border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 5px 10px; /* Padding */
-  background-color: #f9f9f9; /* Background color */
-  transition: background-color 0.3s ease; /* Smooth background color transition */
+  font-size: 1.0em;
+  color: #151414;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s ease;
+}
+
+.reveal-button:hover {
+  background-color: #aeecab;
 }

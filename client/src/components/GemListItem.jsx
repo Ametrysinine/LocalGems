@@ -46,7 +46,7 @@ const GemListItem = (props) => {
         <div className="bottom-row">
           Posted: {dateConversion(props.gem.date_shared)}
           <div className="upvote-counter">
-            <img src="thumbsup.png" alt="thumbs up" className="thumbs-image" />
+            <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
             {props.gem.total_score}
           </div>
 
