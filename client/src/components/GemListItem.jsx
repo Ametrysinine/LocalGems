@@ -33,6 +33,10 @@ const GemListItem = (props) => {
     }
   };
 
+  const handleDelete = () => {
+    props.onDelete(props.gem._id);
+  };
+
   const bottomRowRight = () => {
     if (user.user_id === props.gem.owner_id) {
       return (
@@ -40,7 +44,7 @@ const GemListItem = (props) => {
           <div className="edit-button">
             Edit
           </div>
-          <div className="delete-button">
+          <div className="delete-button" onClick={handleDelete}>
             Delete
           </div>
         </div>
