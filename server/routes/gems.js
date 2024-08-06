@@ -71,7 +71,7 @@ router.post('/create', async (req, res) => {
     },
     images: images.split(',').map((image) => image.trim()),
     type,
-    createdAt: new Date(),
+    date_shared: new Date(),
     total_score: 0,
     owner_id: userId
   };
