@@ -48,17 +48,19 @@ const MyGems = () => {
     <>
       <article className="page-body">
         <section className="page-body-content">
-          <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">The entire my-gem page component</h1>
-          {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess}/>}
-          <br />
-          <button onClick={toggleCreateGemForm}>Create a Gem</button>
-          <br />
-          <button onClick={() => setFilter("posted_gems")}>My Gems</button>
-          <br />
-          <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button>
-          <br />
-          <button onClick={() => setFilter("unlocked_gems")}>Unlocked Gems</button>
-          <GemList gems={gems}/>
+          <div className="my-gems-navbar">
+            <button onClick={toggleCreateGemForm}>Create a Gem</button>
+            <br />
+            <button onClick={() => setFilter("posted_gems")}>My Gems</button>
+            <br />
+            <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button>
+            <br />
+            <button onClick={() => setFilter("unlocked_gems")}>Unlocked Gems</button>
+          </div>
+          <div className="create-gem-form">
+            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
+          </div>
+          <GemList gems={gems} />
         </section>
       </article>
     </>
