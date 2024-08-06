@@ -2,6 +2,7 @@ import GemList from "./GemList";
 import CreateGemForm from "./CreateGemForm";
 import { useEffect, useState } from "react";
 import { useToken } from "../contexts/TokenContext";
+import "../styles/MyGems.scss";
 
 const MyGems = () => {
   const [gems, setGems] = useState([]);
