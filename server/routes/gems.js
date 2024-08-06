@@ -87,4 +87,23 @@ router.post('/create', async (req, res) => {
   }
 });
 
+// This will delete a Gem in the db using its _id-------------------------------------------------------------------
+router.delete('/delete/:id', async (req, res) => {
+  const id = req.params.id;
+  
+  try {
+    const gems = await db.collection('gems');
+    const result = await gems.deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 1) {
+      res.status(200).json({ message: 'Gem successfully deleted' });
+    } else {
+      res.status(404).json({ message: 'Gem not found' });
+    }
+  } catch (error) {
+    console.error('Failed to delete gem:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 export default router;

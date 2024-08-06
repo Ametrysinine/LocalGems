@@ -44,6 +44,25 @@ const MyGems = () => {
     setShowCreateGem(false);
   };
 
+  const deleteGem = async (gemId) => {
+    try {
+      const response = await fetch(`http://localhost:5050/gems/delete/${gemId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      setGems(gems.filter(gem => gem._id !== gemId)); // Update the state to remove the deleted gem
+    } catch (error) {
+      console.error('There was an error deleting the gem!', error);
+    }
+  };
+
   return (
     <>
       <article className="page-body">
@@ -60,7 +79,7 @@ const MyGems = () => {
           <div className="create-gem-form">
             {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
           </div>
-          <GemList gems={gems} />
+          <GemList gems={gems} deleteGem={deleteGem}/>
         </section>
       </article>
     </>
