@@ -3,7 +3,7 @@
 .gem-list__item {
   display: flex;
   align-items: space-between;
-  // flex: 0 1 calc(33.33% - 10px);
+  flex: 0 1 calc(33.33% - 10px);
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 16px;
@@ -18,12 +18,16 @@
   font-size: x-small;
 }
 
-.gem-image-left{
-  width: 400px;
+.gem-image {
+
+}
+
+.gem-left-container {
+  width: 250px;
   padding-right: 10px;
 }
 
-.gem-details-right {
+.gem-right-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,9 +43,45 @@
   justify-content: space-between;
 }
 
+.bottom-row-right {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-button {
+  display: flex;
+  width: 45px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #151414;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s ease;
+  overflow-wrap: break-word;
+}
+
+.delete-button {
+  display: flex;
+  width: 45px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #000000;
+  transition: background-color 0.3s ease;
+}
+
 .upvote-counter {
   display: flex;
-  width: 50px;
+  width: 30px;
   height: 25px;
   justify-content: center;
   align-items: center;
@@ -57,11 +97,6 @@
 .thumbs-image {
   width: 10px;
   height: 10px;
-}
-
-.gem-currency-image {
-  width: 20px;
-  height: 20px;
 }
 
 .reveal-button {
@@ -82,6 +117,11 @@
 
 .reveal-button:hover {
   background-color: #aeecab;
+}
+
+.gem-currency-image {
+  width: 20px;
+  height: 20px;
 }
 
 .gem-tag {

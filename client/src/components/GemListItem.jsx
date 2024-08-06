@@ -64,11 +64,11 @@ const GemListItem = (props) => {
   return (
 
     <div className="gem-list__item">
-      <div className="gem-image-left">
-        <img src={props.gem.images[0]}></img>
+      <div className="gem-left-container">
+        <img src={props.gem.images[0]} className="gem-image"></img>
       </div>
 
-      <div className="gem-details-right">
+      <div className="gem-right-container">
         <div className="type-location">
           {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
         </div>
