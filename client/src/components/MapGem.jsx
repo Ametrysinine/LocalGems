@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {AdvancedMarker, InfoWindow, useAdvancedMarkerRef, Pin} from '@vis.gl/react-google-maps';
 
 export const MapGem = (props) => {
-  const [infowindowOpen, setInfowindowOpen] = useState(true);
+  const [infowindowOpen, setInfowindowOpen] = useState(false);
   const [img, setImg] = useState();
   const [markerRef, marker] = useAdvancedMarkerRef();
 
