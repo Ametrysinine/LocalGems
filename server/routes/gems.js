@@ -6,6 +6,28 @@ import { ObjectId } from "mongodb";
 const router = express.Router();     // router is an instance of the express router. We use it to define our routes.
 
 
+
+
+// Favourite a gem----------------------------------------------------------------------------------------
+router.get("/favourite/:user_id/:gem_id", async (req, res) => {
+  console.log("-----correct path to favourite!-----");
+  
+  const collection = await db.collection("users");
+  const userId = req.params.user_id;
+  const gemId = {"$oid": req.params.gem_id} // $oid signifies object ID
+  res.status(200).send(await collection.updateOne({user_id: userId}, {$addToSet: {favourited_gems: gemId}}));
+});
+
+// Add a gem to unlocked_gems----------------------------------------------------------------------------------------
+router.get("/unlock/:user_id/:gem_id", async (req, res) => {
+  console.log("-----correct path to unlock!-----");
+  
+  const collection = await db.collection("users");
+  const userId = req.params.user_id;
+  const gemId = {"$oid": req.params.gem_id} // $oid signifies object ID
+  res.status(200).send(await collection.updateOne({user_id: userId}, {$addToSet: {unlocked_gems: gemId}}));
+});
+
 // Retrieve all gems when no filter is applied------------------------------------------------------------------------------
 router.get("/", async (req, res) => {
   const collection = await db.collection("gems");
@@ -26,6 +48,8 @@ router.get("/posted_gems", async (req, res) => {
   // console.log("filtered gems: ", filteredGems);
   res.json(filteredGems).status(200);
 });
+
+
 
 // Retrieve gems based on user_id for favourited and unlocked----------------------------------------------------------------
 router.get("/:filter", async (req, res) => {
@@ -50,6 +74,8 @@ router.get("/:filter", async (req, res) => {
   
   res.json(filteredGems).status(200);
 });
+
+
 
 // This will create a new Gem in the db--------------------------------------------------------------------------------
 router.post('/create', async (req, res) => {
@@ -79,7 +105,7 @@ router.post('/create', async (req, res) => {
   try {
     const result = await gems.insertOne(newGem);
     res.json(result).status(200);
-    console.log("restult: ", result);
+    console.log("result: ", result);
     
   } catch (error) {
     console.error('Failed to create gem:', error);
