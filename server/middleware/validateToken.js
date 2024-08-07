@@ -19,7 +19,8 @@ const validateToken = (req, res, next) => {
           user_id: decoded.user_id,
           name: decoded.name,
           email: decoded.email,
-          pfp: decoded.pfp
+          pfp: decoded.pfp,
+          city_name: decoded.city_name
       }
       next();
   });
