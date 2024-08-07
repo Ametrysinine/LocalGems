@@ -63,6 +63,10 @@ const MyGems = () => {
     }
   };
 
+  const getButtonClass = (filterType) => {
+    return filterType === filter ? "filter-button active" : "filter-button";
+  };
+
   return (
     <>
       <article className="page-body">
@@ -70,11 +74,11 @@ const MyGems = () => {
           <div className="my-gems-navbar">
             <button onClick={toggleCreateGemForm}>Create a Gem</button>
             <br />
-            <button onClick={() => setFilter("posted_gems")}>My Gems</button>
+            <button onClick={() => setFilter("posted_gems") } className={getButtonClass("posted_gems")}>My Gems</button>
             <br />
-            <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button>
+            <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>Favourited Gems</button>
             <br />
-            <button onClick={() => setFilter("unlocked_gems")}>Unlocked Gems</button>
+            <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
           </div>
           <div className="create-gem-form">
             {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
