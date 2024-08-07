@@ -1,0 +1,23 @@
+@import 'variables';
+
+.modal-gem {
+  width: 80vw;
+}
+
+.modal-close-button {
+  all: unset;
+}
+
+.modal-container {
+  display: flex;
+}
+
+.modal-info, .modal-map {
+  width: 50%;
+  height: 60vh;
+  max-height: 600px;
+}
+
+.modal-info {
+  display: flex;
+}
