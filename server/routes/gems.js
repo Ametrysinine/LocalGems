@@ -18,15 +18,15 @@ router.get("/favourite/:user_id/:gem_id", async (req, res) => {
   res.status(200).send(await collection.updateOne({user_id: userId}, {$addToSet: {favourited_gems: gemObj}}));
 });
 
-// Add a gem to unlocked_gems----------------------------------------------------------------------------------------
-router.get("/unlock/:user_id/:gem_id", async (req, res) => {
-  console.log("-----correct path to unlock!-----");
+// // Add a gem to unlocked_gems----------------------------------------------------------------------------------------
+// router.get("/unlock/:user_id/:gem_id", async (req, res) => {
+//   console.log("-----correct path to unlock!-----");
   
-  const collection = await db.collection("users");
-  const userId = req.params.user_id;
-  const gemObj = {"$oid": req.params.gem_id} // $oid signifies object ID
-  res.status(200).send(await collection.updateOne({user_id: userId}, {$addToSet: {unlocked_gems: gemObj}}));
-});
+//   const collection = await db.collection("users");
+//   const userId = req.params.user_id;
+//   const gemObj = {"$oid": req.params.gem_id} // $oid signifies object ID
+//   res.status(200).send(await collection.updateOne({user_id: userId}, {$addToSet: {unlocked_gems: gemObj}}));
+// });
 
 // Retrieve all gems when no filter is applied------------------------------------------------------------------------------
 router.get("/", async (req, res) => {

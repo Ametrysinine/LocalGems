@@ -10,6 +10,7 @@ import login from "./routes/login.js";
 import sign_up from "./routes/sign-up.js";
 import user_verify from "./routes/user_verify.js";
 import currency from "./routes/currency.js";
+import votes from "./routes/votes.js";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -29,6 +30,7 @@ app.use("/login", login);
 app.use("/sign-up", sign_up);
 app.use("/api/user-verify", user_verify);
 app.use("/currency", currency);
+app.use("/votes", votes)
 
 
 // start the Express server
