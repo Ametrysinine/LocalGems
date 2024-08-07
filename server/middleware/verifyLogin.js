@@ -11,7 +11,6 @@ const verifyLogin = (emailField, passwordField, databaseReturn) => {
   }
   else if (emailField === databaseReturn[0].email && passwordField === databaseReturn[0].password) {
     console.log(`Success we have a match!`);
-    console.log(`CORRESPONDING CITY IS: `, databaseReturn[0].locations[0].city_name);
     return { 
       user_id: databaseReturn[0].user_id,
       name: databaseReturn[0].name,
@@ -21,7 +20,7 @@ const verifyLogin = (emailField, passwordField, databaseReturn) => {
       }
   } 
   else{
-    console.log(`Credentials are not a match`);
+    console.error(`Credentials are not a match`);
     return false;
   }  
 };

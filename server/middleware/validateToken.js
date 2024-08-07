@@ -6,9 +6,7 @@ const SECRET = process.env.JWT_KEY
 
 const validateToken = (req, res, next) => {
   const {user_token} = req.body;
-
-  console.log(`Our req.body is: `, req.body);
-  console.log(`Our user_token is: `, user_token);
+  // console.log(`Our user_token is: `, user_token);
 
   jwt.verify(user_token, SECRET, (error, decoded) => {
       if(error){
