@@ -1,7 +1,7 @@
 import GemList from "./GemList";
 import CreateGemForm from "./CreateGemForm";
 import { useEffect, useState } from "react";
-import { useToken } from "../contexts/TokenContext";
+import { useTokenContext } from "../contexts/TokenContext";
 import "../styles/MyGems.scss";
 
 const MyGems = () => {
@@ -9,7 +9,7 @@ const MyGems = () => {
   const [filter, setFilter] = useState('posted_gems');
   const [showCreateGem, setShowCreateGem] = useState(false);
 
-  const { user, error, validateToken } = useToken();
+  const { user, error, validateToken } = useTokenContext();
 
   const toggleCreateGemForm = () => {
     setShowCreateGem(!showCreateGem);
