@@ -12,20 +12,16 @@ export default function GemList(props) {
     return props.gems.map(gem =>
       <GemListItem
         key={gem._id}
-        gem={gem} />
+        gem={gem} 
+        onDelete={props.deleteGem}/>
     );
   }
 
   return (
-    <>
-      <h3 className="text-lg font-semibold p-4">The GemList component</h3>
-      <div className="border rounded-lg overflow-hidden">
-        <div className="relative w-full overflow-auto">
+    <div>
           <ul className="gem-list">
             {display()}
             </ul>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }

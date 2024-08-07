@@ -1,0 +1,20 @@
+.my-gems-navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.my-gems-navbar {
+  .filter-button {
+    padding: 10px;
+    margin: 5px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &.active {
+      background-color: #000000; // Active filter color
+      color: white;
+    }
+  }
+}

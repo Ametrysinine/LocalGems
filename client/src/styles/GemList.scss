@@ -1,0 +1,15 @@
+.gem-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin: 15px;
+  padding: 0;
+}
+
+.gem-list:after {
+  content: "";
+  flex: 0 1 30%;
+  margin: 5px;
+}

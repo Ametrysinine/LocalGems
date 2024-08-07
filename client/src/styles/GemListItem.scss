@@ -1,0 +1,131 @@
+@import 'variables';
+
+.gem-list__item {
+  display: flex;
+  align-items: space-between;
+  flex: 0 1 calc(33.33% - 10px);
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 16px;
+  padding: 8px;
+  border-width: 0.5px;
+  border: 1px solid $peach;
+  border-radius: 15px;
+  overflow-wrap: break-word;
+  border-style: solid;
+  border-radius: 4px;
+  width: 350px;
+  font-size: x-small;
+}
+
+.gem-image {
+  width: 400px; 
+  max-height: 400px; 
+  object-fit: cover;
+}
+
+.gem-left-container {
+  width: 250px;
+  padding-right: 10px;
+}
+
+.gem-right-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.type-location{
+  font-weight: bold;
+}
+
+.bottom-row {
+  display: flex;
+  align-items: row;
+  justify-content: space-between;
+}
+
+.bottom-row-right {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-button {
+  display: flex;
+  width: 45px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #151414;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s ease;
+  overflow-wrap: break-word;
+}
+
+.delete-button {
+  display: flex;
+  width: 45px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #000000;
+  transition: background-color 0.3s ease;
+}
+
+.upvote-counter {
+  display: flex;
+  width: 30px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #000000;
+  transition: background-color 0.3s ease;
+}
+
+.thumbs-image {
+  width: 10px;
+  height: 10px;
+}
+
+.reveal-button {
+  display: flex;
+  width: 60px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #151414;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s ease;
+  overflow-wrap: break-word;
+}
+
+.reveal-button:hover {
+  background-color: #aeecab;
+}
+
+.gem-currency-image {
+  width: 20px;
+  height: 20px;
+}
+
+.gem-tag {
+  color: #9dc8b6;
+}

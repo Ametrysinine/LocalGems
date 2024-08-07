@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Navbar.scss";
 import { useToken } from "../contexts/TokenContext";
 import NavGemCounter from "./NavGemCounter";
@@ -10,6 +10,29 @@ export default function Navbar() {
 
   const { user, error, validateToken } = useToken(); 
 
+  const [currency, setCurrency] = useState({});
+
+/*   cynthias useEffect
+
+useEffect(() => {
+    async function getCurrency() {
+      if (user) {
+        const response = await fetch(`http://localhost:5050/currency?user=${user.user_id}`);
+        if (!response.ok) {
+          const message = `An error occurred: ${response.statusText}`;
+          console.error(message);
+          return;
+        }
+        const results = await response.json();
+        setCurrency(results);
+      }
+    }
+    getCurrency();
+    return;
+  }, [user, results.length]);
+ */
+
+  
   useEffect(() => {
     if (!user) {
       validateToken(localStorage.getItem(`token`))
@@ -25,7 +48,7 @@ export default function Navbar() {
       else {
         console.log(`----------------- token exists---------------------`); 
         if (user) {
-          console.log(`Our decrypted data associated under localStorage is: `, user);
+          // console.log(`Our decrypted data associated under localStorage is: `, user);
           try {  
             console.log("In Try for Navbar.JSX")     
     
@@ -77,7 +100,7 @@ export default function Navbar() {
             <div className="nav-bar-user">
               <div className="nav-bar-user-info">
                 <p>Signed in as: <b>{user.name}</b></p>
-                <p>A true local of {}</p>
+                <p>A true local of <b>East Gwillemsbury{}</b></p>
               </div>
               <div className="nav-bar-user-dropdown" role="button" tabindex="0" aria-pressed="false">
                 <img className="nav-bar-user-pfp"  src={user.pfp}/>
