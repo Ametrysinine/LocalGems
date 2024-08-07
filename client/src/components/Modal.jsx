@@ -3,6 +3,7 @@
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import MapContainer from "./MapContainer";
+import "../styles/Modal.scss";
 
 export default function Component(props) {
   const [openModal, setOpenModal] = useState(false);
@@ -12,18 +13,45 @@ export default function Component(props) {
       <Button onClick={() => setOpenModal(true)}>View</Button>
 
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)} size={"6xl"}>
-        <div className="flex flex-row justify-between">
-          <div className="font-serif text-3xl pt-2 pl-8" > {props.gem.name} </div>        
-          <Button className="w-1/4 justify-content-end" onClick={() => setOpenModal(false)}>Close</Button>
-        </div>
+      <Button onClick={() => setOpenModal(false)} className="modal-close-button">Close</Button>
+        
+          <Modal.Body className="modal-container">
+            <divleft className="modal-info">
+              <div className="modal-info-left">
+                <div className="modal-gem-name" > {props.gem.name} </div>
+                
+                <div className="modal-gem-description"> {props.gem.description} </div>
+                
+                <div classname="modal-gem-review">
+                  <b>What's great about it?</b> <br/>
+                  UserName says: <br/>
+                  {props.gem.whats_great_about_it}
+                </div>
 
-          <Modal.Body className="size-full flex flex-row">
-            <divleft className="w-1/2 h-[600px] border-4 border-red-700 pr-3">
-              This is called divleft in Modal.jsx.
+                <div class="modal-gem-bottom">
+                  <img src="./assets/icon_upvote.svg" />
+                  <img src="./assets/icon_downvote.svg" />
+                  <img src="./assets/icon_heart.svg" />
+                </div>
+              </div>
+
+              <div className="modal-info-right">
+                <div className="modal-info-carousel">
+                  <img src="{props.gems.images}"></img>
+                </div>
+
+                <div className="modal-gem-tags">
+                  <div className="gem-tags">
+                    {props.gem.tags.map((tag, index) => (
+                      <span key={index} className="gem-tag">#{tag} </span>
+                    ))} 
+                  </div>
+                </div>
+              </div>
             </divleft>
 
-            <divright className="w-1/2 h-[600px] pl-3">
-              <MapContainer className="size-full h-[600px]" gems={[props.gem]}/>
+            <divright className="modal-map">
+              <MapContainer className="size-full" gems={[props.gem]}/>
             </divright>
           </Modal.Body>
       </Modal>
