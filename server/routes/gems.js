@@ -23,7 +23,7 @@ router.get("/posted_gems", async (req, res) => {
   const gems = await db.collection('gems');
   const filteredGems = await gems.find({ owner_id: userIDToSendToDBSuperImportant }).sort({ date_shared: -1 }).toArray(); 
   
-  console.log("filtered gems: ", filteredGems);
+  // console.log("filtered gems: ", filteredGems);
   res.json(filteredGems).status(200);
 });
 
@@ -54,7 +54,7 @@ router.get("/:filter", async (req, res) => {
 // This will create a new Gem in the db--------------------------------------------------------------------------------
 router.post('/create', async (req, res) => {
   const gems = await db.collection("gems");
-  
+
   const { name, description, city, address, latitude, longitude, images, type } = req.body;
   const userId = req.query.user_id;
   console.log("userid: ", userId);
