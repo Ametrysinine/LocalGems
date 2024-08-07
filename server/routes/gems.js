@@ -37,15 +37,11 @@ router.get("/", async (req, res) => {
 
 // Retrieve gems for posted_gems----------------------------------------------------------------------------------------
 router.get("/posted_gems", async (req, res) => {
-  console.log("-----correct path to posted_gems!-----");
-  
   const userIDToSendToDBSuperImportant = req.query.user;
-  console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
   
   const gems = await db.collection('gems');
   const filteredGems = await gems.find({ owner_id: userIDToSendToDBSuperImportant }).sort({ date_shared: -1 }).toArray(); 
   
-  // console.log("filtered gems: ", filteredGems);
   res.json(filteredGems).status(200);
 });
 
@@ -53,13 +49,15 @@ router.get("/posted_gems", async (req, res) => {
 
 // Retrieve gems based on user_id for favourited and unlocked----------------------------------------------------------------
 router.get("/:filter", async (req, res) => {
+  console.log("Entered /:filter");
+  
   const filter = req.params.filter;
   const userIDToSendToDBSuperImportant = req.query.user;
-  // console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
+  console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
 
   const users = await db.collection('users');
   const currentUser = await users.find({user_id: userIDToSendToDBSuperImportant}).toArray();
-  // console.log("currentUser: ", currentUser);
+  console.log("currentUser: ", currentUser);
 
   let filteredGemIds = [];
     if (filter === 'favourited_gems') {
@@ -67,10 +65,12 @@ router.get("/:filter", async (req, res) => {
     } else if (filter === 'unlocked_gems') {
       filteredGemIds = currentUser[0].unlocked_gems;
     }
-    // console.log("filter: ", filter, "filtered gem ids: ", filteredGemIds);
+    console.log("filter: ", filter, "filtered gem ids (strings now): ", filteredGemIds);
 
   const gems = await db.collection('gems');
-  const filteredGems = await gems.find({ _id: { $in: filteredGemIds } }).toArray(); 
+  const filteredGems = await gems.find({ gem_id: { $in: filteredGemIds } }).toArray(); 
+  console.log("filteredGems: ", filteredGems);
+  
   
   res.json(filteredGems).status(200);
 });
@@ -83,7 +83,6 @@ router.post('/create', async (req, res) => {
 
   const { name, description, city, address, latitude, longitude, images, type } = req.body;
   const userId = req.query.user_id;
-  console.log("userid: ", userId);
 
   const newGem = {
     _id: new ObjectId(),
@@ -105,7 +104,6 @@ router.post('/create', async (req, res) => {
   try {
     const result = await gems.insertOne(newGem);
     res.json(result).status(200);
-    console.log("result: ", result);
     
   } catch (error) {
     console.error('Failed to create gem:', error);
