@@ -9,8 +9,8 @@ router.get("/:gem_id/:action/:user_id", async (req, res) => {
   console.log("-----correct path to votes!-----");
   
   const collection = await db.collection("gems");
-  const userId = req.params.user_id;
-  const gemId = req.params.gem_id; // 
+  const userId = req.params.user_id; // aLZ3b1
+  const gemId = req.params.gem_id; // 66a1b22ccc7c0aa29f04a9ee
   const action = req.params.action; // EITHER: "upvote" or "downvote"
 
   if (action !==  "upvote" && action !==  "downvote") {

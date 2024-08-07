@@ -13,7 +13,7 @@ router.get("/favourite/:user_id/:gem_id", async (req, res) => {
   console.log("-----correct path to favourite!-----");
   
   const collection = await db.collection("users");
-  const userId = req.params.user_id;
+  const userId = req.params.user_id; // aLZ3b1
   const gemObj = {"$oid": req.params.gem_id} // $oid signifies object ID
   res.status(200).send(await collection.updateOne({user_id: userId}, {$addToSet: {favourited_gems: gemObj}}));
 });

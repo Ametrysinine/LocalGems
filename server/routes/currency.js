@@ -56,9 +56,9 @@ router.post("/:user/:key/:amount", async (req, res) => {  // Template code to in
 
   const collection = await db.collection("users");
 
-  const userId = req.params.user;
-  const key = req.params.key;
-  const amount = Number(req.params.amount);
+  const userId = req.params.user; // aLZ3b1
+  const key = req.params.key; //"rubies", "sapphires", etc
+  const amount = Number(req.params.amount); // 1, -1, 2, -2, etc
 
   const searchString = `currency.${key}`;
 
