@@ -69,8 +69,9 @@ router.post("/:user/:key/:amount", async (req, res) => {  // Template code to in
     res.status(401).json({ message: `Not enough ${key} for transaction`})
   }
 
-  collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}})
-  res.status(200).json({ message: `${key} adjusted by ${amount} for ${userId}` });
+  await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})
+  
+  res.send(await user.currency).status(200);
 });
 
 
