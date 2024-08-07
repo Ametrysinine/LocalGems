@@ -23,7 +23,7 @@ router.get("/posted_gems", async (req, res) => {
   const gems = await db.collection('gems');
   const filteredGems = await gems.find({ owner_id: userIDToSendToDBSuperImportant }).sort({ date_shared: -1 }).toArray(); 
   
-  console.log("filtered gems: ", filteredGems);
+  // console.log("filtered gems: ", filteredGems);
   res.json(filteredGems).status(200);
 });
 

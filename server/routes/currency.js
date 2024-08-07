@@ -8,7 +8,7 @@ const router = express.Router();
 //for fetching our gem count from DB
 router.get("/", async (req, res) => {
   console.log(`\nEntered the GET currency route`);
-  
+  console.log('REQ ' + req.query);
   // import user_id from query params
   const userId = req.query.user;
   console.log(`Our userId is: `, userId);
