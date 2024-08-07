@@ -1,8 +1,6 @@
 
 
-export default function NavGemCounter(props) {  
-  console.log(`Our props in NavGemCounter: `, props);
-
+export default function NavGemCounter() {  
   return(
     <div className="nav-currency-bar">
       <div className="nav-currency">
