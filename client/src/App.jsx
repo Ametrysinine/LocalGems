@@ -1,15 +1,18 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import MapContainer from "./components/MapContainer"; 
 import TokenProvider from "./contexts/TokenContext";
+import UserProvider from "./contexts/UserContext";
 
-const App = () => {
+const App = () => { 
+
   return (
     <TokenProvider>
-    <div className="w-full p-6">
-      <Navbar />
-      <Outlet />
-    </div>
+      <UserProvider>
+      <div className="w-full p-6">
+        <Navbar />
+        <Outlet />
+      </div>
+      </UserProvider>
     </TokenProvider>
   );
 };
