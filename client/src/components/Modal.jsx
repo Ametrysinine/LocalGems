@@ -47,7 +47,7 @@ export default function Component(props) {
                 
                 <section classname="review">
                   <b>What's great about it?</b> <br/>
-                  UserName says: <br/>
+                  {props.gem.created_by} says: <br/>
                   {props.gem.whats_great_about_it}
                 </section>
 
