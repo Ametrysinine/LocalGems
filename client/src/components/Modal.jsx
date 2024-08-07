@@ -4,9 +4,29 @@ import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import MapContainer from "./MapContainer";
 import "../styles/Modal.scss";
+import upvote from "../assets/icon_upvote.svg";
+import downvote from "../assets/icon_downvote.svg";
+import heart from "../assets/icon_heart.svg";
 
 export default function Component(props) {
   const [openModal, setOpenModal] = useState(false);
+
+  const gemImage = () => {
+    switch (props.gem.type) {
+      case 'food':
+        return <img src="/assets/flaticons/gem_ruby.png" alt="Ruby - Food" className="gem-currency-image" />;
+      case 'entertainment':
+        return <img src="/assets/flaticons/gem_sapphire.png" alt="Sapphire - Entertainment" className="gem-currency-image" />;
+      case 'outdoors':
+        return <img src="/assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity" className="gem-currency-image" />;
+      case 'shopping':
+        return <img src="/assets/flaticons/gem_topaz.png" alt="Topaz - Shopping" className="gem-currency-image" />;
+      case 'nightlife':
+        return <img src="/assets/flaticons/gem_amethyst.png" alt="Amethyst - Nightlife" className="gem-currency-image" />;
+      case 'services':
+        return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" className="gem-currency-image" />;
+    }
+  };
 
   return (
     <>
@@ -17,37 +37,33 @@ export default function Component(props) {
         
           <Modal.Body className="modal-container">
             <divleft className="modal-info">
-              <div className="modal-info-left">
-                <div className="modal-gem-name" > {props.gem.name} </div>
+                <section className="details">
+                  <span className="name"> 
+                    {gemImage()} 
+                    {props.gem.name} 
+                  </span>
+                  <span className="description"> {props.gem.description} </span>
+                </section>
                 
-                <div className="modal-gem-description"> {props.gem.description} </div>
-                
-                <div classname="modal-gem-review">
+                <section classname="review">
                   <b>What's great about it?</b> <br/>
                   UserName says: <br/>
                   {props.gem.whats_great_about_it}
-                </div>
+                </section>
 
-                <div class="modal-gem-bottom">
-                  <img src="./assets/icon_upvote.svg" />
-                  <img src="./assets/icon_downvote.svg" />
-                  <img src="./assets/icon_heart.svg" />
-                </div>
-              </div>
-
-              <div className="modal-info-right">
-                <div className="modal-info-carousel">
-                  <img src="{props.gems.images}"></img>
-                </div>
-
-                <div className="modal-gem-tags">
+                <section className="tags">
                   <div className="gem-tags">
                     {props.gem.tags.map((tag, index) => (
                       <span key={index} className="gem-tag">#{tag} </span>
                     ))} 
                   </div>
-                </div>
-              </div>
+                </section>
+
+                <section class="bottom">
+                  <img src={upvote} alt="Upvote" />
+                  <img src={downvote} alt="Downvote" />
+                  <img src={heart} alt="Add to favorites" />
+                </section>
             </divleft>
 
             <divright className="modal-map">
