@@ -79,7 +79,7 @@ router.post('/create', async (req, res) => {
   try {
     const result = await gems.insertOne(newGem);
     res.json(result).status(200);
-    console.log("restult: ", result);
+    console.log("result: ", result);
     
   } catch (error) {
     console.error('Failed to create gem:', error);
