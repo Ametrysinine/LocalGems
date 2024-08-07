@@ -1,0 +1,62 @@
+@import 'variables';
+
+.modal-gem {
+  width: 80vw;
+}
+
+.modal-close-button {
+  all: unset;
+}
+
+.modal-container {
+  display: flex;
+}
+
+.modal-info {
+  width: 40%;
+  height: 60vh;
+  max-height: 600px;
+  box-sizing: border-box;
+  padding-right: 2em;
+
+  .details {
+    .name {
+      font: 2.2em/1em $display-font;
+      display: flex;
+
+        img {
+        width: 1em;
+        height: 1em;
+        margin-right: 0.5em;
+      }
+    }
+
+    .description {
+      font: 0.8em $primary-font;
+      text-transform: uppercase;
+    }
+  }
+
+  .review {
+    font: 1em $primary-font;
+  }
+
+  .tags {
+    font: 1em $mono-font;
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+  
+    img {
+      width: 25px;
+    }
+  }
+}
+
+.modal-map {
+  width: 60%;
+  height: 60vh;
+  max-height: 600px;
+}
