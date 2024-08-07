@@ -10,10 +10,10 @@ router.get("/:gem_id/:action/:user_id", async (req, res) => {
   
   const collection = await db.collection("gems");
   const userId = req.params.user_id;
-  const gemId = req.params.gem_id; // $oid signifies object ID
+  const gemId = req.params.gem_id; 
   const action = req.params.action; // EITHER: "upvote" or "downvote"
 
-  if (action !==  "upvote" || action !==  "downvote") {
+  if (action !==  "upvote" && action !==  "downvote") {
     res.status(401).send("Unauthorized action");
   }
 
