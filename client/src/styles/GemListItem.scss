@@ -19,7 +19,9 @@
 }
 
 .gem-image {
-
+  width: 400px; 
+  max-height: 400px; 
+  object-fit: cover;
 }
 
 .gem-left-container {
