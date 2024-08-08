@@ -49,15 +49,15 @@ router.get("/posted_gems", async (req, res) => {
 
 // Retrieve gems based on user_id for favourited and unlocked----------------------------------------------------------------
 router.get("/:filter", async (req, res) => {
-  console.log("Entered /:filter");
+  // console.log("Entered /:filter");
 
   const filter = req.params.filter;
   const userIDToSendToDBSuperImportant = req.query.user;
-  console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
+  // console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
 
   const users = await db.collection('users');
   const currentUser = await users.find({ user_id: userIDToSendToDBSuperImportant }).toArray();
-  console.log("currentUser: ", currentUser);
+  // console.log("currentUser: ", currentUser);
 
   let filteredGemIds = [];
   if (filter === 'favourited_gems') {
@@ -65,11 +65,11 @@ router.get("/:filter", async (req, res) => {
   } else if (filter === 'unlocked_gems') {
     filteredGemIds = currentUser[0].unlocked_gems;
   }
-  console.log("filter: ", filter, "filtered gem ids (strings now): ", filteredGemIds);
+  // console.log("filter: ", filter, "filtered gem ids (strings now): ", filteredGemIds);
 
   const gems = await db.collection('gems');
   const filteredGems = await gems.find({ gem_id: { $in: filteredGemIds } }).toArray();
-  console.log("filteredGems: ", filteredGems);
+  // console.log("filteredGems: ", filteredGems);
 
 
   res.json(filteredGems).status(200);
