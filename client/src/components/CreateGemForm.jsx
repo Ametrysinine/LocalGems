@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useToken } from "../contexts/TokenContext";
+import "../styles/CreateGemForm.scss";
 
 
 const CreateGemForm = function({ onSuccess }) {
@@ -65,10 +66,8 @@ const handleSubmit = async (e) => {
   };
 
   return (
-    <>
-      <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">CreateGemForm component</h1>
-
-      <form onSubmit={handleSubmit} className="CreateGemFormContainer">
+    <div className="CreateGemFormContainer">
+      <form onSubmit={handleSubmit}>
         <label>
           Name of Gem:
           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
@@ -129,8 +128,7 @@ const handleSubmit = async (e) => {
         <button type="submit">Submit</button>
       </form>
 
-
-    </>
+    </div>
   );
 };
 
