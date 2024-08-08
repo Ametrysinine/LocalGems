@@ -25,6 +25,15 @@ const GemListItem = (props) => {
     }
   }, [user]);
 
+
+  /* ---------------------------------------------------------
+
+  Functions to check three states of GemListItem
+  Owned, unlocked, locked
+
+  --------------------------------------------------------- */
+
+
   // returns true if the gem is NOT UNLOCKED or NOT OWNED
   const isLocked = () => {
     if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id !== props.gem.owner_id) {
@@ -49,6 +58,13 @@ const GemListItem = (props) => {
     }
     return false;
   };
+
+
+  /* ---------------------------------------------------------
+
+  Other conditional rendering
+
+  ---------------------------------------------------------*/
 
   // COND. REND returns the correct gem currency image based on gem type
   const gemImage = () => {
@@ -85,11 +101,6 @@ const GemListItem = (props) => {
     }
   }
 
-  const handleRevealButton = function() {
-    console.log(`clicked reveal for:`, props.gem._id);
-  	
-  };
-
   // COND. REND: buttons for 1. posted_gems, 2. unlocked_gems, 3. locked gems (not posted_gems OR unlocked_gems)
   const bottomRowRight = () => {
     // if user OWNS the gem
@@ -116,7 +127,7 @@ const GemListItem = (props) => {
           <div className="view-button">View</div>
         </div>
       );
-    } 
+    }
     // if user does not OWN OR UNLOCKED the gem
     else if (isLocked()) {
       return (
@@ -125,12 +136,24 @@ const GemListItem = (props) => {
             <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
             {props.gem.total_score}
           </div>
-          <div className="reveal-button" onClick={()=>handleRevealButton()}>
+          <div className="reveal-button" onClick={() => handleRevealButton()}>
             Reveal {gemImage()}
           </div>
         </div>
       );
     }
+
+  };
+
+
+  /* ---------------------------------------------------------
+
+  handle Functions
+  
+  ---------------------------------------------------------*/
+
+  const handleRevealButton = function() {
+    console.log(`clicked reveal for:`, props.gem._id);
 
   };
 
