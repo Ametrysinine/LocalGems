@@ -12,7 +12,7 @@ const login = function() {
 
   useEffect(() => {
     async function loginGET() {
-      const expressFetch = await fetch(`http://localhost:5050/login`);
+      const expressFetch = await fetch(`/api/login`);
       if (!expressFetch.ok) {
         const message = `An error occurred: ${expressFetch.statusText}`;
         console.error(message);
@@ -30,7 +30,7 @@ const login = function() {
     console.log(`Our emailField is: `, emailField, `\nOur passwordField is: `, passwordField);
 
     try {
-      let response = await fetch("http://localhost:5050/login", {
+      let response = await fetch("/api/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

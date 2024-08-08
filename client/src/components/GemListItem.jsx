@@ -83,6 +83,13 @@ const GemListItem = (props) => {
   }
 
   // COND. REND returns edit/delete buttons or upvote-counter/reveal/view buttons if gem is owned or not
+
+
+  const handleRevealButton = function() {
+    console.log(`clicked reveal for:`, props.gem._id);
+  	
+  };
+
   const bottomRowRight = () => {
     if (user.user_id === props.gem.owner_id) {
       return (
@@ -103,8 +110,8 @@ const GemListItem = (props) => {
             <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
             {props.gem.total_score}
           </div>
-          <div >
-            {revealOrView()}
+          <div className="reveal-button" onClick={()=>handleRevealButton()}>
+            Reveal {gemImage()}
           </div>
         </div>
       );
@@ -146,6 +153,7 @@ const GemListItem = (props) => {
         </div>
 
         <Modal gem={props.gem} />
+
       </div>
 
 

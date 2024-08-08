@@ -20,7 +20,7 @@ const Explore = function() {
   useEffect(() => {
     async function getGems() {
       if (user) {
-        const response = await fetch(`http://localhost:5050/explore?user=${user.user_id}&${filter}`);
+        const response = await fetch(`/api/explore?user=${user.user_id}&${filter}`);
         if (!response.ok) {
           const message = `An error occurred: ${response.statusText}`;
           console.error(message);

@@ -51,8 +51,8 @@ router.post("/create_gem", async (req, res) => {
 
 router.post("/:user/:key/:amount", async (req, res) => {  // Template code to increment/decrement X for Y user
   // Example routes:
-    // POST localhost:5050/currency/bE2hP0/sapphires/1
-    // POST localhost:5050/currency/aLZ3b1/topazs/-1
+    // /api/currency/bE2hP0/sapphires/1
+    // /api/currency/aLZ3b1/topazs/-1
 
   const collection = await db.collection("users");
 
