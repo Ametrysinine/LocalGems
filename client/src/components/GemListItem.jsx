@@ -16,7 +16,7 @@ const GemListItem = (props) => {
     if (!userFromDB) {
       console.log(`GemListItem.jsx: no info yet for user`);
     }
-    console.log(`GemListItem.jsx: userfromdb unlocked gems: `, userFromDB.unlocked_gems);    
+    console.log(`GemListItem.jsx has set a user: `, userFromDB);    
   }, [userFromDB]);
 
   useEffect(() => {
@@ -24,6 +24,16 @@ const GemListItem = (props) => {
       validateToken(localStorage.getItem(`token`));
     }
   }, [user]);
+
+  // returns true if the gem is NOT UNLOCKED 
+  const isLocked = () => {
+    if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || user.user_id !== props.gem.owner_id) {
+      console.log("true: ", !userFromDB.unlocked_gems.includes(props.gem.gem_id));
+      
+      return true;
+    }
+    return false;
+  };
 
   const revealOrView = () => {
     if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
@@ -94,7 +104,7 @@ const GemListItem = (props) => {
     <div className="gem-list__item">
       <div className="gem-left-container">
         {props.gem.images && props.gem.images.length > 0 ? (
-          <img src={props.gem.images[0]} className="gem-image" alt="Gem image" />
+          <img src={props.gem.images[0]} className={`gem-image ${isLocked ? 'blurred' : ''}`}  alt="Gem image" />
         ) : (
           <div className="placeholder-image">No image available</div>
         )}
