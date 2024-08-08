@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/Navbar.scss";
-import { useTokenContext } from "../contexts/TokenContext";
 import NavGemCounter from "./NavGemCounter";
+import { useTokenContext } from "../contexts/TokenContext";
 import { useUserContext } from "../contexts/UserContext";
 
 // import useValidateToken from "../hooks/useValidateToken";

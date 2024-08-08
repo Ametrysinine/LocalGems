@@ -12,7 +12,8 @@ export default function GemList(props) {
     return props.gems.map(gem =>
       <GemListItem
         key={gem._id}
-        gem={gem} />
+        gem={gem} 
+        onDelete={props.deleteGem}/>
     );
   }
 

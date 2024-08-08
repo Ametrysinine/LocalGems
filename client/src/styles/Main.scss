@@ -39,7 +39,7 @@ label {
 }
 
 input, select {
-  unset: all;
+  all: unset;
   font: 0.8em $mono-font;
   border: 1px solid $peach;
   border-radius: 10px;

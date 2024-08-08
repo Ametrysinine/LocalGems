@@ -1,5 +1,6 @@
 .gem-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   flex-wrap: wrap;
   justify-content: space-evenly;
   list-style-type: none;

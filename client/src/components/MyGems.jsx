@@ -44,6 +44,29 @@ const MyGems = () => {
     setShowCreateGem(false);
   };
 
+  const deleteGem = async (gemId) => {
+    try {
+      const response = await fetch(`http://localhost:5050/gems/delete/${gemId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      setGems(gems.filter(gem => gem._id !== gemId)); // Update the state to remove the deleted gem
+    } catch (error) {
+      console.error('There was an error deleting the gem!', error);
+    }
+  };
+
+  const getButtonClass = (filterType) => {
+    return filterType === filter ? "filter-button active" : "filter-button";
+  };
+
   return (
     <>
       <article className="page-body">
@@ -51,16 +74,16 @@ const MyGems = () => {
           <div className="my-gems-navbar">
             <button onClick={toggleCreateGemForm}>Create a Gem</button>
             <br />
-            <button onClick={() => setFilter("posted_gems")}>My Gems</button>
+            <button onClick={() => setFilter("posted_gems") } className={getButtonClass("posted_gems")}>My Gems</button>
             <br />
-            <button onClick={() => setFilter("favourited_gems")}>Favourited Gems</button>
+            <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>Favourited Gems</button>
             <br />
-            <button onClick={() => setFilter("unlocked_gems")}>Unlocked Gems</button>
+            <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
           </div>
           <div className="create-gem-form">
             {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
           </div>
-          <GemList gems={gems} />
+          <GemList gems={gems} deleteGem={deleteGem}/>
         </section>
       </article>
     </>
