@@ -36,27 +36,17 @@ const GemListItem = (props) => {
 
   // returns true if the gem is NOT UNLOCKED or NOT OWNED
   const isLocked = () => {
-    if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id !== props.gem.owner_id) {
-      console.log("isLocked: true? ", !userFromDB.unlocked_gems.includes(props.gem.gem_id));
-      return true;
-    }
-    return false;
+    return !isOwned() || !isUnlocked();
   };
 
   // returns true if the gem is OWNED
   const isOwned = () => {
-    if (user.user_id === props.gem.owner_id) {
-      return true;
-    }
-    return false;
+    return user.user_id === props.gem.owner_id;
   };
 
   // returns true if the gem is UNLOCKED
   const isUnlocked = () => {
-    if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
-      return true;
-    }
-    return false;
+    return userFromDB.unlocked_gems.includes(props.gem.gem_id);
   };
 
 
