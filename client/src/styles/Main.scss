@@ -57,3 +57,18 @@ button {
   padding: 10px;
   min-height: 3.2em;
 }
+
+/* HTML: <div class="zig-zag-line"></div> */
+.zig-zag-line {
+  --a: 90deg; /* control the angle */
+  --s: 10px; /* size of the zig-zag */
+  --b: 2px;  /* control the thickness */
+  
+  background: $mint;
+  height: calc(var(--b) + var(--s)/(2*tan(var(--a)/2)));
+  width: 100%;
+  --_g:var(--s) repeat-x conic-gradient(from calc(var(--a)/-2) at bottom,
+    #0000,#000 1deg calc(var(--a) - 1deg),#0000 var(--a));
+  mask: 50% calc(-1*var(--b))/var(--_g) exclude,50%/var(--_g);
+  margin: 1.5em 0px;
+}
