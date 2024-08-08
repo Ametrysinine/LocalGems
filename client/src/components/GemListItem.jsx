@@ -34,19 +34,6 @@ const GemListItem = (props) => {
     return false;
   };
 
-  // COND. REND returns the reveal or view button if the gem is locked/unlocked
-  const revealOrView = () => {
-    if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
-      return (
-        <div className="view-button">View</div>
-      );
-    } else {
-      return (
-        <div className="reveal-button">Reveal {gemImage()}</div>
-      );
-    }
-  };
-
   // COND. REND returns the correct gem currency image based on gem type
   const gemImage = () => {
     switch (props.gem.type) {
@@ -82,15 +69,14 @@ const GemListItem = (props) => {
     }
   }
 
-  // COND. REND returns edit/delete buttons or upvote-counter/reveal/view buttons if gem is owned or not
-
-
   const handleRevealButton = function() {
     console.log(`clicked reveal for:`, props.gem._id);
   	
   };
 
+  // COND. REND: buttons for 1. posted_gems, 2. unlocked_gems, 3. locked gems (not posted_gems OR unlocked_gems)
   const bottomRowRight = () => {
+    // if user OWNS the gem
     if (user.user_id === props.gem.owner_id) {
       return (
         <div className="bottom-row-right">
@@ -103,7 +89,20 @@ const GemListItem = (props) => {
         </div>
       );
     }
-    else {
+    // if user UNLOCKED the gem
+    else if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
+      return (
+        <div className="bottom-row-right">
+          <div className="upvote-counter">
+            <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
+            {props.gem.total_score}
+          </div>
+          <div className="view-button">View</div>
+        </div>
+      );
+    } 
+    // if user does not OWN OR UNLOCKED the gem
+    else if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id !== props.gem.owner_id) {
       return (
         <div className="bottom-row-right">
           <div className="upvote-counter">
@@ -115,7 +114,8 @@ const GemListItem = (props) => {
           </div>
         </div>
       );
-    };
+    }
+
   };
 
   const handleDelete = () => {
