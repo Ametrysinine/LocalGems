@@ -25,16 +25,16 @@ const GemListItem = (props) => {
     }
   }, [user]);
 
-  // returns true if the gem is NOT UNLOCKED 
+  // returns true if the gem is NOT UNLOCKED or NOT OWNED
   const isLocked = () => {
     if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || user.user_id !== props.gem.owner_id) {
       console.log("true: ", !userFromDB.unlocked_gems.includes(props.gem.gem_id));
-      
       return true;
     }
     return false;
   };
 
+  // returns the reveal or view button if the gem is locked/unlocked
   const revealOrView = () => {
     if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
       return (
@@ -47,6 +47,7 @@ const GemListItem = (props) => {
     }
   };
 
+  // returns the correct gem currency image based on gem type
   const gemImage = () => {
     switch (props.gem.type) {
       case 'food':
@@ -68,6 +69,7 @@ const GemListItem = (props) => {
     props.onDelete(props.gem._id);
   };
 
+  // returns edit/delete buttons or upvote-counter/reveal/view buttons if gem is owned or not
   const bottomRowRight = () => {
     if (user.user_id === props.gem.owner_id) {
       return (
@@ -95,9 +97,6 @@ const GemListItem = (props) => {
       );
     };
   };
-  
-  // console.log(`${props.gem.name}: `, props.gem.images);
-  
 
   return (
 
