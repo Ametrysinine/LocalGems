@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {AdvancedMarker, InfoWindow, useAdvancedMarkerRef, Pin} from '@vis.gl/react-google-maps';
+import { Carousel } from 'flowbite-react';
+import "../styles/MapGem.scss";
 
 export const MapGem = (props) => {
   const [infowindowOpen, setInfowindowOpen] = useState(true);
@@ -51,22 +53,39 @@ export const MapGem = (props) => {
         position={{lat: parseFloat(location.latitude.$numberDecimal), lng: parseFloat(location.longitude.$numberDecimal)}}
         title={name}>
           <img src={icon.src} alt={icon.alt} height="32px" width="32px"></img>
-        </AdvancedMarker>
+      </AdvancedMarker>
       
 
       {infowindowOpen && (
         <InfoWindow
-          className="size-full flex flex-row bg-blue-300"
+          className="size-full flex flex-row"
           anchor={marker}
           onCloseClick={() => setInfowindowOpen(false)}>
-          <div className="flex flex-col font-sans text-xl p-2">
-            <img src={images[0]} alt="location image" className="size-48"></img>
-            <div className="p-1 self-center">{name}</div>
+          
+          <div className="gem-map-container">
+            {/* <img src={images[0]} alt="location image" className="size-48"></img> */}
+
+            <section className="h-60 w-full">
+              <Carousel slide={false} indicators={false}>
+                {props.images.map((URL, index) => (
+                  <img key={index} 
+                    src={URL} 
+                    className="gem-carousel-img" 
+                    loading="lazy"/>
+                ))}
+              </Carousel>
+            </section>
+
+            {/* <div className="p-1 self-center">{name}</div> */}
+
+            <div className="gem-map-details">
+              <div className="name">{name}</div>
+              <div className="address">{location.address}</div>
+              <div className="description">{description}</div>
+            </div>
+
           </div>
-          <div className="flex flex-col font-sans bg-blue-200">
-            <div className="font-serif text-base content-center text-right">{location.address}</div>
-            <div className="font-sans text-lg content-center">{description}</div>
-          </div>
+
         </InfoWindow>
       )}
     </>
