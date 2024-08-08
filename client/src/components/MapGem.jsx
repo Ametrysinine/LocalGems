@@ -8,7 +8,7 @@ export const MapGem = (props) => {
   const [img, setImg] = useState();
   const [markerRef, marker] = useAdvancedMarkerRef();
 
-  const {location, description, name, type, images} = props;
+  const {city, location, description, name, type, images} = props;
   let icon = {};
 
     switch (type) {
@@ -80,7 +80,7 @@ export const MapGem = (props) => {
 
             <div className="gem-map-details">
               <div className="name">{name}</div>
-              <div className="address">{location.address}</div>
+              <div className="address">{location.address}, {city}</div>
               <div className="description">{description}</div>
             </div>
 
