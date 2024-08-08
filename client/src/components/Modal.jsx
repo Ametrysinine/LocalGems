@@ -14,17 +14,17 @@ export default function Component(props) {
   const gemImage = () => {
     switch (props.gem.type) {
       case 'food':
-        return <img src="/assets/flaticons/gem_ruby.png" alt="Ruby - Food" className="gem-currency-image" />;
+        return <img src="/assets/flaticons/gem_ruby.png" alt="Ruby - Food" title="Ruby - Food" className="gem-currency-image" />;
       case 'entertainment':
-        return <img src="/assets/flaticons/gem_sapphire.png" alt="Sapphire - Entertainment" className="gem-currency-image" />;
+        return <img src="/assets/flaticons/gem_sapphire.png" alt="Sapphire - Entertainment" title="Sapphire - Entertainment" className="gem-currency-image" />;
       case 'outdoors':
-        return <img src="/assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity" className="gem-currency-image" />;
+        return <img src="/assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity" title="Emerald - Outdoor Activity" className="gem-currency-image" />;
       case 'shopping':
-        return <img src="/assets/flaticons/gem_topaz.png" alt="Topaz - Shopping" className="gem-currency-image" />;
+        return <img src="/assets/flaticons/gem_topaz.png" alt="Topaz - Shopping" title="Topaz - Shopping" className="gem-currency-image" />;
       case 'nightlife':
-        return <img src="/assets/flaticons/gem_amethyst.png" alt="Amethyst - Nightlife" className="gem-currency-image" />;
+        return <img src="/assets/flaticons/gem_amethyst.png" alt="Amethyst - Nightlife" title="Amethyst - Nightlife" className="gem-currency-image" />;
       case 'services':
-        return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" className="gem-currency-image" />;
+        return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" title="Citrine - Services" className="gem-currency-image" />;
     }
   };
 
@@ -33,7 +33,7 @@ export default function Component(props) {
       <Button onClick={() => setOpenModal(true)}>View</Button>
 
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)} size={"6xl"}>
-      <Button onClick={() => setOpenModal(false)} as="modal-close-button">Close</Button>
+      
         
           <Modal.Body className="modal-container">
             {gemImage()} 
@@ -41,15 +41,15 @@ export default function Component(props) {
             <divleft className="modal-info">
                 <section className="details">
                   <span className="name"> 
-                    
                     {props.gem.name} 
                   </span>
                   <span className="description"> {props.gem.description} </span>
                 </section>
                 
-                <section classname="review">
-                  <b>What's great about it?</b> <br/>
-                  {props.gem.created_by} says: <br/>
+                <section className="review">
+                  <div className="zig-zag-line"></div>
+                  <b>What's great about it? <i>{props.gem.created_by}</i> says:</b> <br/>
+                  {/* <i>{props.gem.created_by}</i> says: <br/> */}
                   {props.gem.whats_great_about_it}
                 </section>
 
@@ -62,6 +62,7 @@ export default function Component(props) {
                 </section>
 
                 <section class="bottom">
+                  <Button onClick={() => setOpenModal(false)}>CLOSE</Button>
                   <img src={upvote} alt="Upvote" />
                   <img src={downvote} alt="Downvote" />
                   <img src={heart} alt="Add to favorites" />
