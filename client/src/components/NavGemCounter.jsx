@@ -4,7 +4,7 @@ import { useUserContext } from "../contexts/UserContext";
 
 export default function NavGemCounter() {  
 
-  const { userFromDB, error } = useUserContext(); 
+  const { userFromDB } = useUserContext(); 
   const { user, error, validateToken } = useTokenContext();
   
   const [currency, setCurrency] = useState({});
