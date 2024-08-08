@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Carousel } from "flowbite-react";
 import { useState } from "react";
 import MapContainer from "./MapContainer";
 import "../styles/Modal.scss";
@@ -33,10 +33,9 @@ export default function Component(props) {
       <Button onClick={() => setOpenModal(true)}>View</Button>
 
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)} size={"6xl"}>
-      
-        
+
           <Modal.Body className="modal-container">
-            {gemImage()} 
+            <div className="modal-gem-img"> {gemImage()} </div>
             
             <divleft className="modal-info">
                 <section className="details">
@@ -45,11 +44,23 @@ export default function Component(props) {
                   </span>
                   <span className="description"> {props.gem.description} </span>
                 </section>
+
+                <div className="zig-zag-line"></div>
+
+                {/* <section className="h-80 w-full">
+                  <Carousel slide={false} indicators={false}>
+                    {props.gem.images.map((URL, index) => (
+                      <img key={index} 
+                        src={URL} 
+                        className="gem-carousel-img" 
+                        loading="lazy"/>
+                    ))}
+                  </Carousel>
+                </section> */}
                 
                 <section className="review">
-                  <div className="zig-zag-line"></div>
-                  <b>What's great about it? <i>{props.gem.created_by}</i> says:</b> <br/>
-                  {/* <i>{props.gem.created_by}</i> says: <br/> */}
+                  <b>What's great about it? 
+                  <i> {props.gem.created_by}</i> says:</b> <br/>
                   {props.gem.whats_great_about_it}
                 </section>
 
@@ -65,7 +76,7 @@ export default function Component(props) {
                   <Button onClick={() => setOpenModal(false)}>CLOSE</Button>
                   <img src={upvote} alt="Upvote" />
                   <img src={downvote} alt="Downvote" />
-                  <img src={heart} alt="Add to favorites" />
+                  <img className="heart" src={heart} alt="Add to favorites" />
                 </section>
             </divleft>
 
