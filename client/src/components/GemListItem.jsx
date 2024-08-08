@@ -25,10 +25,26 @@ const GemListItem = (props) => {
     }
   }, [user]);
 
-  // COND. REND returns true if the gem is NOT UNLOCKED or NOT OWNED
+  // returns true if the gem is NOT UNLOCKED or NOT OWNED
   const isLocked = () => {
     if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id !== props.gem.owner_id) {
-      // console.log("true: ", !userFromDB.unlocked_gems.includes(props.gem.gem_id));
+      console.log("isLocked: true? ", !userFromDB.unlocked_gems.includes(props.gem.gem_id));
+      return true;
+    }
+    return false;
+  };
+
+  // returns true if the gem is OWNED
+  const isOwned = () => {
+    if (user.user_id === props.gem.owner_id) {
+      return true;
+    }
+    return false;
+  };
+
+  // returns true if the gem is UNLOCKED
+  const isUnlocked = () => {
+    if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
       return true;
     }
     return false;
@@ -77,7 +93,7 @@ const GemListItem = (props) => {
   // COND. REND: buttons for 1. posted_gems, 2. unlocked_gems, 3. locked gems (not posted_gems OR unlocked_gems)
   const bottomRowRight = () => {
     // if user OWNS the gem
-    if (user.user_id === props.gem.owner_id) {
+    if (isOwned()) {
       return (
         <div className="bottom-row-right">
           <div className="edit-button">
@@ -90,7 +106,7 @@ const GemListItem = (props) => {
       );
     }
     // if user UNLOCKED the gem
-    else if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
+    else if (isUnlocked()) {
       return (
         <div className="bottom-row-right">
           <div className="upvote-counter">
@@ -102,7 +118,7 @@ const GemListItem = (props) => {
       );
     } 
     // if user does not OWN OR UNLOCKED the gem
-    else if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id !== props.gem.owner_id) {
+    else if (isLocked()) {
       return (
         <div className="bottom-row-right">
           <div className="upvote-counter">
