@@ -1,44 +1,28 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/Navbar.scss";
-import { useToken } from "../contexts/TokenContext";
+import { useTokenContext } from "../contexts/TokenContext";
 import NavGemCounter from "./NavGemCounter";
+import { useUserContext } from "../contexts/UserContext";
 
 // import useValidateToken from "../hooks/useValidateToken";
 
 export default function Navbar() {  
-
-  const { user, error, validateToken } = useToken(); 
-
-  const [currency, setCurrency] = useState({});
-
-/*   cynthias useEffect
-
-useEffect(() => {
-    async function getCurrency() {
-      if (user) {
-        const response = await fetch(`http://localhost:5050/currency?user=${user.user_id}`);
-        if (!response.ok) {
-          const message = `An error occurred: ${response.statusText}`;
-          console.error(message);
-          return;
-        }
-        const results = await response.json();
-        setCurrency(results);
-      }
-    }
-    getCurrency();
-    return;
-  }, [user, results.length]);
- */
-
   
+  const { user, error, validateToken } = useTokenContext(); 
+  const { getUserOBJfromDB } = useUserContext();
+  let timesUseEffectFired = 0;
+
+
   useEffect(() => {
     if (!user) {
       validateToken(localStorage.getItem(`token`))
     }
+    getUserOBJfromDB();          //gets our userObject from the DB and sets its state in userContext.jsx
+    timesUseEffectFired ++;
+    console.log(`total timesUseEffectFired in Navbar: `, timesUseEffectFired);
   }, [user])
- 
+
 
   useEffect (() => {
     const checkToken = async () => { //run initially on page load
@@ -46,28 +30,9 @@ useEffect(() => {
         console.log(`token doesnt exist`);
       }
       else {
-        console.log(`----------------- token exists---------------------`); 
+        console.log(`- token exists in localstorage -`); 
         if (user) {
-          console.log(`Our decrypted data associated under localStorage is: `, user);
-          try {  
-            console.log("In Try for Navbar.JSX")     
-    
-            let response = await fetch(`http://localhost:5050/gems/posted_gems?user=${user.name}`, {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                },              
-              });    
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            else{
-              console.log(`got something back from server!!!!!!!`);
-              console.log(`Our in useEffect for navbar.jsx is: `, response.body);
-            }    
-          } catch (error) {
-            console.error(`Error validating token: ${error}`);
-          }
+          console.log(`Our decrypted token data is:`, user);
         }       
       }       
     } 
@@ -100,7 +65,7 @@ useEffect(() => {
             <div className="nav-bar-user">
               <div className="nav-bar-user-info">
                 <p>Signed in as: <b>{user.name}</b></p>
-                <p>A true local of <b>East Gwillemsbury{}</b></p>
+                <p>A true local of <b>{user.city_name}</b></p>
               </div>
               <div className="nav-bar-user-dropdown" role="button" tabindex="0" aria-pressed="false">
                 <img className="nav-bar-user-pfp"  src={user.pfp}/>
