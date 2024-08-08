@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
-import { useToken } from "../contexts/TokenContext";
+import { useTokenContext } from "../contexts/TokenContext";
+import { useUserContext } from "../contexts/UserContext";
 
+export default function NavGemCounter() {  
 
-export default function NavGemCounter(props) {  
-  console.log(`Our props in NavGemCounter: `, props);
-  const { user, error, validateToken } = useToken();
+  const { userFromDB, error } = useUserContext(); 
+  const { user, error, validateToken } = useTokenContext();
+  
   const [currency, setCurrency] = useState({});
+  
+  useEffect(() => {
+    if (!userFromDB) {
+      console.log(`no info yet for gem counter`);
+    }
+    console.log(`Our Currency count is NOW: `, userFromDB.currency);    
+  }, [userFromDB]);
 
   useEffect(() => {
     if (!user) {
@@ -13,7 +22,6 @@ export default function NavGemCounter(props) {
     }
   }, [user]);
 
-  // console.log('user' + user.user_id);
    // This method fetches the currencies from the database.
    useEffect(() => {
     async function getCurrency() {
@@ -28,7 +36,6 @@ export default function NavGemCounter(props) {
         setCurrency(currency);
       }
     }
-
     getCurrency();
     return;
   }, []);

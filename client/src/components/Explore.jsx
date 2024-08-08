@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useToken } from "../contexts/TokenContext";
+import { useTokenContext } from "../contexts/TokenContext";
 import SearchForm from "./SearchForm";
 import GemList from "./GemList";
 
 const Explore = function() {
 
-  const { user, error, validateToken } = useToken();
+  const { user, error, validateToken } = useTokenContext();
 
   useEffect(() => {
     if (!user) {
