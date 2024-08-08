@@ -5,11 +5,19 @@
 }
 
 .modal-close-button {
-  all: unset;
+  padding-left: 100px;
 }
 
 .modal-container {
   display: flex;
+  align-items: flex-start;
+  gap: 2em;
+
+  img {
+    width: 2.2em;
+    height: 2.2em;
+    margin-top: 1em;
+  }
 }
 
 .modal-info {
@@ -17,40 +25,70 @@
   height: 60vh;
   max-height: 600px;
   box-sizing: border-box;
-  padding-right: 2em;
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  // display: grid;
+  // grid-template-columns: 1fr;
 
   .details {
     .name {
       font: 2.2em/1em $display-font;
       display: flex;
-
-        img {
-        width: 1em;
-        height: 1em;
-        margin-right: 0.5em;
-      }
     }
 
     .description {
-      font: 0.8em $primary-font;
+      display: block;
+      box-sizing: border-box;
+      font: 0.7em $mono-font;
       text-transform: uppercase;
+      margin-top: 1em;
     }
   }
 
   .review {
-    font: 1em $primary-font;
+    align-self: stretch;
+    font: 1em/1.5em $primary-font;
+    flex-grow: 1;
+
+    b {
+      font: 1.25em $display-font;
+    }
   }
 
   .tags {
-    font: 1em $mono-font;
+    margin-top: 2em;
+    align-self: end;
+
+    .gem-tags span {
+      // background-color: $peach;
+      border: 1px solid $peach;
+      border-radius: 2em;
+      display: inline-block;
+      margin: 0px 10px 10px 0px;
+      padding: 3px 10px;
+      font: 0.7em $mono-font;
+      color: $font-color;
+    }
   }
 
   .bottom {
-    display: flex;
-    justify-content: space-between;
+    margin-top: 2em;
+    align-self: flex-end;
+
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+
+    button {
+      width: 150px;
+    }
   
     img {
-      width: 25px;
+      width: 22px;
+      margin-left: 2em;
     }
   }
 }
