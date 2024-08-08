@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useToken } from "../contexts/TokenContext";
+import { useTokenContext } from "../contexts/TokenContext";
 import { useNavigate } from "react-router-dom";
 
 
@@ -7,7 +7,7 @@ const login = function() {
   const [emailField, setEmailField] = useState('');
   const [passwordField, setPasswordField] = useState('');
 
-  const { validateToken } = useToken()
+  const { validateToken } = useTokenContext()
   const navigate = useNavigate();
 
   useEffect(() => {

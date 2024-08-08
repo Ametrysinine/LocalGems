@@ -15,11 +15,12 @@ const verifyLogin = (emailField, passwordField, databaseReturn) => {
       user_id: databaseReturn[0].user_id,
       name: databaseReturn[0].name,
       email: databaseReturn[0].email,
-      pfp: databaseReturn[0].pfp
+      pfp: databaseReturn[0].pfp,
+      city_name: databaseReturn[0].locations[0].city_name
       }
   } 
   else{
-    console.log(`Credentials are not a match`);
+    console.error(`Credentials are not a match`);
     return false;
   }  
 };
