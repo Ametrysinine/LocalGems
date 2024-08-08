@@ -25,16 +25,16 @@ const GemListItem = (props) => {
     }
   }, [user]);
 
-  // returns true if the gem is NOT UNLOCKED or NOT OWNED
+  // COND. REND returns true if the gem is NOT UNLOCKED or NOT OWNED
   const isLocked = () => {
-    if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || user.user_id !== props.gem.owner_id) {
-      console.log("true: ", !userFromDB.unlocked_gems.includes(props.gem.gem_id));
+    if (!userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id !== props.gem.owner_id) {
+      // console.log("true: ", !userFromDB.unlocked_gems.includes(props.gem.gem_id));
       return true;
     }
     return false;
   };
 
-  // returns the reveal or view button if the gem is locked/unlocked
+  // COND. REND returns the reveal or view button if the gem is locked/unlocked
   const revealOrView = () => {
     if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
       return (
@@ -47,7 +47,7 @@ const GemListItem = (props) => {
     }
   };
 
-  // returns the correct gem currency image based on gem type
+  // COND. REND returns the correct gem currency image based on gem type
   const gemImage = () => {
     switch (props.gem.type) {
       case 'food':
@@ -65,23 +65,24 @@ const GemListItem = (props) => {
     }
   };
 
+  // COND. REND returns gem type if locked, otherwise gem name
   const nameOfGem = () => {
-    if (user.user_id === props.gem.owner_id) {
-      return (
-        <div className="type-location">
-          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
-        </div>
-      )
-    } else {
+    if (userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id === props.gem.owner_id) {
       return (
         <div className="type-location">
           {props.gem.name} | {props.gem.city}
         </div>
       )
+    } else if ((!userFromDB.unlocked_gems.includes(props.gem.gem_id)) || userFromDB.user_id !== props.gem.owner_id) {
+      return (
+        <div className="type-location">
+          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
+        </div>
+      )
     }
   }
 
-  // returns edit/delete buttons or upvote-counter/reveal/view buttons if gem is owned or not
+  // COND. REND returns edit/delete buttons or upvote-counter/reveal/view buttons if gem is owned or not
   const bottomRowRight = () => {
     if (user.user_id === props.gem.owner_id) {
       return (
@@ -119,7 +120,7 @@ const GemListItem = (props) => {
     <div className="gem-list__item">
       <div className="gem-left-container">
         {props.gem.images && props.gem.images.length > 0 ? (
-          <img src={props.gem.images[0]} className={`gem-image ${isLocked ? 'blurred' : ''}`} alt="Gem image" />
+          <img src={props.gem.images[0]} className={`gem-image ${isLocked() ? 'blurred' : ''}`} alt="Gem image" />
         ) : (
           <div className="placeholder-image">No image available</div>
         )}
@@ -127,7 +128,7 @@ const GemListItem = (props) => {
 
       <div className="gem-right-container">
         <div>
-          {nameOfGem}
+          {nameOfGem()}
         </div>
 
         {props.gem.tags && (
