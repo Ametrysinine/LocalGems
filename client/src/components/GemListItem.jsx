@@ -9,14 +9,14 @@ import { useUserContext } from "../contexts/UserContext";
 // takes in a single Gem as props
 const GemListItem = (props) => {
 
-  const { userFromDB } = useUserContext(); 
+  const { userFromDB } = useUserContext();
   const { user, error, validateToken } = useTokenContext();
 
   useEffect(() => {
     if (!userFromDB) {
       console.log(`GemListItem.jsx: no info yet for user`);
     }
-    console.log(`GemListItem.jsx has set a user: `, userFromDB);    
+    console.log(`GemListItem.jsx has set a user: `, userFromDB);
   }, [userFromDB]);
 
   useEffect(() => {
@@ -65,9 +65,21 @@ const GemListItem = (props) => {
     }
   };
 
-  const handleDelete = () => {
-    props.onDelete(props.gem._id);
-  };
+  const nameOfGem = () => {
+    if (user.user_id === props.gem.owner_id) {
+      return (
+        <div className="type-location">
+          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
+        </div>
+      )
+    } else {
+      return (
+        <div className="type-location">
+          {props.gem.name} | {props.gem.city}
+        </div>
+      )
+    }
+  }
 
   // returns edit/delete buttons or upvote-counter/reveal/view buttons if gem is owned or not
   const bottomRowRight = () => {
@@ -91,11 +103,15 @@ const GemListItem = (props) => {
             {props.gem.total_score}
           </div>
           <div >
-          {revealOrView()}
+            {revealOrView()}
           </div>
         </div>
       );
     };
+  };
+
+  const handleDelete = () => {
+    props.onDelete(props.gem._id);
   };
 
   return (
@@ -103,15 +119,15 @@ const GemListItem = (props) => {
     <div className="gem-list__item">
       <div className="gem-left-container">
         {props.gem.images && props.gem.images.length > 0 ? (
-          <img src={props.gem.images[0]} className={`gem-image ${isLocked ? 'blurred' : ''}`}  alt="Gem image" />
+          <img src={props.gem.images[0]} className={`gem-image ${isLocked ? 'blurred' : ''}`} alt="Gem image" />
         ) : (
           <div className="placeholder-image">No image available</div>
         )}
       </div>
 
       <div className="gem-right-container">
-        <div className="type-location">
-          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
+        <div>
+          {nameOfGem}
         </div>
 
         {props.gem.tags && (
