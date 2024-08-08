@@ -11,19 +11,8 @@ export default function Navbar() {
   
   const { user, error, validateToken } = useTokenContext(); 
   const { getUserOBJfromDB } = useUserContext();
-  let timesUseEffectFired = 0;
-
-
-  useEffect(() => {
-    if (!user) {
-      validateToken(localStorage.getItem(`token`))
-    }
-    getUserOBJfromDB();          //gets our userObject from the DB and sets its state in userContext.jsx
-    timesUseEffectFired ++;
-    console.log(`total timesUseEffectFired in Navbar: `, timesUseEffectFired);
-  }, [user])
-
-
+  
+  
   useEffect (() => {
     const checkToken = async () => { //run initially on page load
       if (!localStorage.getItem(`token`)) {
@@ -38,7 +27,17 @@ export default function Navbar() {
     } 
     checkToken();
   } ,[user])
-
+  
+  let timesUseEffectFired = 0;
+  
+  useEffect(() => {
+    if (!user) {
+      validateToken(localStorage.getItem(`token`))
+    }
+    getUserOBJfromDB();          //gets our userObject from the DB and sets its state in userContext.jsx
+    timesUseEffectFired ++;
+    console.log(`total timesUseEffectFired in Navbar: `, timesUseEffectFired);
+  }, [user])
 
   return (
     <div className="nav-bar">

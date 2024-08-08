@@ -1,11 +1,23 @@
-
+import { useUserContext } from "../contexts/UserContext";
+import { useEffect } from "react";
 
 export default function NavGemCounter() {  
+
+  const { userFromDB, error } = useUserContext(); 
+  
+  useEffect(() => {
+    if (!userFromDB) {
+      console.log(`no info yet for gem counter`);
+    }
+    console.log(`Our Currency count is NOW: `, userFromDB.currency);    
+  }, [userFromDB])
+
+
   return(
     <div className="nav-currency-bar">
       <div className="nav-currency">
         <img src="assets/flaticons/gem_ruby.png" alt="Ruby - Food" />
-        <p>Rubies: <b>3</b></p>
+        <p>Rubies: <b></b></p>
         <div className="nav-currency-content">
           <p>Create entries in the <b>Food</b> category to earn Rubies</p>
         </div>
