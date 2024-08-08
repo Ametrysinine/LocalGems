@@ -7,9 +7,24 @@ import "../styles/Modal.scss";
 import upvote from "../assets/icon_upvote.svg";
 import downvote from "../assets/icon_downvote.svg";
 import heart from "../assets/icon_heart.svg";
+import { useToken } from "../contexts/TokenContext";
 
 export default function Component(props) {
   const [openModal, setOpenModal] = useState(false);
+  const { user, error, validateToken } = useToken(); 
+
+  const doUpvote = async () => {if (user) {try {
+    const response = await fetch(`http://localhost:5050/gems/votes/${props.gem.gem_id}/upvote/${user.user_id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: 'body',
+    }) } catch (error) {
+      console.error(`Error validating token: ${error}`);
+    }}
+  // const downvote = 
+  // const favourite = 
 
   const gemImage = () => {
     switch (props.gem.type) {
@@ -60,7 +75,7 @@ export default function Component(props) {
                 </section>
 
                 <section class="bottom">
-                  <img src={upvote} alt="Upvote" />
+                  <img src={upvote} onClick={() => {doUpvote()}} alt="Upvote" />
                   <img src={downvote} alt="Downvote" />
                   <img src={heart} alt="Add to favorites" />
                 </section>
@@ -73,4 +88,4 @@ export default function Component(props) {
       </Modal>
     </>
   );
-}
+}}
