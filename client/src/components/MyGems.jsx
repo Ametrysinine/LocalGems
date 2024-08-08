@@ -25,7 +25,7 @@ const MyGems = () => {
   useEffect(() => {
     async function getGems() {
       if (user) {
-        const response = await fetch(`http://localhost:5050/gems/${filter}?user=${user.user_id}`);
+        const response = await fetch(`/api/gems/${filter}?user=${user.user_id}`);
         if (!response.ok) {
           const message = `An error occurred: ${response.statusText}`;
           console.error(message);
@@ -46,7 +46,7 @@ const MyGems = () => {
 
   const deleteGem = async (gemId) => {
     try {
-      const response = await fetch(`http://localhost:5050/gems/delete/${gemId}`, {
+      const response = await fetch(`/api/gems/delete/${gemId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

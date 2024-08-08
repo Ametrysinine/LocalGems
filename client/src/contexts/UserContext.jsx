@@ -18,7 +18,7 @@ export default function UserProvider({children}) {
     console.log(`Our user.user_id is: `, user.user_id);
     
       try {
-        const response = await fetch(`http://localhost:5050/api/user/?user_id=${user.user_id}`, {
+        const response = await fetch(`/api/api/user/?user_id=${user.user_id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

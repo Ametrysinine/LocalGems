@@ -33,8 +33,8 @@ const CreateGemForm = function({ onSuccess }) {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    if (user) {try {
-      const response = await fetch(`http://localhost:5050/gems/create?user_id=${user.user_id}`, {
+    if (user) {try {      
+      const response = await fetch(`/api/gems/create?user_id=${user.user_id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

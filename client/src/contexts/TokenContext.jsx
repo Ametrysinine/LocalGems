@@ -5,11 +5,10 @@ const TokenContext = createContext();
 export default function TokenProvider({children}) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-
   
     const validateToken = async (token) => {
       try {
-        const response = await fetch(`http://localhost:5050/api/user-verify`, {
+        const response = await fetch(`/api/api/user-verify`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
