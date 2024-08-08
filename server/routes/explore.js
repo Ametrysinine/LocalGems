@@ -16,7 +16,6 @@ router.get("/", async (req, res) => {
   let results = [];
   let filters = [];
 
-  // exclude gems owned by the current user
   filters.push({ owner_id: { $ne: userId } });
 
   if (queryCity) {
@@ -41,6 +40,7 @@ router.get("/", async (req, res) => {
   } else {
     results = await gems.find().toArray();
   }
+  
   res.status(200).json(results);
 });
 

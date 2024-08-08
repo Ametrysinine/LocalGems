@@ -1,0 +1,11 @@
+@import 'variables';
+
+input, select {
+  all: unset;
+  font: 0.8em $mono-font;
+  border: 1px solid $peach;
+  border-radius: 10px;
+  margin-right: 2em;
+  padding: 10px;
+  height: 3.2em;
+}

@@ -64,12 +64,19 @@ const GemListItem = (props) => {
       );
     };
   };
+  
+  console.log(`${props.gem.name}: `, props.gem.images);
+  
 
   return (
 
     <div className="gem-list__item">
       <div className="gem-left-container">
-        <img src={props.gem.images[0]} className="gem-image"></img>
+        {props.gem.images && props.gem.images.length > 0 ? (
+          <img src={props.gem.images[0]} className="gem-image" alt="Gem image" />
+        ) : (
+          <div className="placeholder-image">No image available</div>
+        )}
       </div>
 
       <div className="gem-right-container">

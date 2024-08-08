@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTokenContext } from "../contexts/TokenContext";
+import "../styles/CreateGemForm.scss";
+
 
 
 const CreateGemForm = function({ onSuccess }) {
@@ -19,22 +21,33 @@ const CreateGemForm = function({ onSuccess }) {
     address: "",
     latitude: "",
     longitude: "",
-    images: "",
+    images: [],
     type: "",
+    tags: [],  
+    whats_great_about_it: ""
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+
+    if (name === "images" || name === "tags") {
+      // Handle arrays for images and tags
+      setFormData({
+        ...formData,
+        [name]: value.split(',').map(item => item.trim()),
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
 const handleSubmit = async (e) => {
     e.preventDefault();
     if (user) {try {
-      const response = await fetch(`http://localhost:5050/gems/create?user_id=${user.user_id}`, {
+      const response = await fetch(`http://localhost:5050/gems/create?username=${user.name}&userId=${user.user_id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,10 +67,8 @@ const handleSubmit = async (e) => {
   };
 
   return (
-    <>
-      <h1 className="text-lg font-semibold text-blue-600 italic text-2xl p-4 ">CreateGemForm component</h1>
-
-      <form onSubmit={handleSubmit} className="CreateGemFormContainer">
+    <div className="CreateGemFormContainer">
+      <form onSubmit={handleSubmit}>
         <label>
           Name of Gem:
           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
@@ -93,6 +104,16 @@ const handleSubmit = async (e) => {
           <input type="text" name="images" value={formData.images} onChange={handleChange} required />
         </label>
         <br />
+        <label>
+          Tags (please separate by comma):
+          <input type="text" name="tags" value={formData.tags} onChange={handleChange} required />
+        </label>
+        <br />
+        <label>
+          What's great about it?
+          <textarea type="text" name="whats_great_about_it" value={formData.whats_great_about_it} onChange={handleChange} required />
+        </label>
+        <br />
         <label>Select type:</label>
           <select
             type="text" name="type" value={formData.type} onChange={handleChange} required>
@@ -108,8 +129,7 @@ const handleSubmit = async (e) => {
         <button type="submit">Submit</button>
       </form>
 
-
-    </>
+    </div>
   );
 };
 
