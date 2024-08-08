@@ -37,10 +37,9 @@ const MyGems = () => {
     }
     getGems();
     return;
-  }, [filter, user, gems.length]);
+  }, [filter, user, gems.length, showCreateGem]);
 
   const handleCreateGemSuccess = (newGem) => {
-    setGems([...gems, newGem]);
     setShowCreateGem(false);
   };
 
