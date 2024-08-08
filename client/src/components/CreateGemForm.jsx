@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useToken } from "../contexts/TokenContext";
+import { useTokenContext } from "../contexts/TokenContext";
 import "../styles/CreateGemForm.scss";
+
 
 
 const CreateGemForm = function({ onSuccess }) {
 
-  const { user, error, validateToken } = useToken();
+  const { user, error, validateToken } = useTokenContext();
 
   useEffect(() => {
     if (!user) {

@@ -50,6 +50,6 @@ export default function TokenProvider({children}) {
   );
 }
 
-export const useToken = () => {
+export const useTokenContext = () => {
   return useContext(TokenContext)
 }

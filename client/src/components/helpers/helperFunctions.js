@@ -9,7 +9,7 @@
 */
 
 export function dateConversion(dateFromDB) {
-  console.log(`Our dateFromDB is:`, dateFromDB);  
+  // console.log(`Our dateFromDB is:`, dateFromDB);  
   const date = new Date(dateFromDB);
   const monthString = [
       "January", "February", "March", "April", "May", "June", 

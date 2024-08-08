@@ -2,13 +2,13 @@ import Modal from "./Modal";
 import { dateConversion, xssSanitize } from "./helpers/helperFunctions";
 import "../styles/GemListItem.scss";
 import { useEffect } from "react";
-import { useToken } from "../contexts/TokenContext";
+import { useTokenContext } from "../contexts/TokenContext";
 
 
 // takes in a single Gem as props
 const GemListItem = (props) => {
 
-  const { user, error, validateToken } = useToken();
+  const { user, error, validateToken } = useTokenContext();
 
   useEffect(() => {
     if (!user) {
