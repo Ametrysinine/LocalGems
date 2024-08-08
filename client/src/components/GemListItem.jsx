@@ -3,18 +3,39 @@ import { dateConversion, xssSanitize } from "./helpers/helperFunctions";
 import "../styles/GemListItem.scss";
 import { useEffect } from "react";
 import { useTokenContext } from "../contexts/TokenContext";
+import { useUserContext } from "../contexts/UserContext";
 
 
 // takes in a single Gem as props
 const GemListItem = (props) => {
 
+  const { userFromDB } = useUserContext(); 
   const { user, error, validateToken } = useTokenContext();
+
+  useEffect(() => {
+    if (!userFromDB) {
+      console.log(`GemListItem.jsx: no info yet for user`);
+    }
+    console.log(`GemListItem.jsx: userfromdb unlocked gems: `, userFromDB.unlocked_gems);    
+  }, [userFromDB]);
 
   useEffect(() => {
     if (!user) {
       validateToken(localStorage.getItem(`token`));
     }
   }, [user]);
+
+  const revealOrView = () => {
+    if (userFromDB.unlocked_gems.includes(props.gem.gem_id)) {
+      return (
+        <div className="view-button">View</div>
+      );
+    } else {
+      return (
+        <div className="reveal-button">Reveal {gemImage()}</div>
+      );
+    }
+  };
 
   const gemImage = () => {
     switch (props.gem.type) {
@@ -57,15 +78,15 @@ const GemListItem = (props) => {
             <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
             {props.gem.total_score}
           </div>
-          <div className="reveal-button">
-            Reveal {gemImage()}
+          <div >
+          {revealOrView()}
           </div>
         </div>
       );
     };
   };
   
-  console.log(`${props.gem.name}: `, props.gem.images);
+  // console.log(`${props.gem.name}: `, props.gem.images);
   
 
   return (
