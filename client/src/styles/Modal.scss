@@ -12,18 +12,22 @@
   display: flex;
   align-items: flex-start;
   gap: 2em;
+}
+
+.modal-gem-img  {
+  min-width: 35px;
 
   img {
     width: 2.2em;
     height: 2.2em;
     margin-top: 1em;
   }
-}
+} 
 
 .modal-info {
-  width: 40%;
+  width: 33%;
+  min-height: 400px;
   height: 60vh;
-  max-height: 600px;
   box-sizing: border-box;
   padding-top: 1em;
   display: flex;
@@ -41,7 +45,7 @@
     .description {
       display: block;
       box-sizing: border-box;
-      font: 0.7em $mono-font;
+      font: 0.8em $mono-font;
       text-transform: uppercase;
       margin-top: 1em;
     }
@@ -54,6 +58,13 @@
 
     b {
       font: 1.25em $display-font;
+    }
+
+    i {
+      font-style: normal;
+      display: inline-block;
+      border-bottom: 1px solid $peach;
+      margin-left: 0.25em;
     }
   }
 
@@ -90,7 +101,14 @@
       width: 22px;
       margin-left: 2em;
     }
+
+    
   }
+}
+
+.heart {
+  color: #b1b1b1;
+  fill: #b1b1b1;
 }
 
 .modal-map {
