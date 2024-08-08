@@ -33,13 +33,15 @@ export default function Component(props) {
       <Button onClick={() => setOpenModal(true)}>View</Button>
 
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)} size={"6xl"}>
-      <Button onClick={() => setOpenModal(false)} className="modal-close-button">Close</Button>
+      <Button onClick={() => setOpenModal(false)} as="modal-close-button">Close</Button>
         
           <Modal.Body className="modal-container">
+            {gemImage()} 
+            
             <divleft className="modal-info">
                 <section className="details">
                   <span className="name"> 
-                    {gemImage()} 
+                    
                     {props.gem.name} 
                   </span>
                   <span className="description"> {props.gem.description} </span>
