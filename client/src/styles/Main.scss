@@ -19,48 +19,47 @@ body {
   min-height: calc(100vh - 220px);
   display: flex;
   justify-content: center;
-
 }
 
 .page-body-content {
   background: $background-color;
   border-radius: 4em;
   box-sizing: border-box;
-  box-shadow: .3em .3em .75em $drop-shadow;
+  box-shadow: .2em .2em .75em $drop-shadow;
   margin: 1em auto 2em auto;
   padding: 4em;
-  min-width: 50vw;
-  max-width: 85vw;
+  width: 85vw;
 }
 
 label {
-  font: 0.8em $mono-font;
-  font-weight: 600;
+  font: 1em $primary-font;
+  font-weight: 400;
   padding-right: 12px;
+  margin-bottom: 0.5em;
 }
 
 input, select {
   all: unset;
   font: 0.8em $mono-font;
   border: 1px solid $peach;
-  border-radius: 10px;
+  border-radius: $radius;
   margin-right: 2em;
   padding: 10px;
   height: 3.2em;
 }
 
 button {
-  font: 0.8em $mono-font;
+  font: 0.8em $primary-font;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: $radius;
+  padding: 0.8em 2em;
   min-height: 3.2em;
+  background: rgba($mint, 0.7);
 }
 
-/* HTML: <div class="zig-zag-line"></div> */
-.zig-zag-line {
+.divider {
   --a: 90deg; /* control the angle */
   --s: 10px; /* size of the zig-zag */
   --b: 2px;  /* control the thickness */
@@ -72,4 +71,15 @@ button {
     #0000,#000 1deg calc(var(--a) - 1deg),#0000 var(--a));
   mask: 50% calc(-1*var(--b))/var(--_g) exclude,50%/var(--_g);
   margin: 1.5em 0px;
+}
+
+h1 {
+  font: 2.2em/1em $display-font;
+  text-transform: uppercase;
+}
+
+sub {
+  font: 0.8em $primary-font;
+  display: block;
+  color: $drop-shadow;
 }
