@@ -1,7 +1,7 @@
 .my-gems-navbar{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .my-gems-navbar {
@@ -13,8 +13,15 @@
     transition: background-color 0.3s;
 
     &.active {
-      background-color: #000000; // Active filter color
-      color: white;
+      text-decoration: underline;
     }
   }
+}
+
+.create-a-gem {
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  border-radius: 10px 10px 0px 0px;
 }
