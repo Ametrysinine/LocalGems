@@ -1,9 +1,11 @@
 import Modal from "./Modal";
 import { dateConversion, xssSanitize } from "./helpers/helperFunctions";
 import "../styles/GemListItem.scss";
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 import { useTokenContext } from "../contexts/TokenContext";
 import { useUserContext } from "../contexts/UserContext";
+import UnlockModal from "./UnlockModal";
+
 
 
 // takes in a single Gem as props
@@ -11,6 +13,7 @@ const GemListItem = (props) => {
 
   const { userFromDB } = useUserContext();
   const { user, error, validateToken } = useTokenContext();
+  const [ unlockModalVisibility, setUnlockModalVisibility] = useState(false);
 
   useEffect(() => {
     if (!userFromDB) {
@@ -144,13 +147,13 @@ const GemListItem = (props) => {
   
   ---------------------------------------------------------*/
 
-  const handleRevealButton = function() {
-    console.log(`clicked reveal for:`, props.gem._id);
-
-  };
-
   const handleDelete = () => {
     props.onDelete(props.gem._id);
+  };
+
+  const handleRevealButton = function() {
+    console.log(`clicked reveal for:`, props.gem._id);
+    setUnlockModalVisibility(true);  	
   };
 
   return (
@@ -189,6 +192,8 @@ const GemListItem = (props) => {
         </div>
 
         <Modal gem={props.gem} />
+        
+        { unlockModalVisibility? <UnlockModal gemData={props.gem} setUnlockModalVisibility={setUnlockModalVisibility} /> : <></> }
 
       </div>
 

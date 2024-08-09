@@ -1,0 +1,28 @@
+@import 'variables';
+
+
+.unlockModal-negative-space{
+  position: absolute;
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  height: 96vh;
+  width: 96vw;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.0);  
+}
+
+
+
+.unlockModal-container{
+  position: relative;
+  height: 50%;
+  width: 40%;
+  z-index: 1001;
+  background-color: white; 
+  box-shadow: .3em .3em .75em $drop-shadow;
+  border-radius: 4em;
+
+}

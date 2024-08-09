@@ -76,7 +76,7 @@ export default function Component(props) {
 
   return (
     <>
-      <Button className="view-button" onClick={() => setOpenModal(true)}></Button>
+      <Button className="modal-view-button" onClick={() => setOpenModal(true)}>View</Button>
 
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)} size={"6xl"}>
 

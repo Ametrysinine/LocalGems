@@ -117,6 +117,7 @@
   max-height: 600px;
 }
 
+//Cynthias solution to the view button
 .view-button {
   font: 0.8em $mono-font;
   display: flex;
@@ -132,4 +133,19 @@
   transition: background-color 0.3s ease;
   overflow-wrap: break-word;
   cursor: pointer;
+}
+
+//Chris solution to the view button
+.modal-view-button{
+  position: absolute;
+  transform: translate(-140px, 0px);
+  background-color: rgba(255, 255, 255, 0);
+  height: 140px;
+  width: 140px;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  &:hover{
+    background-color: rgba(255, 255, 255, 0) !important;
+  }
 }
