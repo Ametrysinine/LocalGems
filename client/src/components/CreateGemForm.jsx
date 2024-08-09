@@ -71,7 +71,9 @@ const CreateGemForm = function(props) {
   return (
     <div className="creategemform-container">
       <form onSubmit={handleSubmit} className={`creategemform`}>
+
         <div className="body">
+          
           <div className="column-1">
             <label>
               Name of Gem:
@@ -106,9 +108,8 @@ const CreateGemForm = function(props) {
               Longitude:
               <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} required />
             </label>
-
           </div>
-          <br />
+
           <div className="column-2">
             <label>
               Images (please separate URLs by comma):
@@ -118,9 +119,7 @@ const CreateGemForm = function(props) {
               Tags (please separate by comma):
               <textarea type="text" name="tags" value={formData.tags} onChange={handleChange} required />
             </label>
-
             <br />
-
             <label>
               Description:
               <textarea name="description" value={formData.description} onChange={handleChange} required placeholder="E.g. a hole in the wall pizza shop with giant slices" />
@@ -135,8 +134,9 @@ const CreateGemForm = function(props) {
         <div className="submit-section">
           <button type="submit">Submit</button>
         </div>
+
       </form>
-<br/>
+      <br />
     </div>
   );
 };
