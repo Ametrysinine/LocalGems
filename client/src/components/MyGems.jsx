@@ -80,8 +80,9 @@ const MyGems = () => {
             <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
           </div>
           <div className="create-gem-form">
-            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
+            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem}/>}
           </div>
+          <hr/>
           <GemList gems={gems} deleteGem={deleteGem}/>
         </section>
       </article>
