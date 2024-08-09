@@ -2,10 +2,10 @@
 
 .features-container {
   width: 80vw;
-  margin: 15vh auto 0px auto;
+  margin: 15vh auto;
   display: grid;
-  // background: $background-color;
-  // border-radius: 4em;
+  background: $background-color;
+  border-radius: 4em;
   box-sizing: border-box;
   padding: 4em;
 
@@ -29,6 +29,7 @@
 
     .features-image {
       grid-area: box2;
+      padding-right: 6em;
     }
   }
 
@@ -67,8 +68,8 @@
     
     font: 1.5em/1.75em $display-font;
     font-weight: 300;
-    // text-shadow: 0px 0px 5px rgba($yellow, 0.5);
-    background: $background-color;
+    // // text-shadow: 0px 0px 5px rgba($yellow, 0.5);
+    // background: $background-color;
   }
 
   .features-image {
@@ -131,5 +132,5 @@
   color: $background-color;
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 10vh;
+  margin-bottom: 15vh;
 }
