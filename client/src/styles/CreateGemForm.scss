@@ -14,8 +14,8 @@ textarea {
 .creategemform {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   // max-height: 0;
   overflow: hidden;
   transition: max-height 2s ease-in-out;
@@ -23,6 +23,11 @@ textarea {
 
   .active {
     max-height: 1000px;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: row;
   }
   
   input, select {
@@ -32,6 +37,7 @@ textarea {
     margin-right: 2em;
     padding: 10px;
     height: 3.2em;
+    width: 20em;
   }
 
   textarea {
@@ -40,33 +46,22 @@ textarea {
     border-radius: 10px;
   }
 
-  .row-1 {
-    flex-direction: row;
-  }
-  
-  .row-2 {
-    flex-direction: row;
-  }
-  
-  .row-3 {
-    flex-direction: row;
-  }
-  
-  .row-4 {
-    flex-direction: row;
-    padding-bottom: 3em;
-  }
 }
 
-.type {
-  width: 10em;
+label {
+  display: flex;
+  flex-direction: column; /* Stack label text and input vertically */
+  margin-bottom: 1rem; /* Space between rows */
 }
 
-.submit-button {
+.submit-section {
   display: flex;
   justify-content: center;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 10px;
   color: white;
   background-color: black;
-  width: auto;
+  
+  button {
+    width: 100%;
+  }
 }
