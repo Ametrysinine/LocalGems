@@ -114,7 +114,7 @@ const GemListItem = (props) => {
             <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
             {props.gem.total_score}
           </div>
-          <div className="view-button">View</div>
+          <div className="view-button"><Modal gem={props.gem} /></div>
         </div>
       );
     }
@@ -185,7 +185,7 @@ const GemListItem = (props) => {
           {bottomRowRight()}
         </div>
 
-        {/* <Modal gem={props.gem} /> */}
+        {/*  */}
 
       </div>
 
