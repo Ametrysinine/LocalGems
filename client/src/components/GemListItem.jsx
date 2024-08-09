@@ -76,12 +76,14 @@ const GemListItem = (props) => {
 
   // COND. REND returns gem type if locked, otherwise gem name
   const nameOfGem = () => {
+    // if unlocked
     if (!isLocked()) {
       return (
         <div className="type-location">
           {props.gem.name} | {props.gem.city}
         </div>
       )
+      //if locked
     } else if (isLocked()) {
       return (
         <div className="type-location">
@@ -114,7 +116,7 @@ const GemListItem = (props) => {
             <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
             {props.gem.total_score}
           </div>
-          <div className="view-button"><Modal gem={props.gem} /></div>
+          <div className="view-button">View</div>
         </div>
       );
     }
@@ -156,11 +158,12 @@ const GemListItem = (props) => {
     <div className="gem-list__item">
       <div className="gem-left-container">
         {props.gem.images && props.gem.images.length > 0 ? (
-            <img
-              src={props.gem.images[0]}
-              className={`gem-image ${isLocked() ? 'blurred' : ''}`}
-              alt="Gem image"
-            />
+          <img
+            src={props.gem.images[0]}
+            className={`gem-image ${isLocked() ? 'blurred' : ''}`}
+            alt="Gem image"
+            onClick={<Modal gem={props.gem} />}
+          />
         ) : (
           <div className="placeholder-image">No image available</div>
         )}
@@ -185,7 +188,7 @@ const GemListItem = (props) => {
           {bottomRowRight()}
         </div>
 
-        {/*  */}
+        <Modal gem={props.gem} />
 
       </div>
 
