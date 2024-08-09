@@ -1,11 +1,67 @@
 @import 'variables';
 
-input, select {
-  all: unset;
-  font: 0.8em $mono-font;
-  border: 1px solid $peach;
+
+textarea {
+  width: 300px;  /* Default width */
+  height: 100px; /* Default height */
+  min-width: 150px; /* Minimum width */
+  max-width: 100%; /* Maximum width */
+  min-height: 50px; /* Minimum height */
+  max-height: 300px; /* Maximum height */
+  resize: both; /* Allow the user to resize the textarea */
+}
+
+.creategemform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  // max-height: 0;
+  overflow: hidden;
+  transition: max-height 2s ease-in-out;
+  padding-top: 3em;
+
+  .active {
+    max-height: 1000px;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  input, select {
+    font: 0.8em $mono-font;
+    border: 1px solid $peach;
+    border-radius: 10px;
+    margin-right: 2em;
+    padding: 10px;
+    height: 3.2em;
+    width: 20em;
+  }
+
+  textarea {
+    font: 0.8em $mono-font;
+    border: 1px solid $peach;
+    border-radius: 10px;
+  }
+
+}
+
+label {
+  display: flex;
+  flex-direction: column; /* Stack label text and input vertically */
+  margin-bottom: 1rem; /* Space between rows */
+}
+
+.submit-section {
+  display: flex;
+  justify-content: center;
   border-radius: 10px;
-  margin-right: 2em;
-  padding: 10px;
-  height: 3.2em;
+  color: white;
+  background-color: black;
+  
+  button {
+    width: 100%;
+  }
 }
