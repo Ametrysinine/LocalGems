@@ -33,7 +33,7 @@ textarea {
   input, select {
     font: 0.8em $mono-font;
     border: 1px solid $peach;
-    border-radius: 10px;
+    border-radius: $radius;
     margin-right: 2em;
     padding: 10px;
     height: 3.2em;
@@ -43,21 +43,20 @@ textarea {
   textarea {
     font: 0.8em $mono-font;
     border: 1px solid $peach;
-    border-radius: 10px;
+    border-radius: $radius;
   }
 
-}
-
-label {
-  display: flex;
-  flex-direction: column; /* Stack label text and input vertically */
-  margin-bottom: 1rem; /* Space between rows */
+  label {
+    display: flex;
+    flex-direction: column; /* Stack label text and input vertically */
+    margin-bottom: 1rem; /* Space between rows */
+  }
 }
 
 .submit-section {
   display: flex;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: $radius;
   color: white;
   background-color: black;
   
