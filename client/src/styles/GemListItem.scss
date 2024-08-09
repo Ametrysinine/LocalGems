@@ -24,6 +24,11 @@
   object-fit: cover;
 }
 
+.blurred {
+  filter: blur(5px);
+  overflow:hidden;
+}
+
 .gem-left-container {
   width: 250px;
   padding-right: 10px;
