@@ -39,7 +39,7 @@ const MyGems = () => {
     return;
   }, [filter, user, gems.length, showCreateGem]);
 
-  const handleCreateGemSuccess = (newGem) => {
+  const handleCreateGemSuccess = () => {
     setShowCreateGem(false);
   };
 
