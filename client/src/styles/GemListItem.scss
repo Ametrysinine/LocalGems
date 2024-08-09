@@ -71,6 +71,16 @@
   overflow-wrap: break-word;
 }
 
+.edit-button:hover {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.edit-button:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+
 .delete-button {
   display: flex;
   width: 45px;
@@ -124,6 +134,22 @@
 
 .reveal-button:hover {
   background-color: #aeecab;
+}
+
+.view-button {
+  display: flex;
+  width: 45px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #151414;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s ease;
+  overflow-wrap: break-word;
 }
 
 .gem-currency-image {

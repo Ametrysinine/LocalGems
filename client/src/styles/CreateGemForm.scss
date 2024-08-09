@@ -1,11 +1,61 @@
 @import 'variables';
 
-input, select {
-  all: unset;
-  font: 0.8em $mono-font;
-  border: 1px solid $peach;
-  border-radius: 10px;
-  margin-right: 2em;
-  padding: 10px;
-  height: 3.2em;
+
+textarea {
+  width: 300px;  /* Default width */
+  height: 100px; /* Default height */
+  min-width: 150px; /* Minimum width */
+  max-width: 100%; /* Maximum width */
+  min-height: 50px; /* Minimum height */
+  max-height: 300px; /* Maximum height */
+  resize: both; /* Allow the user to resize the textarea */
+}
+
+.creategemform {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  // max-height: 0;
+  overflow: hidden;
+  transition: max-height 2s ease-in-out;
+
+  .active {
+    max-height: 1000px;
+  }
+  
+  input, select {
+    font: 0.8em $mono-font;
+    border: 1px solid $peach;
+    border-radius: 10px;
+    margin-right: 2em;
+    padding: 10px;
+    height: 3.2em;
+  }
+
+  textarea {
+    font: 0.8em $mono-font;
+    border: 1px solid $peach;
+    border-radius: 10px;
+  }
+
+  .row-1 {
+    flex-direction: row;
+  }
+  
+  .row-2 {
+    flex-direction: row;
+  }
+  
+  .row-3 {
+    flex-direction: row;
+  }
+  
+  .row-4 {
+    flex-direction: row;
+  }
+}
+
+.type {
+  width: 10em;
 }
