@@ -188,7 +188,7 @@ const GemListItem = (props) => {
           {bottomRowRight()}
         </div>
 
-        <Modal gem={props.gem} />
+        {/* <Modal gem={props.gem} /> */}
 
       </div>
 
