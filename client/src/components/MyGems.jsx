@@ -70,20 +70,22 @@ const MyGems = () => {
     <>
       <article className="page-body">
         <section className="page-body-content">
+          <div className="create-a-gem">
+            <button onClick={toggleCreateGemForm}>Create a Gem +</button>
+          </div>
+          <div className="create-gem-form">
+            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem} />}
+          </div>
+            <hr />
           <div className="my-gems-navbar">
-            <button onClick={toggleCreateGemForm}>Create a Gem</button>
             <br />
-            <button onClick={() => setFilter("posted_gems") } className={getButtonClass("posted_gems")}>My Gems</button>
+            <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}>My Gems</button>
             <br />
             <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>Favourited Gems</button>
             <br />
             <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
           </div>
-          <div className="create-gem-form">
-            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem}/>}
-          </div>
-          <hr/>
-          <GemList gems={gems} deleteGem={deleteGem}/>
+          <GemList gems={gems} deleteGem={deleteGem} />
         </section>
       </article>
     </>

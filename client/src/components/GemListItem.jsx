@@ -156,14 +156,11 @@ const GemListItem = (props) => {
     <div className="gem-list__item">
       <div className="gem-left-container">
         {props.gem.images && props.gem.images.length > 0 ? (
-          <>
-            {console.log('Owned:', isOwned(), 'Unlocked:', isUnlocked(), 'Locked:', isLocked())}
             <img
               src={props.gem.images[0]}
               className={`gem-image ${isLocked() ? 'blurred' : ''}`}
               alt="Gem image"
             />
-          </>
         ) : (
           <div className="placeholder-image">No image available</div>
         )}

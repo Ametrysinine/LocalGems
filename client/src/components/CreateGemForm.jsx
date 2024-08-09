@@ -92,7 +92,7 @@ const CreateGemForm = function(props) {
             <option value="services">Services</option>
           </select>
         </div>
-        <br/>
+        <br />
         <div className="row-2">
           <label>
             Address:
@@ -107,7 +107,7 @@ const CreateGemForm = function(props) {
             <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} required />
           </label>
         </div>
-        <br/>
+        <br />
         <div className="row-3">
           <label>
             Images (please separate URLs by comma):
@@ -118,7 +118,7 @@ const CreateGemForm = function(props) {
             <input type="text" name="tags" value={formData.tags} onChange={handleChange} required />
           </label>
         </div>
-        <br/>
+        <br />
         <div className="row-4">
           <label>
             Description:
@@ -126,14 +126,14 @@ const CreateGemForm = function(props) {
           </label>
           <label>
             What's so great about it?
-            <textarea type="text" name="whats_great_about_it" value={formData.whats_great_about_it} onChange={handleChange} required placeholder="E.g. the 'OG Big Cheese' pizza"/>
+            <textarea type="text" name="whats_great_about_it" value={formData.whats_great_about_it} onChange={handleChange} required placeholder="E.g. the 'OG Big Cheese' pizza" />
           </label>
-          <br />
-        </div>
 
+        </div>
         <div className="submit-button">
           <button type="submit">Submit</button>
         </div>
+
       </form>
 
     </div>
