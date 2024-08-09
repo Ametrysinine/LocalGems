@@ -24,6 +24,11 @@
   object-fit: cover;
 }
 
+.blurred {
+  filter: blur(5px);
+  overflow:hidden;
+}
+
 .gem-left-container {
   width: 250px;
   padding-right: 10px;
@@ -64,6 +69,12 @@
   background-color: #f9f9f9; 
   transition: background-color 0.3s ease;
   overflow-wrap: break-word;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  color: #ffffff;
+  background-color: #000000;
 }
 
 .delete-button {
@@ -79,11 +90,17 @@
   padding: 5px 10px;
   background-color: #000000;
   transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  color: #000000;
+  background-color: #ffffff;
 }
 
 .upvote-counter {
   display: flex;
-  width: 30px;
+  width: 40px;
   height: 25px;
   justify-content: center;
   align-items: center;
@@ -94,6 +111,7 @@
   padding: 5px 10px;
   background-color: #000000;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .thumbs-image {
@@ -115,10 +133,29 @@
   background-color: #f9f9f9; 
   transition: background-color 0.3s ease;
   overflow-wrap: break-word;
+  cursor: pointer;
 }
 
 .reveal-button:hover {
   background-color: #aeecab;
+  cursor: pointer;
+}
+
+.view-button {
+  display: flex;
+  width: 45px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.0em;
+  color: #151414;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s ease;
+  overflow-wrap: break-word;
+  cursor: pointer;
 }
 
 .gem-currency-image {

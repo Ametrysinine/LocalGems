@@ -9,13 +9,14 @@ const router = express.Router();     // router is an instance of the express rou
 
 
 // Favourite a gem----------------------------------------------------------------------------------------
-router.get("/favourite/:user_id/:gem_id", async (req, res) => {
+router.post("/favourite/:gem_id", async (req, res) => {
   console.log("-----correct path to favourite!-----");
 
   const collection = await db.collection("users");
-  const userId = req.params.user_id; // aLZ3b1
-  const gemObj = { "$oid": req.params.gem_id } // $oid signifies object ID
-  res.status(200).send(await collection.updateOne({ user_id: userId }, { $addToSet: { favourited_gems: gemObj } }));
+  // const userId = req.params.user_id; // aLZ3b1
+  const userId = req.body.user_id;
+  const gemObj = { gem_id: req.params.gem_id } // $oid signifies object ID
+  res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { favourited_gems: gemObj } }));
 });
 
 // // Add a gem to unlocked_gems----------------------------------------------------------------------------------------
@@ -49,15 +50,15 @@ router.get("/posted_gems", async (req, res) => {
 
 // Retrieve gems based on user_id for favourited and unlocked----------------------------------------------------------------
 router.get("/:filter", async (req, res) => {
-  console.log("Entered /:filter");
+  // console.log("Entered /:filter");
 
   const filter = req.params.filter;
   const userIDToSendToDBSuperImportant = req.query.user;
-  console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
+  // console.log(`Our userIDToSendToDBSuperImportant is: `, userIDToSendToDBSuperImportant);
 
   const users = await db.collection('users');
   const currentUser = await users.find({ user_id: userIDToSendToDBSuperImportant }).toArray();
-  console.log("currentUser: ", currentUser);
+  // console.log("currentUser: ", currentUser);
 
   let filteredGemIds = [];
   if (filter === 'favourited_gems') {
@@ -65,11 +66,11 @@ router.get("/:filter", async (req, res) => {
   } else if (filter === 'unlocked_gems') {
     filteredGemIds = currentUser[0].unlocked_gems;
   }
-  console.log("filter: ", filter, "filtered gem ids (strings now): ", filteredGemIds);
+  // console.log("filter: ", filter, "filtered gem ids (strings now): ", filteredGemIds);
 
   const gems = await db.collection('gems');
   const filteredGems = await gems.find({ gem_id: { $in: filteredGemIds } }).toArray();
-  console.log("filteredGems: ", filteredGems);
+  // console.log("filteredGems: ", filteredGems);
 
 
   res.json(filteredGems).status(200);

@@ -3,8 +3,7 @@ import { useTokenContext } from "../contexts/TokenContext";
 import "../styles/CreateGemForm.scss";
 
 
-
-const CreateGemForm = function({ onSuccess }) {
+const CreateGemForm = function(props) {
 
   const { user, error, validateToken } = useTokenContext();
 
@@ -23,7 +22,7 @@ const CreateGemForm = function({ onSuccess }) {
     longitude: "",
     images: [],
     type: "",
-    tags: [],  
+    tags: [],
     whats_great_about_it: ""
   });
 
@@ -44,92 +43,100 @@ const CreateGemForm = function({ onSuccess }) {
     }
   };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (user) {try {
-      const response = await fetch(`/api/gems/create?username=${user.name}&userId=${user.user_id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        console.error(message);
-        return;
+    if (user) {
+      try {
+        const response = await fetch(`/api/gems/create?username=${user.name}&userId=${user.user_id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        if (!response.ok) {
+          const message = `An error occurred: ${response.statusText}`;
+          console.error(message);
+          return;
+        }
+        const newGem = await response.json();
+        props.onSuccess(newGem);
+      } catch (error) {
+        console.error('Failed to create gem:', error);
       }
-      const newGem = await response.json();
-      onSuccess(newGem);
-    } catch (error) {
-      console.error('Failed to create gem:', error);
-    }}
+    }
   };
 
   return (
-    <div className="CreateGemFormContainer">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name of Gem:
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Description:
-          <textarea name="description" value={formData.description} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          City:
-          <input type="text" name="city" value={formData.city} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Address:
-          <input type="text" name="address" value={formData.address} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Latitude:
-          <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Longitude:
-          <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Images (please separate URLs by comma):
-          <input type="text" name="images" value={formData.images} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Tags (please separate by comma):
-          <input type="text" name="tags" value={formData.tags} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          What's great about it?
-          <textarea type="text" name="whats_great_about_it" value={formData.whats_great_about_it} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>Select type:</label>
-          <select
-            type="text" name="type" value={formData.type} onChange={handleChange} required>
-            <option value="">Select a type</option>
-            <option value="food">Food</option>
-            <option value="outdoors">Outdoors</option>
-            <option value="shopping">Shopping</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="nightlife">Nightlife</option>
-            <option value="services">Services</option>
-          </select>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+    <div className="creategemform-container">
+      <form onSubmit={handleSubmit} className={`creategemform`}>
 
+        <div className="body">
+          
+          <div className="column-1">
+            <label>
+              Name of Gem:
+              <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+            </label>
+            <label>
+              City:
+              <input type="text" name="city" value={formData.city} onChange={handleChange} required />
+            </label>
+            <label>Select type:</label>
+            <select
+              type="text" name="type" value={formData.type} onChange={handleChange} className="type" required>
+              <option value="">Select a type</option>
+              <option value="food">Food</option>
+              <option value="outdoors">Outdoors</option>
+              <option value="shopping">Shopping</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="nightlife">Nightlife</option>
+              <option value="services">Services</option>
+            </select>
+            <br />
+
+            <label>
+              Address:
+              <input type="text" name="address" value={formData.address} onChange={handleChange} required />
+            </label>
+            <label>
+              Latitude:
+              <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} required />
+            </label>
+            <label>
+              Longitude:
+              <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} required />
+            </label>
+          </div>
+
+          <div className="column-2">
+            <label>
+              Images (please separate URLs by comma):
+              <textarea type="text" name="images" value={formData.images} onChange={handleChange} required />
+            </label>
+            <label>
+              Tags (please separate by comma):
+              <textarea type="text" name="tags" value={formData.tags} onChange={handleChange} required />
+            </label>
+            <br />
+            <label>
+              Description:
+              <textarea name="description" value={formData.description} onChange={handleChange} required placeholder="E.g. a hole in the wall pizza shop with giant slices" />
+            </label>
+            <label>
+              What's so great about it?
+              <textarea type="text" name="whats_great_about_it" value={formData.whats_great_about_it} onChange={handleChange} required placeholder="E.g. the 'OG Big Cheese' pizza" />
+            </label>
+          </div>
+        </div>
+
+        <div className="submit-section">
+          <button type="submit">Submit</button>
+        </div>
+
+      </form>
+      <br />
     </div>
   );
 };

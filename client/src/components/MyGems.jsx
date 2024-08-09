@@ -39,7 +39,7 @@ const MyGems = () => {
     return;
   }, [filter, user, gems.length, showCreateGem]);
 
-  const handleCreateGemSuccess = (newGem) => {
+  const handleCreateGemSuccess = () => {
     setShowCreateGem(false);
   };
 
@@ -66,26 +66,38 @@ const MyGems = () => {
     return filterType === filter ? "filter-button active" : "filter-button";
   };
 
+  const createOrCancel = () => {
+    if (showCreateGem) {
+      return (
+        <p>Cancel -</p>
+      )
+    }
+    return (
+      <p>Create a Gem +</p>
+    )
+  };
+
   return (
-    <>
       <article className="page-body">
         <section className="page-body-content">
+          <div className="create-a-gem">
+            <button onClick={toggleCreateGemForm}>{createOrCancel()}</button>
+          </div>
+          <div className="create-gem-form">
+            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem} />}
+          </div>
+            <hr />
           <div className="my-gems-navbar">
-            <button onClick={toggleCreateGemForm}>Create a Gem</button>
             <br />
-            <button onClick={() => setFilter("posted_gems") } className={getButtonClass("posted_gems")}>My Gems</button>
+            <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}>My Gems</button>
             <br />
             <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>Favourited Gems</button>
             <br />
             <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
           </div>
-          <div className="create-gem-form">
-            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
-          </div>
-          <GemList gems={gems} deleteGem={deleteGem}/>
+          <GemList gems={gems} deleteGem={deleteGem} />
         </section>
       </article>
-    </>
   );
 };
 

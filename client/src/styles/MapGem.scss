@@ -1,0 +1,31 @@
+@import 'variables';
+
+.gem-carousel-img {
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.gem-map-container {
+  min-width: 30vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 0em 1em;
+}
+
+.gem-map-details {
+  .name {
+    font: 2em/1em $primary-font;
+  }
+
+  .address {
+    font: 1.5em $primary-font;
+    margin: 0.6em 0em 1em 0em;
+    display: inline-block;
+    border-bottom: 1px solid $peach;
+  }
+
+  .description {
+    font: 1em $mono-font;
+  }
+}
