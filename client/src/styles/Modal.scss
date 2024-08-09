@@ -33,8 +33,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  // display: grid;
-  // grid-template-columns: 1fr;
 
   .details {
     .name {
@@ -75,7 +73,7 @@
     .gem-tags span {
       // background-color: $peach;
       border: 1px solid $peach;
-      border-radius: 2em;
+      border-radius: $pill;
       display: inline-block;
       margin: 0px 10px 10px 0px;
       padding: 3px 10px;
@@ -127,7 +125,7 @@
   align-items: center;
   color: #151414;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: $radius;
   padding: 5px 10px;
   background-color: #f9f9f9; 
   transition: background-color 0.3s ease;
