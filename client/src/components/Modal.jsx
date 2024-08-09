@@ -11,7 +11,7 @@ import { useUserContext } from "../contexts/UserContext";
 
 export default function Component(props) {
   const [openModal, setOpenModal] = useState(false);
-  const { userFromDB } = useUserContext(); 
+  const { userFromDB, setUserFromDB } = useUserContext(); 
 
   const gemImage = () => {
     switch (props.gem.type) {
@@ -52,6 +52,28 @@ export default function Component(props) {
     });
   }
 
+  const favoriteGem = async (gemId) => {
+    await fetch(`api/gems/favourite/${gemId}`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    }).then(response => {if (response.status === 200) {
+      const clone = {...userFromDB};
+      
+      // Only add to state if gem_id not already present
+      if (!clone.favourited_gems.some(obj => obj.gem_id === gemId)) {clone.favourited_gems.push({gem_id: gemId});}
+      setUserFromDB(clone);
+    }})
+  }
+
+
+
+
+
+
   return (
     <>
       <Button onClick={() => setOpenModal(true)}>View</Button>
@@ -86,7 +108,7 @@ export default function Component(props) {
                 <section class="bottom">
                   <img src={upvote} onClick={() => upvoteGem(props.gem.gem_id)} alt="Upvote" />
                   <img src={downvote} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" />
-                  <img src={heart} alt="Add to favorites" />
+                  <img src={heart} onClick={() => favoriteGem(props.gem.gem_id)} alt="Add to favorites" />
                 </section>
             </divleft>
 
