@@ -9,12 +9,13 @@ const router = express.Router();     // router is an instance of the express rou
 
 
 // Favourite a gem----------------------------------------------------------------------------------------
-router.get("/favourite/:user_id/:gem_id", async (req, res) => {
+router.get("/favourite/:gem_id", async (req, res) => {
   console.log("-----correct path to favourite!-----");
 
   const collection = await db.collection("users");
-  const userId = req.params.user_id; // aLZ3b1
-  const gemObj = { "$oid": req.params.gem_id } // $oid signifies object ID
+  // const userId = req.params.user_id; // aLZ3b1
+  const userId = req.body.user_id;
+  const gemObj = { gem_id: req.params.gem_id } // $oid signifies object ID
   res.status(200).send(await collection.updateOne({ user_id: userId }, { $addToSet: { favourited_gems: gemObj } }));
 });
 

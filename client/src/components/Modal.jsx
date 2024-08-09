@@ -7,9 +7,11 @@ import "../styles/Modal.scss";
 import upvote from "../assets/icon_upvote.svg";
 import downvote from "../assets/icon_downvote.svg";
 import heart from "../assets/icon_heart.svg";
+import { useUserContext } from "../contexts/UserContext";
 
 export default function Component(props) {
   const [openModal, setOpenModal] = useState(false);
+  const { userFromDB } = useUserContext(); 
 
   const gemImage = () => {
     switch (props.gem.type) {
@@ -27,6 +29,28 @@ export default function Component(props) {
         return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" className="gem-currency-image" />;
     }
   };
+
+  const upvoteGem = async (gemId) => {
+    await fetch (`/api/votes/${gemId}/upvote`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    });
+  }
+
+  const downvoteGem = async (gemId) => {
+    await fetch (`/api/votes/${gemId}/downvote`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    });
+  }
 
   return (
     <>
@@ -60,8 +84,8 @@ export default function Component(props) {
                 </section>
 
                 <section class="bottom">
-                  <img src={upvote} alt="Upvote" />
-                  <img src={downvote} alt="Downvote" />
+                  <img src={upvote} onClick={() => upvoteGem(props.gem.gem_id)} alt="Upvote" />
+                  <img src={downvote} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" />
                   <img src={heart} alt="Add to favorites" />
                 </section>
             </divleft>

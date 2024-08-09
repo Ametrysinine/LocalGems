@@ -38,25 +38,16 @@ router.post("/create_gem", async (req, res) => {
 
 });
 
-// router.post("/addbethruby", async (req, res) => {  
-//   console.log(`\nEntered the POST Currency/addbethruby route with the following data:\n`, req.body);
 
-//   const collection = await db.collection("users");
-
-//   // Increment rubies by 1, change 1 to -1 to decrement
-//   collection.findOneAndUpdate({user_id: 'bE2hP0'}, {$inc:{"currency.rubies": 1}});
-
-// });
-
-
-router.post("/:user/:key/:amount", async (req, res) => {  // Template code to increment/decrement X for Y user
+router.post("/:key/:amount", async (req, res) => {  // Template code to increment/decrement X for Y user
   // Example routes:
     // /api/currency/bE2hP0/sapphires/1
     // /api/currency/aLZ3b1/topazs/-1
 
   const collection = await db.collection("users");
 
-  const userId = req.params.user; // aLZ3b1
+  // const userId = req.params.user; // aLZ3b1
+  const userId = req.body.user_id;
   const key = req.params.key; //"rubies", "sapphires", etc
   const amount = Number(req.params.amount); // 1, -1, 2, -2, etc
 
@@ -71,7 +62,7 @@ router.post("/:user/:key/:amount", async (req, res) => {  // Template code to in
 
   await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})
   
-  res.send(await user.currency).status(200);
+  res.send(await user).status(200);
 });
 
 
