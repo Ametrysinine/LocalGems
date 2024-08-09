@@ -66,11 +66,22 @@ const MyGems = () => {
     return filterType === filter ? "filter-button active" : "filter-button";
   };
 
+  const createOrCancel = () => {
+    if (showCreateGem) {
+      return (
+        <p>Cancel -</p>
+      )
+    }
+    return (
+      <p>Create a Gem +</p>
+    )
+  };
+
   return (
       <article className="page-body">
         <section className="page-body-content">
           <div className="create-a-gem">
-            <button onClick={toggleCreateGemForm}>Create a Gem +</button>
+            <button onClick={toggleCreateGemForm}>{createOrCancel()}</button>
           </div>
           <div className="create-gem-form">
             {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem} />}
