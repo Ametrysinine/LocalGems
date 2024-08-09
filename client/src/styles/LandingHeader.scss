@@ -10,12 +10,11 @@
 
 .landing-header-title {
   font: 3vw $display-font;
-  // font-size: clamp(40px, 2vw, 200px);
-  // font-size: max(3vw, 30px);
   text-shadow: 0em 0.1em .1em rgba($drop-shadow, .25);
-  scale: 2.25;
+  scale: 1.4;
   padding-left: 2em;
   margin: auto;
+  animation: intro 1.5s ease-in-out forwards;
 
   path {
     fill: transparent;
@@ -27,8 +26,13 @@
   }
 }
 
+@keyframes intro {
+  0% { transform: scale(1.4); }
+  100% { transform: scale(1.75); }
+}
+
 .landing-header-slogan {
-  font: 1.15em $mono-font;
+  font: 1.35em $mono-font;
   text-align: center;
   margin-top: -1.5em;
   color: $dark-green;
