@@ -67,7 +67,6 @@ const MyGems = () => {
   };
 
   return (
-    <>
       <article className="page-body">
         <section className="page-body-content">
           <div className="create-a-gem">
@@ -88,7 +87,6 @@ const MyGems = () => {
           <GemList gems={gems} deleteGem={deleteGem} />
         </section>
       </article>
-    </>
   );
 };
 
