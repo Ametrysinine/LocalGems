@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
+
 // import record from "./routes/record.js";
 import gems from "./routes/gems.js";
 import explore from "./routes/explore.js";
@@ -16,7 +17,7 @@ import votes from "./routes/votes.js";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
- 
+
 app.use(cors());                                  // enable cross origin resourrce sharing across all express routes
 app.use(express.json());                          // for parsing incoming json requests
 app.use(express.urlencoded({ extended: true }));  // for parsing incoming req hhtp data with URL-encoded payloads, allows objects and arrays.

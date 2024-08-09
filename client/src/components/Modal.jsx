@@ -7,9 +7,11 @@ import "../styles/Modal.scss";
 import upvote from "../assets/icon_upvote.svg";
 import downvote from "../assets/icon_downvote.svg";
 import heart from "../assets/icon_heart.svg";
+import { useUserContext } from "../contexts/UserContext";
 
 export default function Component(props) {
   const [openModal, setOpenModal] = useState(false);
+  const { userFromDB, setUserFromDB } = useUserContext(); 
 
   const gemImage = () => {
     switch (props.gem.type) {
@@ -27,6 +29,50 @@ export default function Component(props) {
         return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" title="Citrine - Services" className="gem-currency-image" />;
     }
   };
+
+  const upvoteGem = async (gemId) => {
+    await fetch (`/api/votes/${gemId}/upvote`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    });
+  }
+
+  const downvoteGem = async (gemId) => {
+    await fetch (`/api/votes/${gemId}/downvote`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    });
+  }
+
+  const favoriteGem = async (gemId) => {
+    await fetch(`api/gems/favourite/${gemId}`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    }).then(response => {if (response.status === 200) {
+      const clone = {...userFromDB};
+      
+      // Only add to state if gem_id not already present
+      if (!clone.favourited_gems.some(obj => obj.gem_id === gemId)) {clone.favourited_gems.push({gem_id: gemId});}
+      setUserFromDB(clone);
+    }})
+  }
+
+
+
+
+
 
   return (
     <>
@@ -74,9 +120,9 @@ export default function Component(props) {
 
                 <section class="bottom">
                   <Button onClick={() => setOpenModal(false)}>CLOSE</Button>
-                  <img src={upvote} alt="Upvote" />
-                  <img src={downvote} alt="Downvote" />
-                  <img className="heart" src={heart} alt="Add to favorites" />
+                  <img src={upvote} onClick={() => upvoteGem(props.gem.gem_id)} alt="Upvote" />
+                  <img src={downvote} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" />
+                  <img src={heart} onClick={() => favoriteGem(props.gem.gem_id)} alt="Add to favorites" />
                 </section>
             </divleft>
 
