@@ -1,9 +1,11 @@
 import Modal from "./Modal";
 import { dateConversion, xssSanitize } from "./helpers/helperFunctions";
 import "../styles/GemListItem.scss";
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 import { useTokenContext } from "../contexts/TokenContext";
 import { useUserContext } from "../contexts/UserContext";
+import UnlockModal from "./UnlockModal";
+
 
 
 // takes in a single Gem as props
@@ -11,6 +13,7 @@ const GemListItem = (props) => {
 
   const { userFromDB } = useUserContext();
   const { user, error, validateToken } = useTokenContext();
+  const [ unlockModalVisibility, setUnlockModalVisibility] = useState(false);
 
   useEffect(() => {
     if (!userFromDB) {
@@ -76,13 +79,15 @@ const GemListItem = (props) => {
 
   // COND. REND returns gem type if locked, otherwise gem name
   const nameOfGem = () => {
-    if (userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id === props.gem.owner_id) {
+    // if unlocked
+    if (!isLocked()) {
       return (
         <div className="type-location">
           {props.gem.name} | {props.gem.city}
         </div>
       )
-    } else if ((!userFromDB.unlocked_gems.includes(props.gem.gem_id)) || userFromDB.user_id !== props.gem.owner_id) {
+      //if locked
+    } else if (isLocked()) {
       return (
         <div className="type-location">
           {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
@@ -142,13 +147,13 @@ const GemListItem = (props) => {
   
   ---------------------------------------------------------*/
 
-  const handleRevealButton = function() {
-    console.log(`clicked reveal for:`, props.gem._id);
-
-  };
-
   const handleDelete = () => {
     props.onDelete(props.gem._id);
+  };
+
+  const handleRevealButton = function() {
+    console.log(`clicked reveal for:`, props.gem._id);
+    setUnlockModalVisibility(true);  	
   };
 
   return (
@@ -156,11 +161,12 @@ const GemListItem = (props) => {
     <div className="gem-list__item">
       <div className="gem-left-container">
         {props.gem.images && props.gem.images.length > 0 ? (
-            <img
-              src={props.gem.images[0]}
-              className={`gem-image ${isLocked() ? 'blurred' : ''}`}
-              alt="Gem image"
-            />
+          <img
+            src={props.gem.images[0]}
+            className={`gem-image ${isLocked() ? 'blurred' : ''}`}
+            alt="Gem image"
+            onClick={<Modal gem={props.gem} />}
+          />
         ) : (
           <div className="placeholder-image">No image available</div>
         )}
@@ -185,7 +191,9 @@ const GemListItem = (props) => {
           {bottomRowRight()}
         </div>
 
-        {/* <Modal gem={props.gem} /> */}
+        <Modal gem={props.gem} />
+        
+        { unlockModalVisibility? <UnlockModal gemData={props.gem} setUnlockModalVisibility={setUnlockModalVisibility} /> : <></> }
 
       </div>
 
