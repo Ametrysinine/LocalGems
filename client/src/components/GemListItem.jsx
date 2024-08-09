@@ -76,13 +76,13 @@ const GemListItem = (props) => {
 
   // COND. REND returns gem type if locked, otherwise gem name
   const nameOfGem = () => {
-    if (userFromDB.unlocked_gems.includes(props.gem.gem_id) || userFromDB.user_id === props.gem.owner_id) {
+    if (!isLocked()) {
       return (
         <div className="type-location">
           {props.gem.name} | {props.gem.city}
         </div>
       )
-    } else if ((!userFromDB.unlocked_gems.includes(props.gem.gem_id)) || userFromDB.user_id !== props.gem.owner_id) {
+    } else if (isLocked()) {
       return (
         <div className="type-location">
           {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
