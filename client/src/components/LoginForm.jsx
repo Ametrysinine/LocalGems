@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTokenContext } from "../contexts/TokenContext";
 import { useNavigate } from "react-router-dom";
+import "../styles/Main.scss";
+import "../styles/LoginForm.scss";
 
 
 const login = function() {  
@@ -62,10 +64,12 @@ const login = function() {
   return (
     <>
       <article className="page-body">
-        <section className="page-body-content">
-          <h1 className="text-lg font-semibold text-green-600 italic text-2xl p-4">Login to your LocalGems Account Here!</h1>
+        <section className="page-body-content login-container">
+          <h1>Log in</h1>
+          <div className="divider"></div>
 
-          <form onSubmit={handleSubmit}>
+          <article className="login-form">
+            <form onSubmit={handleSubmit}>
               <div>
                   <label htmlFor="email"><b>E-mail</b> </label>
                   <input type="email" 
@@ -80,9 +84,10 @@ const login = function() {
                     name="password" required 
                     onChange={(p) => setPasswordField(p.target.value)} />
               </div>
-              <button type="submit" className="btn btn-primary">Login</button>
-              <p className="text-blue-400"><i>forgot your password?</i></p>
-          </form>
+              <button type="submit" className="btn btn-primary">Log in</button>
+              <sub><i>Forgot your password?</i></sub>
+            </form>
+          </article>
         </section>
       </article>
     </>

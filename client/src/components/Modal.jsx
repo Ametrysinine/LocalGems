@@ -91,7 +91,7 @@ export default function Component(props) {
                   <span className="description"> {props.gem.description} </span>
                 </section>
 
-                <div className="zig-zag-line"></div>
+                <div className="divider"></div>
 
                 {/* <section className="h-80 w-full">
                   <Carousel slide={false} indicators={false}>
