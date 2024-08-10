@@ -87,7 +87,7 @@ export default function NavGemCounter() {
           <p>Create entries in the <b>Nightlife</b> category to earn Amethysts</p>
           <ul>Nightclubs</ul>
           <ul>Bars and Pubs</ul>
-          <ul>Rooftop</ul>
+          <ul>Rooftop Venues</ul>
         </div>
       </div>
       <div className="nav-currency">

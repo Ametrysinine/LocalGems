@@ -1,6 +1,6 @@
 import express from "express";
 import db from "../db/connection.js";     // This will help us connect to the database
-import { ObjectId } from "mongodb";
+import {  Decimal128, ObjectId } from "mongodb";
 
 // The router will be added as a middleware and will take control of requests starting with path /record.
 const router = express.Router();     // router is an instance of the express router. We use it to define our routes.
@@ -97,6 +97,10 @@ router.post('/create', async (req, res) => {
   const userId = req.query.userId;
   const userName = req.query.username;
 
+  // Safe to delete
+  // const latDecimal = Decimal128.fromString(latitude);
+  // const longDecimal = Decimal128.fromString(longitude);
+
   const newGem = {
     _id: new ObjectId(),
     name,
@@ -104,8 +108,8 @@ router.post('/create', async (req, res) => {
     city,
     location: {
       address,
-      latitude,
-      longitude
+      latitude: Decimal128.fromString(latitude),
+      longitude: Decimal128.fromString(longitude)
     },
     date_shared: new Date(),
     images: images,
