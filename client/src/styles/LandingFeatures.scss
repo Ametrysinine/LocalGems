@@ -11,20 +11,21 @@
     "box-1 . ."
     ". box-2 ."
     ". . box-3";
+}
 
-    .one {
+    .features-container .one {
       grid-area: box-1;
     }
 
-    .two {
+    .features-container .two {
       grid-area: box-2;
     }
 
-    .three {
+    .features-container .three {
       grid-area: box-3;
     }
 
-    .one, .two, .three {
+    .features-container .one, .features-container .two, .features-container .three {
       height: 80vh;
       display: grid;
       align-content: start;
@@ -35,9 +36,6 @@
       position: sticky;
       top: 20vh;
 
-      .features-box { grid-area: box2; }
-      .features-image { grid-area: box1; }
-
       scale: 0.5;
       opacity: 0.5;
       transform: translateX(35vw);
@@ -47,6 +45,7 @@
     }
   
   .features-box {
+    grid-area: box2;
     width: 100%;
     min-height: 25vh; 
     padding: 2em;
@@ -63,6 +62,7 @@
   }
 
   .features-image {
+    grid-area: box1;
     width: 100%;
     box-sizing: border-box;
     border-radius: 1em;
@@ -70,7 +70,7 @@
       align-items: center;
       justify-content: center;
   }
-}
+
 
 @keyframes fade-in {
   to { 
