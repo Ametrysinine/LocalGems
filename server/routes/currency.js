@@ -34,18 +34,22 @@ router.post("/create_gem", async (req, res) => {
 
 });
 
-
-router.post("/:key/:amount", async (req, res) => {  // Template code to increment/decrement X for Y user
-  // Example routes:
-    // /api/currency/bE2hP0/sapphires/1
-    // /api/currency/aLZ3b1/topazs/-1
+// Template code to increment/decrement X for Y user
+router.post("/:key/:amount", async (req, res) => {  
+  // Example routes:     /api/currency/sapphires/1   or    /api/currency/topazs/-1 
+  // Make sure to pass in userFromDB from useReducer as part of POST Body + headers
+  console.log(`\nEntered route for /currency/:key/:amount`);
 
   const collection = await db.collection("users");
-  console.log('BODY:', JSON.stringify(req.body))
+  console.log('JSON Body from client:', JSON.stringify(req.body))
   // const userId = req.params.user; // aLZ3b1
   const userId = req.body.user_id;
   const key = req.params.key; //"rubies", "sapphires", etc
   const amount = Number(req.params.amount); // 1, -1, 2, -2, etc
+
+  console.log(`Our userId is: `, userId);
+  console.log(`Our key is: `, key);
+  console.log(`Our amount is datatype: `, typeof amount,`containing:`, amount);
 
   const searchString = `currency.${key}`;
 
@@ -53,12 +57,14 @@ router.post("/:key/:amount", async (req, res) => {  // Template code to incremen
   const hasCurrency = await (user.currency[key] >= -amount)
 
   if (amount < 0 && !hasCurrency) { // Check to ensure not going negative
-    res.send(await user).status(401).json({ message: `Not enough ${key} for transaction`})
+    console.log(`Entered IF amount < 0 && !hasCurrency ln 59`);
+    // res.send(await user).status(401).json({ message: `Not enough ${key} for transaction`})  //JER     
+    res.status(401).json({ message: `Not enough ${key} for transaction`})  //CHR
   }
-
-  await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})
-  
-  res.send(await user);
+  else{
+    await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})    
+    res.send(await user);
+  }
 });
 
 
