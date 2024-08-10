@@ -39,6 +39,8 @@ const MyGems = () => {
     return;
   }, [filter, user, gems.length, showCreateGem]);
 
+  
+
   const handleCreateGemSuccess = () => {
     setFilter('posted_gems');
     setShowCreateGem(false);
@@ -52,7 +54,9 @@ const MyGems = () => {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-      });
+      })
+
+
 
       if (!response.ok) {
         throw new Error('Network response was not ok');

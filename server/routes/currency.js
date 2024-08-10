@@ -58,7 +58,7 @@ router.post("/:key/:amount", async (req, res) => {  // Template code to incremen
 
   await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})
   
-  res.send(await user).status(200);
+  res.send(await user);
 });
 
 
