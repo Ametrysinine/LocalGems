@@ -10,15 +10,14 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
 
   //for tracking and cond-rend which part of the transaction youre on
   const [areYouSureWindow, setAreYouSureWindow] = useState(true);
+  const [spinnyCircle, setSpinnyCircle] = useState(true);
   const [successWindow, setSuccessWindow] = useState(false);
-  const [failWindow, setSailWindow] = useState(false);
+  const [errorWindow, setErrorWindow] = useState(false);
 
   //state for userObject
   const { userFromDB, setUserFromDB } = useUserContext(); 
 
   // console.log(`\nGemData coming into UnlockModal:`, gemData);
-
-
     const gemImage = (type) => {
       switch (type) {
         case 'food':
@@ -54,43 +53,87 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       }
     };
   
-    //Very WET but i needed to get the name
+    // Very WET but i needed to get names, returns an array containing 2 names
+    // - index 0 is for React rendering
+    // - index 1 is for sending to server to check against DB]
     const gemName = (type) => {
       switch (type) {
         case 'food':
-          return "Ruby";
+          return ["Ruby", "rubies"];
         case 'entertainment':
-          return "Sapphire";
+          return ["Sapphire", "sapphires"];
         case 'outdoors':
-          return "Emerald";
+          return ["Emerald", "emeralds"];
         case 'shopping':
-          return "Topaz";
+          return ["Topaz", "topazs"];
         case 'nightlife':
-          return "Amethyst";
+          return ["Amethyst", "amethysts"];
         case 'services':
-          return "Citrine";
+          return ["Citrine", "citrines"];
       }
     };
 
-
-    const checkCurrencyAmount = async () => {            
-    	console.log(`checkCurrencyAmount - checking if we have a stored ${gemName(gemData?.type)} on server`);
+    const checkCurrencyAmount = async () => {
+      const gemStoneType = gemName(gemData?.type)[1]
+    	console.log(`checkCurrencyAmount - checking if we have any ${gemStoneType} on server`);
       
-      await fetch (`/api/currency/${userFromDB?.user_id}/${gemData?.type}/-1`, {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userFromDB),
-      });  
+      await fetch (`/api/currency/${gemStoneType}/-1`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    })
+    .then(response => {      
+      if (response.status === 200) {  
+        setAreYouSureWindow(false);      
+        setSpinnyCircle(true);  
+        validTransaction(response);
+      }
+      else{
+        setAreYouSureWindow(false); 
+        setSpinnyCircle(true);
+        failTransaction(response);
+      }    
+    })
+  };
+  
+
+  
+  const validTransaction = function(response) {   
+    console.log(`Transaction went through`);
+    
+    setTimeout(() => {
+      // Update currency in state
+      setSuccessWindow(true);
+      const cloneOfUser = {...userFromDB};
+      cloneOfUser.currency[gemStoneType] -= 1;
+      setUserFromDB(cloneOfUser);
+      
+    }, 1500);
+  
+  
+    //do a second await POST that adds this entry to users unlocked gems
+    //...
+
     };
 
-    const resetAndCloseModal = function() {       
+    const failTransaction = function(response) { 
+      console.log(`Transaction didnt go through`);
+      setTimeout(() => {
+        setErrorWindow(true);
+      }, 1500);  
+    };
+
+
+
+    const resetStatesAndCloseModal = function() {       
     	setUnlockModalVisibility(false);
       setAreYouSureWindow(true);
+      setSpinnyCircle(false);
       setSuccessWindow(false);
-      setSailWindow(false);
+      setErrorWindow(false);
       console.log(`modal closed and states reset`);
     };
     
@@ -99,8 +142,8 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
     <div className="unlockModal-screen-space">
       <div className="unlockModal-container" onClick={() => console.log(`clicked unlock container`)}>  
 
+      {areYouSureWindow ? 
         <div className="unlock-step-1_are-you-sure"> 
-
           <div className="unlockModal-message">
             <h3>
               {`Are you sure you want to reveal this gem at the cost of a ${gemName(gemData?.type)}?`}
@@ -111,12 +154,24 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
           </div>                    
             <div  className="unlockModal-button">
               <button className="success" onClick={checkCurrencyAmount}> Unlock! </button>
-              <button className="close" onClick={resetAndCloseModal}> Maybe Later </button>
+              <button className="close" onClick={resetStatesAndCloseModal}> Maybe Later </button>
             </div>
         </div>
+      : <></>}
+
+      {spinnyCircle ? 
+        <div className="unlock-step-1_are-you-sure"> 
+          <div className="unlockModal-message">
+            <h3>Processing...</h3>
+
+            </div>
+        </div>
+      : <></>}
+
+
 
       </div>
-    <div className="unlockModal-negative-space" onClick={resetAndCloseModal}> </div>
+    <div className="unlockModal-negative-space" onClick={resetStatesAndCloseModal}> </div>
     </div>
     </>
   );
