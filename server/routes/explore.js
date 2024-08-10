@@ -12,11 +12,21 @@ router.get("/", async (req, res) => {
   const queryType = req.query.type || '';
   const userId = req.query.user;
 
+  const users = await db.collection('users');
+  const currentUser = await users.find({ user_id: userId }).toArray();
+  const unlocked_gems = currentUser[0].unlocked_gems || [];
+  console.log("Unlocked gems array: ", unlocked_gems);
+  
+
   let gems = await db.collection('gems');
   let results = [];
   let filters = [];
 
   filters.push({ owner_id: { $ne: userId } });
+  
+  if (unlocked_gems.length > 0) {
+    filters.push({ gem_id: { $nin: unlocked_gems } });
+  }
 
   if (queryCity) {
     filters.push({ city: { $regex: queryCity, $options: 'i' } });
