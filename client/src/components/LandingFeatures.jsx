@@ -42,8 +42,8 @@ const landingFeatures = function() {
       </article>
 
       <article className="features-signup">
-        Experience your destination like a true local — no tourists allowed! <br />
-        <u>Join now</u>!
+        {/* Experience your destination like a true local — no tourists allowed! <br /> */}
+        Join now!
       </article>
     </>
   );
