@@ -49,7 +49,7 @@ const GemListItem = (props) => {
 
   // returns true if the gem is UNLOCKED
   const isUnlocked = () => {
-    return userFromDB.unlocked_gems.includes(props.gem.gem_id);
+    return userFromDB.unlocked_gems?.includes(props.gem.gem_id);
   };
 
 
