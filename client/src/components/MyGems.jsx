@@ -40,6 +40,7 @@ const MyGems = () => {
   }, [filter, user, gems.length, showCreateGem]);
 
   const handleCreateGemSuccess = () => {
+    setFilter('posted_gems');
     setShowCreateGem(false);
   };
 
