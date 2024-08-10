@@ -133,7 +133,8 @@
   cursor: pointer;
 }
 
-//Chris solution to the view button
+//Chris' solution to the view button
+//moves it overtop of the image and makes it transparent except for the text
 .modal-view-button{
   position: absolute;
   transform: translate(-140px, 0px);

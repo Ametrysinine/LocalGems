@@ -4,10 +4,6 @@ import { ObjectId } from "mongodb";
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-const SECRET = process.env.JWT_KEY
-import jwt from "jsonwebtoken";
-import validateToken from "../middleware/validateToken.js";
-
 const router = express.Router();
 
 
@@ -66,6 +62,11 @@ router.post("/:key/:amount", async (req, res) => {  // Template code to incremen
 });
 
 
+//Chris test route for checking the unlock modal
+router.post("/transaction", async (req, res) => {  
+  console.log(`\nEntered the POST /Currency/transaction route with the following data:\n`, req.body);
+
+});
 
 
 //For updating our currency in DB when we create a gem
