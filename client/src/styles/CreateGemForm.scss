@@ -8,7 +8,7 @@ textarea {
   max-width: 100%; /* Maximum width */
   min-height: 50px; /* Minimum height */
   max-height: 300px; /* Maximum height */
-  resize: both; /* Allow the user to resize the textarea */
+  // resize: both; /* Allow the user to resize the textarea */
 }
 
 .creategemform {
@@ -20,10 +20,6 @@ textarea {
   overflow: hidden;
   transition: max-height 2s ease-in-out;
   padding-top: 3em;
-
-  .active {
-    max-height: 1000px;
-  }
 
   .body {
     display: flex;
