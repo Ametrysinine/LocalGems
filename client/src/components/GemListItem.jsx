@@ -11,7 +11,7 @@ import UnlockModal from "./UnlockModal";
 // takes in a single Gem as props
 const GemListItem = (props) => {
 
-  const { userFromDB } = useUserContext();
+  const { userFromDB, setUserFromDB } = useUserContext();
   const { user, error, validateToken } = useTokenContext();
   const [ unlockModalVisibility, setUnlockModalVisibility] = useState(false);
 
@@ -148,7 +148,44 @@ const GemListItem = (props) => {
   ---------------------------------------------------------*/
 
   const handleDelete = () => {
-    props.onDelete(props.gem._id);
+    // CURRENCY BLOCK
+    const updateCurrency = async (key) => {
+      await fetch (`/api/currency/${key}/-1`, {
+        method: "POST",
+        body: JSON.stringify(userFromDB),
+      }).then(response => {if (response.status === 200) {
+        const clone = {...userFromDB};
+        
+        // Update currency
+        clone.currency[key] += 1;
+        setUserFromDB(clone);
+      }});
+    }
+
+    let key;
+    switch (props.gem.type) {
+      case "food":
+        key = "rubies"
+        break;
+      case "entertainment":
+        key = "sapphires"
+        break;
+      case "nature":
+        key = "emeralds"
+        break;
+      case "shopping":
+        key = "topazs"
+        break;
+      case "nightlife":
+        key = "amethysts"
+        break;
+      case "services":
+        key = "citrines"
+        break;
+    }
+
+    props.onDelete(props.gem._id).then(updateCurrency(key));
+
   };
 
   const handleRevealButton = function() {

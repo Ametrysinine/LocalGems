@@ -54,7 +54,7 @@ router.post("/:key/:amount", async (req, res) => {  // Template code to incremen
   const searchString = `currency.${key}`;
 
   const user = await collection.findOne({user_id: userId});
-  const hasCurrency = await (user.currency[key] > 0);
+  const hasCurrency = await (user.currency[key] + amount >= 0)
 
   if (amount < 0 && !hasCurrency) { // Check to ensure not going negative
     res.status(401).json({ message: `Not enough ${key} for transaction`})

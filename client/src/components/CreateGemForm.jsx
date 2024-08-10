@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTokenContext } from "../contexts/TokenContext";
 import "../styles/CreateGemForm.scss";
+import { useUserContext } from "../contexts/UserContext";
 
 
 const CreateGemForm = function(props) {
+  const { userFromDB, setUserFromDB } = useUserContext(); 
 
   const { user, error, validateToken } = useTokenContext();
 
@@ -60,8 +62,54 @@ const CreateGemForm = function(props) {
           console.error(message);
           return;
         }
+
+        // CURRENCY BLOCK
+        const updateCurrency = async (key) => {
+          await fetch (`/api/currency/${key}/1`, {
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userFromDB),
+          }).then(response => {if (response.status === 200) {
+            const clone = {...userFromDB};
+            
+            // Update currency
+            clone.currency[key] += 1;
+            setUserFromDB(clone);
+          }});
+        }
+
+        let key;
+        switch (formData.type) {
+          case "food":
+            key = "rubies"
+            break;
+          case "entertainment":
+            key = "sapphires"
+            break;
+          case "nature":
+            key = "emeralds"
+            break;
+          case "shopping":
+            key = "topazs"
+            break;
+          case "nightlife":
+            key = "amethysts"
+            break;
+          case "services":
+            key = "citrines"
+            break;
+        }
+
+        updateCurrency(key)
+                // CURRENCY BLOCK
         const newGem = await response.json();
         props.onSuccess(newGem);
+
+      
+      
       } catch (error) {
         console.error('Failed to create gem:', error);
       }
