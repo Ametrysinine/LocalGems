@@ -51,6 +51,18 @@ textarea {
     flex-direction: column; /* Stack label text and input vertically */
     margin-bottom: 1rem; /* Space between rows */
   }
+
+  .column-1,
+  .column-2,
+  .column-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .images-input {
+    height: 13em;
+  }
 }
 
 .submit-section {
@@ -58,7 +70,6 @@ textarea {
   justify-content: center;
   border-radius: $radius;
   color: white;
-  background-color: black;
   
   button {
     width: 100%;
