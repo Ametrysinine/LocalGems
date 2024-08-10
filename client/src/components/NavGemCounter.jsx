@@ -45,6 +45,9 @@ export default function NavGemCounter() {
         <p>Rubies: <b>{userFromDB.currency?.rubies}</b></p>
         <div className="nav-currency-content">
           <p>Create entries in the <b>Food</b> category to earn Rubies</p>
+          <ul>Restauraunts</ul>
+          <ul>Mom N Pop Shops</ul>
+          <ul>Unique Cuisine</ul>
         </div>
       </div>
       <div className="nav-currency">
@@ -52,13 +55,19 @@ export default function NavGemCounter() {
         <p>Sapphires: <b>{userFromDB?.currency?.sapphires}</b></p>
         <div className="nav-currency-content">
           <p>Create entries in the <b>Entertainment</b> category to earn Sapphires</p>
+          <ul>Escape Rooms</ul>
+          <ul>Karaoke Lounges</ul>
+          <ul>Live Music Venues</ul>
         </div>
       </div>
       <div className="nav-currency">
         <img src="assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity"/>
         <p>Emeralds: <b>{userFromDB.currency?.emeralds}</b></p>
         <div className="nav-currency-content">
-          <p>Create entries in the <b>Nature</b> category to earn Emeralds</p>
+          <p>Create entries in the <b>Outdoors</b> category to earn Emeralds</p>
+          <ul>Hiking Trails</ul>
+          <ul>Camping Spots</ul>
+          <ul>Scenic Spots</ul>
         </div>
       </div>
       <div className="nav-currency">
@@ -66,6 +75,9 @@ export default function NavGemCounter() {
         <p>Topazs: <b>{userFromDB.currency?.topazs}</b></p>
         <div className="nav-currency-content">
           <p>Create entries in the <b>Shopping</b> category to earn Topazs</p>
+          <ul>Specialty Shops</ul>
+          <ul>Street Markets</ul>
+          <ul>Boutique Stores</ul>
         </div>
       </div>
       <div className="nav-currency">
@@ -73,6 +85,9 @@ export default function NavGemCounter() {
         <p>Amethysts: <b>{userFromDB.currency?.amethysts}</b></p>
         <div className="nav-currency-content">
           <p>Create entries in the <b>Nightlife</b> category to earn Amethysts</p>
+          <ul>Nightclubs</ul>
+          <ul>Bars and Pubs</ul>
+          <ul>Rooftop</ul>
         </div>
       </div>
       <div className="nav-currency">
@@ -80,6 +95,9 @@ export default function NavGemCounter() {
         <p>Citrines: <b>{userFromDB.currency?.citrines}</b></p>
         <div className="nav-currency-content">
           <p>Create entries in the <b>Services</b> category to earn Citrines</p>
+          <ul>Barbers and Stylists</ul>
+          <ul>Beauty Salons</ul>
+          <ul>Custom Tailoring</ul>
         </div>
       </div>
     </div> 
