@@ -4,13 +4,14 @@
 import "../styles/UnlockModal.scss"
 import { useState } from "react";
 import { useUserContext } from "../contexts/UserContext";
+import spinner from "../assets/spinner.svg";
 
 
 export default function UnlockModal({gemData, setUnlockModalVisibility}) {
 
   //for tracking and cond-rend which part of the transaction youre on
   const [areYouSureWindow, setAreYouSureWindow] = useState(true);
-  const [spinnyCircle, setSpinnyCircle] = useState(true);
+  const [spinnyCircle, setSpinnyCircle] = useState(false);
   const [successWindow, setSuccessWindow] = useState(false);
   const [errorWindow, setErrorWindow] = useState(false);
 
@@ -104,26 +105,32 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
   const validTransaction = function(response) {   
     console.log(`Transaction went through`);
     
-    setTimeout(() => {
-      // Update currency in state
+    setTimeout(() => {      
+      setSpinnyCircle(false); 
       setSuccessWindow(true);
-      const cloneOfUser = {...userFromDB};
-      cloneOfUser.currency[gemStoneType] -= 1;
-      setUserFromDB(cloneOfUser);
-      
-    }, 1500);
-  
-  
-    //do a second await POST that adds this entry to users unlocked gems
-    //...
 
+      // Update currency in state
+      const cloneOfUser = {...userFromDB};  
+      cloneOfUser.currency[gemStoneType] -= 1;
+      setUserFromDB(cloneOfUser); 
+      
+      //--------------------------------
+      //do a second await POST here that adds this entry to users unlocked gems list
+
+
+
+
+      //--------------------------------
+      
+    }, 2500);
     };
 
     const failTransaction = function(response) { 
       console.log(`Transaction didnt go through`);
       setTimeout(() => {
+        setSpinnyCircle(false);  
         setErrorWindow(true);
-      }, 1500);  
+      }, 2500);  
     };
 
 
@@ -160,14 +167,34 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       : <></>}
 
       {spinnyCircle ? 
-        <div className="unlock-step-1_are-you-sure"> 
+        <div className="unlockModal-processing-window"> 
           <div className="unlockModal-message">
             <h3>Processing...</h3>
-
-            </div>
+            <img className="spinner-container" src={spinner}  alt="Processing wheel"/>
+          </div>
         </div>
       : <></>}
 
+
+      {successWindow ? 
+        <div className="unlockModal-success-window"> 
+          <div className="unlockModal-message">
+            <h3>Order went thru! yay</h3>
+          </div>
+       </div>
+      : <></>}
+
+      {errorWindow ? 
+        <div className="unlockModal-success-window"> 
+          <div className="unlockModal-message">
+            <h3>Didnt have enough of x gem, create a new gem in the --- category</h3>
+          </div>
+          <div  className="unlockModal-button">
+            <button className="success"> Take me there </button>
+            <button className="close" onClick={resetStatesAndCloseModal}> Close </button>
+          </div>
+       </div>
+      : <></>}
 
 
       </div>
