@@ -84,18 +84,33 @@ const MyGems = () => {
         <div className="create-a-gem">
           <button onClick={toggleCreateGemForm}>{createOrCancel()}</button>
         </div>
-        <div className="create-gem-form">
-          {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem} />}
+        <div className={`create-gem-form ${showCreateGem ? 'active' : ''}`}>
+          {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
         </div>
         <br />
         <hr />
         <div className="my-gems-navbar">
           <br />
-          <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}><img src="/assets/icon_posted_gems.svg" />My Gems</button>
+          <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}>
+            <div className="gems-nav-button">
+              <img src="/assets/icon_posted_gems.svg" />
+              My Gems
+            </div>
+          </button>
           <br />
-          <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>Favourited Gems</button>
+          <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>
+            <div className="gems-nav-button">
+              <img src="/assets/icon_heart.svg" />
+              Favourited Gems
+            </div>
+          </button>
           <br />
-          <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
+          <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>
+            <div className="gems-nav-button">
+              <img src="/assets/icon_unlock.svg" />
+              Unlocked Gems
+            </div>
+          </button>
         </div>
         <GemList gems={gems} deleteGem={deleteGem} />
       </section>
@@ -106,3 +121,5 @@ const MyGems = () => {
 export default MyGems;
 
 //change db to include all properties of 3 filters
+// js import - reg file pathing 
+// html tags src= path relative to public - cann't ../src, MUST be in public folder 
