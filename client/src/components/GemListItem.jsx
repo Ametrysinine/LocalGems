@@ -118,20 +118,24 @@ const GemListItem = (props) => {
   }
   // CURRENCY BLOCK END
 
-  // COND. REND returns gem type if locked, otherwise gem name
+  // COND. REND returns gem type if locked, otherwise gem name + gem city
   const nameOfGem = () => {
     // if unlocked
     if (!isLocked()) {
       return (
         <div className="type-location">
-          {props.gem.name} | {props.gem.city}
+          <div className="gem-title">{props.gem.name} </div>
+          <hr/>
+          <div className="gem-city">{gemImage()} {props.gem.city}</div>
         </div>
       )
       //if locked
     } else if (isLocked()) {
       return (
         <div className="type-location">
-          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
+          <div className="gem-title">{props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem </div>
+          <hr/>
+          {props.gem.city}
         </div>
       )
     }

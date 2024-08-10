@@ -164,5 +164,20 @@
 }
 
 .gem-tag {
-  color: #9dc8b6;
+  color: #000000;
+  border-width: 0.5px;
+  border: 1px solid $peach;
+  border-radius: 15px;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  margin: 2px;
+}
+
+.gem-title {
+  font-size: large;
+}
+
+.gem-city {
+  display: flex;
+  align-items: center;
 }
