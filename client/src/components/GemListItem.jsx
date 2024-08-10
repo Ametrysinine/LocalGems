@@ -11,7 +11,7 @@ import UnlockModal from "./UnlockModal";
 // takes in a single Gem as props
 const GemListItem = (props) => {
 
-  const { userFromDB } = useUserContext();
+  const { userFromDB, setUserFromDB } = useUserContext();
   const { user, error, validateToken } = useTokenContext();
   const [ unlockModalVisibility, setUnlockModalVisibility] = useState(false);
 
@@ -76,6 +76,47 @@ const GemListItem = (props) => {
         return <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" className="gem-currency-image" />;
     }
   };
+
+  // CURRENCY BLOCK
+  const updateCurrency = async (key) => {
+    await fetch (`/api/currency/${key}/-1`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    }).then(response => {if (response.status === 200) {
+      const clone = {...userFromDB};
+      
+      // Update currency
+      clone.currency[key] -= 1;
+      setUserFromDB(clone);
+    }});
+  }
+
+  let key;
+  switch (props.gem.type) {
+    case "food":
+      key = "rubies"
+      break;
+    case "entertainment":
+      key = "sapphires"
+      break;
+    case "outdoors":
+      key = "emeralds"
+      break;
+    case "shopping":
+      key = "topazs"
+      break;
+    case "nightlife":
+      key = "amethysts"
+      break;
+    case "services":
+      key = "citrines"
+      break;
+  }
+  // CURRENCY BLOCK END
 
   // COND. REND returns gem type if locked, otherwise gem name
   const nameOfGem = () => {
@@ -147,8 +188,10 @@ const GemListItem = (props) => {
   
   ---------------------------------------------------------*/
 
-  const handleDelete = () => {
-    props.onDelete(props.gem._id);
+  const handleDelete = async () => {
+    await props.onDelete(props.gem._id)
+
+    setTimeout(updateCurrency(key), 5000);
   };
 
   const handleRevealButton = function() {

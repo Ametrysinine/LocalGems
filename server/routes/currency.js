@@ -45,7 +45,7 @@ router.post("/:key/:amount", async (req, res) => {  // Template code to incremen
     // /api/currency/aLZ3b1/topazs/-1
 
   const collection = await db.collection("users");
-
+  console.log('BODY:', JSON.stringify(req.body))
   // const userId = req.params.user; // aLZ3b1
   const userId = req.body.user_id;
   const key = req.params.key; //"rubies", "sapphires", etc
@@ -54,10 +54,10 @@ router.post("/:key/:amount", async (req, res) => {  // Template code to incremen
   const searchString = `currency.${key}`;
 
   const user = await collection.findOne({user_id: userId});
-  const hasCurrency = await (user.currency[key] > 0);
+  const hasCurrency = await (user.currency[key] >= -amount)
 
   if (amount < 0 && !hasCurrency) { // Check to ensure not going negative
-    res.status(401).json({ message: `Not enough ${key} for transaction`})
+    res.send(await user).status(401).json({ message: `Not enough ${key} for transaction`})
   }
 
   await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})
