@@ -79,26 +79,27 @@ const MyGems = () => {
   };
 
   return (
-      <article className="page-body">
-        <section className="page-body-content">
-          <div className="create-a-gem">
-            <button onClick={toggleCreateGemForm}>{createOrCancel()}</button>
-          </div>
-          <div className="create-gem-form">
-            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem} />}
-          </div>
-            <hr />
-          <div className="my-gems-navbar">
-            <br />
-            <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}>My Gems</button>
-            <br />
-            <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>Favourited Gems</button>
-            <br />
-            <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
-          </div>
-          <GemList gems={gems} deleteGem={deleteGem} />
-        </section>
-      </article>
+    <article className="page-body">
+      <section className="page-body-content">
+        <div className="create-a-gem">
+          <button onClick={toggleCreateGemForm}>{createOrCancel()}</button>
+        </div>
+        <div className="create-gem-form">
+          {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem} />}
+        </div>
+        <br />
+        <hr />
+        <div className="my-gems-navbar">
+          <br />
+          <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}><img src="/assets/icon_posted_gems.svg" />My Gems</button>
+          <br />
+          <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>Favourited Gems</button>
+          <br />
+          <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
+        </div>
+        <GemList gems={gems} deleteGem={deleteGem} />
+      </section>
+    </article>
   );
 };
 
