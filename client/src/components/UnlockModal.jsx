@@ -7,8 +7,16 @@ import { useUserContext } from "../contexts/UserContext";
 
 
 export default function UnlockModal({gemData, setUnlockModalVisibility}) {
+
+  //for tracking and cond-rend which part of the transaction youre on
+  const [areYouSureWindow, setAreYouSureWindow] = useState(true);
+  const [successWindow, setSuccessWindow] = useState(false);
+  const [failWindow, setSailWindow] = useState(false);
+
+  //state for userObject
   const { userFromDB, setUserFromDB } = useUserContext(); 
-  console.log(`\nGemData coming into UnlockModal:`, gemData);
+
+  // console.log(`\nGemData coming into UnlockModal:`, gemData);
 
 
     const gemImage = (type) => {
@@ -64,13 +72,28 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       }
     };
 
-    const checkCurrencyAmount = function() {            
+
+    const checkCurrencyAmount = async () => {            
     	console.log(`checkCurrencyAmount - checking if we have a stored ${gemName(gemData?.type)} on server`);
       
-      //post data to /currency here
-
+      await fetch (`/api/currency/${userFromDB?.user_id}/${gemData?.type}/-1`, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userFromDB),
+      });  
     };
 
+    const resetAndCloseModal = function() {       
+    	setUnlockModalVisibility(false);
+      setAreYouSureWindow(true);
+      setSuccessWindow(false);
+      setSailWindow(false);
+      console.log(`modal closed and states reset`);
+    };
+    
   return (
     <>
     <div className="unlockModal-screen-space">
@@ -88,12 +111,12 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
           </div>                    
             <div  className="unlockModal-button">
               <button className="success" onClick={checkCurrencyAmount}> Unlock! </button>
-              <button className="close" onClick={()=> setUnlockModalVisibility(false)}> Maybe Later </button>
+              <button className="close" onClick={resetAndCloseModal}> Maybe Later </button>
             </div>
         </div>
 
       </div>
-    <div className="unlockModal-negative-space" onClick={() => setUnlockModalVisibility(false)}> </div>
+    <div className="unlockModal-negative-space" onClick={resetAndCloseModal}> </div>
     </div>
     </>
   );
