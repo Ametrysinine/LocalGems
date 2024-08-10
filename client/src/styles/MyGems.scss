@@ -22,10 +22,30 @@
   display: flex;
   justify-content: center;
   color: white;
-  background-color: black;
   border-radius: 10px 10px 0px 0px;
   
   button {
     width: 100%;
   }
+}
+
+.create-gemform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  // max-height: 0;
+  overflow: hidden;
+  transition: max-height 2s ease-in-out;
+  padding-top: 3em;
+}
+
+.create-gemform.active {
+  max-height: 1000px;
+}
+
+.gems-nav-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
