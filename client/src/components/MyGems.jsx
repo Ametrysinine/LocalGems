@@ -48,6 +48,7 @@ const MyGems = () => {
       const response = await fetch(`/api/gems/delete/${gemId}`, {
         method: 'DELETE',
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
       });

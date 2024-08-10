@@ -89,7 +89,7 @@ const CreateGemForm = function(props) {
           case "entertainment":
             key = "sapphires"
             break;
-          case "nature":
+          case "outdoors":
             key = "emeralds"
             break;
           case "shopping":
@@ -103,7 +103,7 @@ const CreateGemForm = function(props) {
             break;
         }
 
-        updateCurrency(key)
+        setTimeout(updateCurrency(key), 5000)
                 // CURRENCY BLOCK
         const newGem = await response.json();
         props.onSuccess(newGem);
