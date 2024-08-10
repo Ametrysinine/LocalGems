@@ -234,7 +234,7 @@ const GemListItem = (props) => {
           {bottomRowRight()}
         </div>
 
-        <Modal gem={props.gem} />
+        {!isLocked() && <Modal gem={props.gem} />}
         
         { unlockModalVisibility? <UnlockModal gemData={props.gem} setUnlockModalVisibility={setUnlockModalVisibility} /> : <></> }
 
