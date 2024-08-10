@@ -121,3 +121,5 @@ const MyGems = () => {
 export default MyGems;
 
 //change db to include all properties of 3 filters
+// js import - reg file pathing 
+// html tags src= path relative to public - cann't ../src, MUST be in public folder 
