@@ -25,10 +25,12 @@
   }
 }
 
-.nav-bar-logo {
-    width: 180px;
+img.nav-bar-logo {
+    max-width: 60px;
+    max-height: 60px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    padding-right: 1.5em;
+    margin-right: 1.5em;
 }
 
 .nav-bar-signed-in{
@@ -116,11 +118,12 @@
     padding-right: 30px;
   }
   .nav-bar-user-pfp{
-    height: 45px;
-    width: 45px;
+    max-height: 45px;
+    max-width: 45px;
     object-fit: cover;
     border-radius: $pill;
     outline: 4px solid $peach;
+    aspect-ratio: 1 / 1;
 
     body.dark & {
       outline: 4px solid $dark-peach;
