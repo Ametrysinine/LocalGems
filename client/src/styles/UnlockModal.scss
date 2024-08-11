@@ -92,7 +92,14 @@
     display: flex;
     align-items: center;      /* Vertical align*/
     flex-direction: column;
-  }
+    }
+    .unlockModal-are-you-sure, .unlockModal-success-window, .unlockModal-error-window{
+      // border: 3px dashed rebeccapurple;
+      display: flex;
+      align-items: center;      /* Vertical align*/
+      flex-direction: column;
+    }
+
   }
 
 .unlockModal-button{
