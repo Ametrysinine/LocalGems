@@ -46,8 +46,6 @@ export default function Navbar() {
       {user ?
         <div className="nav-bar-signed-in">   
 
-          <NavGemCounter />
-
           <div className="nav-bar-main">
             <div className="nav-bar-buttons">
               {/* <div className="nav-bar-link">
@@ -60,15 +58,20 @@ export default function Navbar() {
                 <a href="/explore">Explore</a>
               </div> 
             </div>
+            
+            <div className="nav-bar-currency-container">
+            <NavGemCounter />
+            </div>
 
             <div className="nav-bar-user">
-              <div className="nav-bar-user-info">
-                <p>Signed in as: <b>{user.name}</b></p>
-                <p>A true local of <b>{user.city_name}</b></p>
-              </div>
               <div className="nav-bar-user-dropdown" role="button" tabindex="0" aria-pressed="false">
                 <img className="nav-bar-user-pfp"  src={user.pfp}/>
                 <div className="nav-bar-user-dropdown-content">
+                  <div className="nav-bar-user-info">
+                    <p>Signed in as: <b>{user.name}</b></p>
+                    <p>A true local of <b>{user.city_name}</b></p>
+                 </div>
+
                   <a href="/my-gems">                    
                     <img src="/icon_settings_thicc.svg" alt="settings"/>
                     <p>Settings</p>
