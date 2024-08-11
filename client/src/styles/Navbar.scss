@@ -107,6 +107,21 @@ img.nav-bar-logo {
   }
 }
 
+.active-link {
+  color: $font-color;
+  border-radius: $radius;
+  background-color: $peach;
+
+  body.dark & {
+    background-color: $dark-peach;
+    color: $dark-font-color;
+    
+    a:hover {
+      background: $dark-peach;
+    }
+  }
+}
+
 .nav-bar-user {
   justify-self: end;
   display: flex;
