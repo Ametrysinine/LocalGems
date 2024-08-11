@@ -92,7 +92,14 @@
     display: flex;
     align-items: center;      /* Vertical align*/
     flex-direction: column;
-  }
+    }
+    .unlockModal-are-you-sure, .unlockModal-success-window, .unlockModal-error-window{
+      // border: 3px dashed rebeccapurple;
+      display: flex;
+      align-items: center;      /* Vertical align*/
+      flex-direction: column;
+    }
+
   }
 
 .unlockModal-button{
@@ -116,3 +123,57 @@
     color: white;
   }
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Spinny fx borrowed from https://codepen.io/bio2cs/pen/VwwBVaN
+
+.spinner {
+  animation: spinner-rotate 1.4s linear infinite;
+  -webkit-animation: spinner-rotate 1.4s linear infinite;
+  -moz-animation: spinner-rotate 1.4s linear infinite;
+  width:174px;
+  height:174px;
+  position: relative;
+}
+
+.spinner-dot {
+  width:274px;
+  height:274px;
+  position: relative;
+  top: 0;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spinner-rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.path {
+  stroke-dasharray: 170;
+  stroke-dashoffset: 20;
+}
