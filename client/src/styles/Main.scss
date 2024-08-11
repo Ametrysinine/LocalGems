@@ -17,7 +17,7 @@ body {
 
 body.dark {
   background: $dark-background-color;
-  background: radial-gradient(circle, #e8dedb 0%, #6d898d 45%, #354749 90%); 
+  background: radial-gradient(circle, #e8dedb 0%, #6d898d 45%, $dark-background-color 90%); 
   background-attachment: fixed; 
   color: $dark-font-color;
 }
