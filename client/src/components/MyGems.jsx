@@ -117,7 +117,7 @@ const MyGems = () => {
             </div>
           </button>
         </div>
-        <GemList gems={gems} deleteGem={deleteGem} />
+        <GemList gems={gems} deleteGem={deleteGem} filter={filter}/>
       </section>
     </article>
   );
