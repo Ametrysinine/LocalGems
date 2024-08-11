@@ -121,7 +121,7 @@ sub {
   color: $drop-shadow;
 
   body.dark & {
-    color: $dark-mint;
+    color: rgba($dark-font-color, 0.75);
   }
 }
 
