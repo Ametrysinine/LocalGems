@@ -1,9 +1,11 @@
 "use client";
 
+// import { Button, Modal } from "flowbite-react";
 import "../styles/UnlockModal.scss"
 import { useState } from "react";
 import { useUserContext } from "../contexts/UserContext";
 import spinner from "../assets/spinner.svg";
+
 
 export default function UnlockModal({gemData, setUnlockModalVisibility}) {
 
@@ -16,67 +18,68 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
   //state for userObject
   const { userFromDB, setUserFromDB } = useUserContext(); 
 
-  const gemImage = (type) => {
-    switch (type) {
-      case 'food':
-        return <div className="gem-type">
-        <img src="/assets/flaticons/gem_ruby.png" alt="Ruby - Food" className="gem-currency-image" />
-        <h2 className="gem-type_ruby">-1</h2>
-      </div> 
-      case 'entertainment':
-        return <div className="gem-type">
-        <img src="/assets/flaticons/gem_sapphire.png" alt="Sapphire - Entertainment" className="gem-currency-image" />
-        <h2 className="gem-type_sapphire">-1</h2>
-      </div>          
-      case 'outdoors':
-        return <div className="gem-type">
-        <img src="/assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity" className="gem-currency-image" />
-        <h2 className="gem-type_emerald">-1</h2>
-      </div>
-      case 'shopping':
-        return <div className="gem-type">
-        <img src="/assets/flaticons/gem_topaz.png" alt="Topaz - Shopping" className="gem-currency-image" />
-        <h2 className="gem-type_topaz">-1</h2>
-      </div>
-      case 'nightlife':
-        return <div className="gem-type">
-        <img src="/assets/flaticons/gem_amethyst.png" alt="Amethyst - Nightlife" className="gem-currency-image" />
-        <h2 className="gem-type_amethyst">-1</h2>
-      </div>
-      case 'services':
-        return <div className="gem-type">
-        <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" className="gem-currency-image" />
-        <h2 className="gem-type_citrine">-1</h2>
-      </div>
-    }
-  };
+  // console.log(`\nGemData coming into UnlockModal:`, gemData);
+    const gemImage = (type) => {
+      switch (type) {
+        case 'food':
+          return <div className="gem-type">
+          <img src="/assets/flaticons/gem_ruby.png" alt="Ruby - Food" className="gem-currency-image" />
+          <h2 className="gem-type_ruby">-1</h2>
+        </div> 
+        case 'entertainment':
+          return <div className="gem-type">
+          <img src="/assets/flaticons/gem_sapphire.png" alt="Sapphire - Entertainment" className="gem-currency-image" />
+          <h2 className="gem-type_sapphire">-1</h2>
+        </div>          
+        case 'outdoors':
+          return <div className="gem-type">
+          <img src="/assets/flaticons/gem_emerald.png" alt="Emerald - Outdoor Activity" className="gem-currency-image" />
+          <h2 className="gem-type_emerald">-1</h2>
+        </div>
+        case 'shopping':
+          return <div className="gem-type">
+          <img src="/assets/flaticons/gem_topaz.png" alt="Topaz - Shopping" className="gem-currency-image" />
+          <h2 className="gem-type_topaz">-1</h2>
+        </div>
+        case 'nightlife':
+          return <div className="gem-type">
+          <img src="/assets/flaticons/gem_amethyst.png" alt="Amethyst - Nightlife" className="gem-currency-image" />
+          <h2 className="gem-type_amethyst">-1</h2>
+        </div>
+        case 'services':
+          return <div className="gem-type">
+          <img src="/assets/flaticons/gem_citrine.png" alt="Citrine - Services" className="gem-currency-image" />
+          <h2 className="gem-type_citrine">-1</h2>
+        </div>
+      }
+    };
   
-  // Very WET but i needed to get names, returns an array containing 2 names
-  // - index 0 is for React rendering
-  // - index 1 is for sending to server to check against DB]
-  // - index 2 is for inserting into errorWindow's message
-  const gemName = (type) => {
-    switch (type) {
-      case 'food':
-        return ["Ruby", "rubies", "Food"];
-      case 'entertainment':
-        return ["Sapphire", "sapphires", "Entertainment"];
-      case 'outdoors':
-        return ["Emerald", "emeralds", "Outdoors"];
-      case 'shopping':
-        return ["Topaz", "topazs", "Shopping"];
-      case 'nightlife':
-        return ["Amethyst", "amethysts", "Nightlife"];
-      case 'services':
-        return ["Citrine", "citrines", "Services"];
-    }
-  };
-  const gemStoneType = gemName(gemData?.type)[1]
+    // Very WET but i needed to get names, returns an array containing 2 names
+    // - index 0 is for React rendering
+    // - index 1 is for sending to server to check against DB]
+    // - index 2 is for inserting into errorWindow's message
+    const gemName = (type) => {
+      switch (type) {
+        case 'food':
+          return ["Ruby", "rubies", "Food"];
+        case 'entertainment':
+          return ["Sapphire", "sapphires", "Entertainment"];
+        case 'outdoors':
+          return ["Emerald", "emeralds", "Outdoors"];
+        case 'shopping':
+          return ["Topaz", "topazs", "Shopping"];
+        case 'nightlife':
+          return ["Amethyst", "amethysts", "Nightlife"];
+        case 'services':
+          return ["Citrine", "citrines", "Services"];
+      }
+    };
+    const gemStoneType = gemName(gemData?.type)[1]
 
-    //verifies server against mongoDB if user has enough of X gemstone
-  const checkCurrencyAmount = async () => {
-    console.log(`checkCurrencyAmount - checking if we have any ${gemStoneType} on server`);      
-    await fetch (`/api/currency/${gemStoneType}/-1`, {
+    const checkCurrencyAmount = async () => {
+    console.log(`checkCurrencyAmount - checking if we have any ${gemStoneType} on server`);
+      
+      await fetch (`/api/currency/${gemStoneType}/-1`, {
       method: "POST",
       headers: {
         'Accept': 'application/json',
@@ -88,7 +91,9 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       if (response.status === 200) {  
         setAreYouSureWindow(false);      
         setSpinnyCircle(true);  
-        setTimeout(validTransaction(response), 2500);
+        setTimeout(() => {
+          validTransaction(response)}
+        ,2500);
       }
       else{
         setAreYouSureWindow(false); 
@@ -96,47 +101,51 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
         failTransaction(response);
       }    
     })
-  };  
+  };
+  
 
-  //renders new elements in JSX return after a successful transaction
+  
   const validTransaction = async function(response) {   
-    console.log(`Success, transaction went through!\nGot back;`, response.body);      
-    setSpinnyCircle(false);  //updates react window states
-    setSuccessWindow(true);
+    console.log(`Success, transaction went through!\nGot back;`, response.body);
+    
+      setSpinnyCircle(false); 
+      setSuccessWindow(true);
+
       
-    await fetch (`/api/gems/unlock_gem/${gemData.gem_id}/`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userFromDB),
-    })
-    .then(res => res.json())
-    .then(obj => {
-      const cloneOfUser2 = {...obj};
-      console.log('SETTING USER TO: ', JSON.stringify(cloneOfUser2))
-      setUserFromDB(cloneOfUser2);
-    })      
-  };
+      await fetch (`/api/gems/unlock_gem/${gemData.gem_id}/`, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userFromDB),
+      }).then(res => res.json())
+        .then(obj => {
+          const cloneOfUser2 = {...obj};
+          console.log('SETTING USER TO: ', JSON.stringify(cloneOfUser2))
+          setUserFromDB(cloneOfUser2);
+        })
+              
+    };
 
-  const failTransaction = function(response) { 
-    console.log(`Transaction didn't go through!\nGot back:`, response.body);
-    setTimeout(() => {
-      setSpinnyCircle(false);   //updates react window states
-      setErrorWindow(true);
-    }, 2500);  
-  };
+    const failTransaction = function(response) { 
+      console.log(`Transaction didn't go through!\nGot back:`, response.body);
+      setTimeout(() => {
+        setSpinnyCircle(false);  
+        setErrorWindow(true);
+      }, 2500);  
+    };
 
-  //self explainatory
-  const resetStatesAndCloseModal = function() {       
-    setUnlockModalVisibility(false);
-    setAreYouSureWindow(true);
-    setSpinnyCircle(false);
-    setSuccessWindow(false);
-    setErrorWindow(false);
-    console.log(`Closed modal and all states reset to intital state`);
-  };
+
+
+    const resetStatesAndCloseModal = function() {       
+    	setUnlockModalVisibility(false);
+      setAreYouSureWindow(true);
+      setSpinnyCircle(false);
+      setSuccessWindow(false);
+      setErrorWindow(false);
+      console.log(`modal closed and states reset`);
+    };
     
   return (
     <>
