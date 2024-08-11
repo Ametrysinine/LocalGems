@@ -42,12 +42,13 @@
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: $background-color;
+  border: 1px solid $dark-font-color;
+  background-color: $dark-font-color;
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  border-color: $mint;
-  background-color: $dark-green;
+  border-color: $dark-peach;
+  background-color: $dark-peach;
 }
 
 // /* Custom styles for the icons */
