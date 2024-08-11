@@ -59,10 +59,12 @@
 
   font: 1.25em/1.5em $display-font;
   font-weight: 300;
-  color: var(--font-color);
+  color: $font-color;
 
   body.dark & {
-    box-shadow: .3em .3em .75em rgba($dark-drop-shadow, 0.25);
+    background: rgba($dark-background-color, 0.85);
+    box-shadow: 0.2em 0.2em .5em rgba($dark-background-color, 0.5);
+    color: $dark-font-color;
   }
 }
 
