@@ -33,7 +33,7 @@ $light-peach: #fceae6;
 
 // Dark color
 // $dark-background-color: #323636;
-$dark-background-color: #354749;
+$dark-background-color: #2b3839;
 $dark-font-color: #eee5e2;
 $dark-peach: #d48383;
 $dark-drop-shadow: #353b39;
@@ -41,7 +41,7 @@ $dark-mint: #5F797D;
 
 body.dark {
   --header-title: #{$dark-font-color};
-  --background-color-rgba: 238, 229, 226;
+  --background-color-rgba: 43, 56, 57;
 }
 
 // Misc
