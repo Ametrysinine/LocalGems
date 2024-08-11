@@ -102,9 +102,14 @@
   }
 }
 
-.heart {
-  color: #b1b1b1;
-  fill: #b1b1b1;
+.modal-button-close {
+  width: calc(100% - 24px);
+  display: flex;
+  justify-content: flex-end;
+
+  img {
+    height: 1.25em;
+  }
 }
 
 .modal-map {
