@@ -11,7 +11,7 @@ import UnlockModal from "./UnlockModal";
 // takes in a single Gem as props
 const GemListItem = (props) => {
 
-  const { userFromDB } = useUserContext();
+  const { userFromDB, setUserFromDB } = useUserContext();
   const { user, error, validateToken } = useTokenContext();
   const [ unlockModalVisibility, setUnlockModalVisibility] = useState(false);
 
@@ -19,7 +19,7 @@ const GemListItem = (props) => {
     if (!userFromDB) {
       console.log(`GemListItem.jsx: no info yet for user`);
     }
-    console.log(`GemListItem.jsx has set a user: `, userFromDB);
+    // console.log(`GemListItem.jsx has set a user: `, userFromDB);
   }, [userFromDB]);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const GemListItem = (props) => {
 
   // returns true if the gem is UNLOCKED
   const isUnlocked = () => {
-    return userFromDB.unlocked_gems.includes(props.gem.gem_id);
+    return userFromDB.unlocked_gems?.includes(props.gem.gem_id);
   };
 
 
@@ -77,20 +77,25 @@ const GemListItem = (props) => {
     }
   };
 
-  // COND. REND returns gem type if locked, otherwise gem name
+
+  // COND. REND returns gem type if locked, otherwise gem name + gem city
   const nameOfGem = () => {
     // if unlocked
     if (!isLocked()) {
       return (
         <div className="type-location">
-          {props.gem.name} | {props.gem.city}
+          <div className="gem-title">{props.gem.name} </div>
+          <hr/>
+          <div className="gem-city">{gemImage()} {props.gem.city}</div>
         </div>
       )
       //if locked
     } else if (isLocked()) {
       return (
         <div className="type-location">
-          {props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem | {props.gem.city}
+          <div className="gem-title">{props.gem.type[0].toUpperCase() + props.gem.type.slice(1)} Gem </div>
+          <hr/>
+          {props.gem.city}
         </div>
       )
     }
@@ -140,15 +145,50 @@ const GemListItem = (props) => {
 
   };
 
-
+  let key;
+  switch (props.gem.type) {
+    case "food":
+      key = "rubies"
+      break;
+    case "entertainment":
+      key = "sapphires"
+      break;
+    case "outdoors":
+      key = "emeralds"
+      break;
+    case "shopping":
+      key = "topazs"
+      break;
+    case "nightlife":
+      key = "amethysts"
+      break;
+    case "services":
+      key = "citrines"
+      break;
+  }
+  // CURRENCY BLOCK END
   /* ---------------------------------------------------------
 
   handle Functions
   
   ---------------------------------------------------------*/
 
-  const handleDelete = () => {
-    props.onDelete(props.gem._id);
+  const handleDelete = async () => {
+    await props.onDelete(props.gem._id).then(async () => 
+      await fetch (`/api/currency/${key}/-1`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userFromDB),
+    }).then(response => {if (response.status === 200) {
+      const clone = {...userFromDB};
+      
+      // Update currency
+      clone.currency[key] -= 1;
+      setUserFromDB(clone);
+    }}));
   };
 
   const handleRevealButton = function() {
@@ -191,7 +231,7 @@ const GemListItem = (props) => {
           {bottomRowRight()}
         </div>
 
-        <Modal gem={props.gem} />
+        {!isLocked() && <Modal gem={props.gem} />}
         
         { unlockModalVisibility? <UnlockModal gemData={props.gem} setUnlockModalVisibility={setUnlockModalVisibility} /> : <></> }
 
@@ -203,25 +243,3 @@ const GemListItem = (props) => {
 };
 
 export default GemListItem;
-
-{/* 
-      <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-      <div className="flex gap-2">
-        <Link
-          className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-slate-100 h-9 rounded-md px-3"
-          to={`/edit/${props.gem._id}`}
-        >
-          Edit
-        </Link>
-        <button
-          className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-9 rounded-md px-3"
-          color="red"
-          type="button"
-          onClick={() => {
-            props.deleteGem(props.gem._id);
-          }}
-        >
-          Delete
-        </button>
-      </div>
-    </td> */}

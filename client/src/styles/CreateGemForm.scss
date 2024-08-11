@@ -8,7 +8,7 @@ textarea {
   max-width: 100%; /* Maximum width */
   min-height: 50px; /* Minimum height */
   max-height: 300px; /* Maximum height */
-  resize: both; /* Allow the user to resize the textarea */
+  // resize: both; /* Allow the user to resize the textarea */
 }
 
 .creategemform {
@@ -20,10 +20,6 @@ textarea {
   overflow: hidden;
   transition: max-height 2s ease-in-out;
   padding-top: 3em;
-
-  .active {
-    max-height: 1000px;
-  }
 
   .body {
     display: flex;
@@ -51,6 +47,18 @@ textarea {
     flex-direction: column; /* Stack label text and input vertically */
     margin-bottom: 1rem; /* Space between rows */
   }
+
+  .column-1,
+  .column-2,
+  .column-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .images-input {
+    height: 13em;
+  }
 }
 
 .submit-section {
@@ -58,7 +66,6 @@ textarea {
   justify-content: center;
   border-radius: $radius;
   color: white;
-  background-color: black;
   
   button {
     width: 100%;

@@ -39,7 +39,10 @@ const MyGems = () => {
     return;
   }, [filter, user, gems.length, showCreateGem]);
 
+  
+
   const handleCreateGemSuccess = () => {
+    setFilter('posted_gems');
     setShowCreateGem(false);
   };
 
@@ -48,9 +51,12 @@ const MyGems = () => {
       const response = await fetch(`/api/gems/delete/${gemId}`, {
         method: 'DELETE',
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-      });
+      })
+
+
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -78,29 +84,43 @@ const MyGems = () => {
   };
 
   return (
-      <article className="page-body">
-        <section className="page-body-content">
-          <div className="create-a-gem">
-            <button onClick={toggleCreateGemForm}>{createOrCancel()}</button>
-          </div>
-          <div className="create-gem-form">
-            {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} isFormVisible={showCreateGem} />}
-          </div>
-            <hr />
-          <div className="my-gems-navbar">
-            <br />
-            <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}>My Gems</button>
-            <br />
-            <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>Favourited Gems</button>
-            <br />
-            <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>Unlocked Gems</button>
-          </div>
-          <GemList gems={gems} deleteGem={deleteGem} />
-        </section>
-      </article>
+    <article className="page-body">
+      <section className="page-body-content">
+        <div className="create-a-gem">
+          <button onClick={toggleCreateGemForm}>{createOrCancel()}</button>
+        </div>
+        <div className={`create-gem-form ${showCreateGem ? 'active' : ''}`}>
+          {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
+        </div>
+        <br />
+        <hr />
+        <div className="my-gems-navbar">
+          <br />
+          <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}>
+            <div className="gems-nav-button">
+              <img src="/assets/icon_posted_gems.svg" />
+              My Gems
+            </div>
+          </button>
+          <br />
+          <button onClick={() => setFilter("favourited_gems")} className={getButtonClass("favourited_gems")}>
+            <div className="gems-nav-button">
+              <img src="/assets/icon_heart.svg" />
+              Favourited Gems
+            </div>
+          </button>
+          <br />
+          <button onClick={() => setFilter("unlocked_gems")} className={getButtonClass("unlocked_gems")}>
+            <div className="gems-nav-button">
+              <img src="/assets/icon_unlock.svg" />
+              Unlocked Gems
+            </div>
+          </button>
+        </div>
+        <GemList gems={gems} deleteGem={deleteGem} />
+      </section>
+    </article>
   );
 };
 
 export default MyGems;
-
-//change db to include all properties of 3 filters

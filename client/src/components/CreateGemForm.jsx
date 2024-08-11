@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTokenContext } from "../contexts/TokenContext";
 import "../styles/CreateGemForm.scss";
+import { useUserContext } from "../contexts/UserContext";
 
 
 const CreateGemForm = function(props) {
+  const { userFromDB, setUserFromDB } = useUserContext();
 
   const { user, error, validateToken } = useTokenContext();
 
@@ -60,8 +62,56 @@ const CreateGemForm = function(props) {
           console.error(message);
           return;
         }
+
+        // CURRENCY BLOCK
+        const updateCurrency = async (key) => {
+          await fetch(`/api/currency/${key}/1`, {
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userFromDB),
+          }).then(response => {
+            if (response.status === 200) {
+              const clone = { ...userFromDB };
+
+              // Update currency
+              clone.currency[key] += 1;
+              setUserFromDB(clone);
+            }
+          });
+        }
+
+        let key;
+        switch (formData.type) {
+          case "food":
+            key = "rubies"
+            break;
+          case "entertainment":
+            key = "sapphires"
+            break;
+          case "outdoors":
+            key = "emeralds"
+            break;
+          case "shopping":
+            key = "topazs"
+            break;
+          case "nightlife":
+            key = "amethysts"
+            break;
+          case "services":
+            key = "citrines"
+            break;
+        }
+
+        setTimeout(updateCurrency(key), 5000)
+        // CURRENCY BLOCK
         const newGem = await response.json();
         props.onSuccess(newGem);
+
+
+
       } catch (error) {
         console.error('Failed to create gem:', error);
       }
@@ -73,7 +123,7 @@ const CreateGemForm = function(props) {
       <form onSubmit={handleSubmit} className={`creategemform`}>
 
         <div className="body">
-          
+
           <div className="column-1">
             <label>
               Name of Gem:
@@ -95,11 +145,13 @@ const CreateGemForm = function(props) {
               <option value="services">Services</option>
             </select>
             <br />
-
             <label>
               Address:
               <input type="text" name="address" value={formData.address} onChange={handleChange} required />
             </label>
+          </div>
+
+          <div className="column-2">
             <label>
               Latitude:
               <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} required />
@@ -108,18 +160,17 @@ const CreateGemForm = function(props) {
               Longitude:
               <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} required />
             </label>
-          </div>
-
-          <div className="column-2">
             <label>
               Images (please separate URLs by comma):
-              <textarea type="text" name="images" value={formData.images} onChange={handleChange} required />
+              <textarea type="text" name="images" className="images-input" value={formData.images} onChange={handleChange} required />
             </label>
+          </div>
+
+          <div className="column-3">
             <label>
               Tags (please separate by comma):
               <textarea type="text" name="tags" value={formData.tags} onChange={handleChange} required />
             </label>
-            <br />
             <label>
               Description:
               <textarea name="description" value={formData.description} onChange={handleChange} required placeholder="E.g. a hole in the wall pizza shop with giant slices" />
@@ -135,9 +186,9 @@ const CreateGemForm = function(props) {
           <button type="submit">Submit</button>
         </div>
 
-      </form>
-      <br />
-    </div>
+      </form >
+      <br/>
+    </div >
   );
 };
 

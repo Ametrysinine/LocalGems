@@ -4,10 +4,6 @@ import { ObjectId } from "mongodb";
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-const SECRET = process.env.JWT_KEY
-import jwt from "jsonwebtoken";
-import validateToken from "../middleware/validateToken.js";
-
 const router = express.Router();
 
 
@@ -38,41 +34,45 @@ router.post("/create_gem", async (req, res) => {
 
 });
 
-
-router.post("/:key/:amount", async (req, res) => {  // Template code to increment/decrement X for Y user
-  // Example routes:
-    // /api/currency/bE2hP0/sapphires/1
-    // /api/currency/aLZ3b1/topazs/-1
+// Template code to increment/decrement X for Y user
+router.post("/:key/:amount", async (req, res) => {  
+  // Example routes:     /api/currency/sapphires/1   or    /api/currency/topazs/-1 
+  // Make sure to pass in userFromDB from useReducer as part of POST Body + headers
+  console.log(`\nEntered route for /currency/:key/:amount`);
 
   const collection = await db.collection("users");
-
+  console.log('JSON Body from client:', JSON.stringify(req.body))
   // const userId = req.params.user; // aLZ3b1
   const userId = req.body.user_id;
   const key = req.params.key; //"rubies", "sapphires", etc
   const amount = Number(req.params.amount); // 1, -1, 2, -2, etc
 
+  console.log(`Our userId is: `, userId);
+  console.log(`Our key is: `, key);
+  console.log(`Our amount is datatype: `, typeof amount,`containing:`, amount);
+
   const searchString = `currency.${key}`;
 
   const user = await collection.findOne({user_id: userId});
-  const hasCurrency = await (user.currency[key] > 0);
+  const hasCurrency = await (user.currency[key] >= -amount)
 
   if (amount < 0 && !hasCurrency) { // Check to ensure not going negative
-    res.status(401).json({ message: `Not enough ${key} for transaction`})
+    console.log(`Entered IF amount < 0 && !hasCurrency ln 59`);
+    // res.send(await user).status(401).json({ message: `Not enough ${key} for transaction`})  //JER     
+    res.status(401).json({ message: `Not enough ${key} for transaction`})  //CHR
   }
-
-  await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})
-  
-  res.send(await user).status(200);
+  else{
+    await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})    
+    res.send(await user);
+  }
 });
 
 
-
-
-//For updating our currency in DB when we create a gem
-router.post("/unlock_gem", async (req, res) => {  
-  console.log(`\nEntered the POST Currency route with the following data:\n`, req.body);
-
+//Chris test route for checking the unlock modal
+router.post("/transaction", async (req, res) => {  
+  console.log(`\nEntered the POST /Currency/transaction route with the following data:\n`, req.body);
 
 });
+
 
 export default router;

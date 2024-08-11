@@ -37,3 +37,4 @@ export function xssSanitize(string) {
   console.log(`Newly sanitized string is now:\n `, string);
   return cleanString;
 };
+

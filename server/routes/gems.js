@@ -1,6 +1,6 @@
 import express from "express";
 import db from "../db/connection.js";     // This will help us connect to the database
-import { ObjectId } from "mongodb";
+import {  Decimal128, ObjectId } from "mongodb";
 
 // The router will be added as a middleware and will take control of requests starting with path /record.
 const router = express.Router();     // router is an instance of the express router. We use it to define our routes.
@@ -15,19 +15,21 @@ router.post("/favourite/:gem_id", async (req, res) => {
   const collection = await db.collection("users");
   // const userId = req.params.user_id; // aLZ3b1
   const userId = req.body.user_id;
-  const gemObj = { gem_id: req.params.gem_id } // $oid signifies object ID
-  res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { favourited_gems: gemObj } }));
+  const gemId = req.params.gem_id 
+  res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { favourited_gems: gemId } }));
 });
 
-// // Add a gem to unlocked_gems----------------------------------------------------------------------------------------
-// router.get("/unlock/:user_id/:gem_id", async (req, res) => {
-//   console.log("-----correct path to unlock!-----");
 
-//   const collection = await db.collection("users");
-//   const userId = req.params.user_id;
-//   const gemObj = {"$oid": req.params.gem_id} // $oid signifies object ID
-//   res.status(200).send(await collection.updateOne({user_id: userId}, {$addToSet: {unlocked_gems: gemObj}}));
-// });
+// Gem is already bought, just unlocking
+router.post("/unlock_gem/:gem_id/", async (req, res) => {  
+  console.log(`\nEntered the POST Currency route with the following data:\n`, req.body);
+  const collection = await db.collection("users");
+  const userId = req.body.user_id;
+
+  const gemId = req.params.gem_id 
+
+  res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { unlocked_gems: gemId } }));
+});
 
 // Retrieve all gems when no filter is applied------------------------------------------------------------------------------
 router.get("/", async (req, res) => {
@@ -97,6 +99,10 @@ router.post('/create', async (req, res) => {
   const userId = req.query.userId;
   const userName = req.query.username;
 
+  // Safe to delete
+  // const latDecimal = Decimal128.fromString(latitude);
+  // const longDecimal = Decimal128.fromString(longitude);
+
   const newGem = {
     _id: new ObjectId(),
     name,
@@ -104,8 +110,8 @@ router.post('/create', async (req, res) => {
     city,
     location: {
       address,
-      latitude,
-      longitude
+      latitude: Decimal128.fromString(latitude),
+      longitude: Decimal128.fromString(longitude)
     },
     date_shared: new Date(),
     images: images,
