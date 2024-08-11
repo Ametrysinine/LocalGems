@@ -13,7 +13,8 @@ export default function GemList(props) {
       <GemListItem
         key={gem._id}
         gem={gem} 
-        onDelete={props.deleteGem}/>
+        onDelete={props.deleteGem}
+        filter={props.filter}/>
     );
   }
 

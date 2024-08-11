@@ -15,8 +15,8 @@ router.post("/favourite/:gem_id", async (req, res) => {
   const collection = await db.collection("users");
   // const userId = req.params.user_id; // aLZ3b1
   const userId = req.body.user_id;
-  const gemObj = { gem_id: req.params.gem_id } // $oid signifies object ID
-  res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { favourited_gems: gemObj } }));
+  const gemId = req.params.gem_id 
+  res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { favourited_gems: gemId } }));
 });
 
 

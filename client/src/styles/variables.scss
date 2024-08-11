@@ -15,6 +15,35 @@ $yellow: #f4e6ba;
 $dark-green: #45514e;
 $drop-shadow: #779187;
 $stone: #5993af;
+$light-peach: #fceae6;
+
+:root {
+  --background-color: #{$background-color};
+  --font-color: #{$font-color};
+  --mint: #{$mint};
+  --peach: #{$peach};
+  --yellow: #{$yellow};
+  --dark-green: #{$dark-green};
+  --drop-shadow: #{$drop-shadow};
+  --stone: #{$stone};
+  --light-peach: #{$light-peach};
+  --header-title: #{$background-color};
+  --background-color-rgba: 255, 255, 255; // $background-color
+}
+
+// Dark color
+// $dark-background-color: #323636;
+// $dark-background-color: #2b3839;
+$dark-background-color: #242c2d;
+$dark-font-color: #eee5e2;
+$dark-peach: #d48383;
+$dark-drop-shadow: #252a2b;
+$dark-mint: #5F797D;
+
+body.dark {
+  --header-title: #{$dark-font-color};
+  --background-color-rgba: 43, 56, 57;
+}
 
 // Misc
 $radius: 0.5em;

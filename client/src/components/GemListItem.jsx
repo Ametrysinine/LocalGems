@@ -37,11 +37,6 @@ const GemListItem = (props) => {
   --------------------------------------------------------- */
 
 
-  // returns true if the gem is NOT UNLOCKED or NOT OWNED
-  const isLocked = () => {
-    return !isOwned() && !isUnlocked();
-  };
-
   // returns true if the gem is OWNED
   const isOwned = () => {
     return user.user_id === props.gem.owner_id;
@@ -50,6 +45,11 @@ const GemListItem = (props) => {
   // returns true if the gem is UNLOCKED
   const isUnlocked = () => {
     return userFromDB.unlocked_gems?.includes(props.gem.gem_id);
+  };
+
+  // returns true if the gem is NOT UNLOCKED or NOT OWNED
+  const isLocked = () => {
+    return !isOwned() && !isUnlocked();
   };
 
 
@@ -103,6 +103,21 @@ const GemListItem = (props) => {
 
   // COND. REND: buttons for 1. posted_gems, 2. unlocked_gems, 3. locked gems (not posted_gems OR unlocked_gems)
   const bottomRowRight = () => {
+    // if shown in the favourited_gems page
+    if (props.filter === 'favourited_gems') {
+      return (
+        <div className="bottom-row-right">
+          <div className="upvote-counter">
+            <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
+            {props.gem.total_score}
+          </div>
+          <div className="unlist-button">
+            Remove
+          </div>
+        </div>
+      );
+    }
+    
     // if user OWNS the gem
     if (isOwned()) {
       return (

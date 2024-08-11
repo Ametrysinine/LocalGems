@@ -4,6 +4,7 @@ import "../styles/Navbar.scss";
 import NavGemCounter from "./NavGemCounter";
 import { useTokenContext } from "../contexts/TokenContext";
 import { useUserContext } from "../contexts/UserContext";
+import logo from "../assets/local-gems-logo.png";
 
 // import useValidateToken from "../hooks/useValidateToken";
 
@@ -41,34 +42,44 @@ export default function Navbar() {
 
   return (
     <div className="nav-bar">
-        <a href="/"><img className="nav-bar-logo" src="assets/nav_logo.png"/></a>
+        <a href="/"><img className="nav-bar-logo" src={logo}/></a>
 
       {user ?
         <div className="nav-bar-signed-in">   
 
-          <NavGemCounter />
-
           <div className="nav-bar-main">
             <div className="nav-bar-buttons">
-              {/* <div className="nav-bar-link">
-                <a href="/">Friends</a>
-              </div>  */}
               <div className="nav-bar-link">
-                <a href="/my-gems">My Gems</a>
+                <NavLink 
+                  to="/my-gems" 
+                  className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+                >
+                  My Gems
+                </NavLink>
               </div> 
               <div className="nav-bar-link">
-                <a href="/explore">Explore</a>
-              </div> 
+                <NavLink 
+                  to="/explore" 
+                  className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+                >
+                  Explore
+                </NavLink>
+              </div>
+            </div>
+            
+            <div className="nav-bar-currency-container">
+            <NavGemCounter />
             </div>
 
             <div className="nav-bar-user">
-              <div className="nav-bar-user-info">
-                <p>Signed in as: <b>{user.name}</b></p>
-                <p>A true local of <b>{user.city_name}</b></p>
-              </div>
               <div className="nav-bar-user-dropdown" role="button" tabindex="0" aria-pressed="false">
                 <img className="nav-bar-user-pfp"  src={user.pfp}/>
                 <div className="nav-bar-user-dropdown-content">
+                  <div className="nav-bar-user-info">
+                    <p>Signed in as: <b>{user.name}</b></p>
+                    <p>A true local of <b>{user.city_name}</b></p>
+                 </div>
+
                   <a href="/my-gems">                    
                     <img src="/icon_settings_thicc.svg" alt="settings"/>
                     <p>Settings</p>

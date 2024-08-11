@@ -7,12 +7,30 @@ html {
 
 body {
   background: rgb(154,200,183,1);
-  background: radial-gradient(circle, rgba(244,230,186,1) 0%, rgba(247,195,184,1) 45%, rgba(154,200,183,1) 90%); 
+  background: radial-gradient(circle, rgb(244, 230, 186) 0%, rgba(247,195,184,1) 45%, rgba(154,200,183,1) 90%); 
   background-attachment: fixed;
   padding-top: 100px;
   font: 1em $primary-font;
   color: $font-color;
   overflow-x: hidden;
+}
+
+body.dark {
+  background: $dark-background-color;
+  background: radial-gradient(circle, #e8dedb 0%, #6d898d 45%, #2e4447 90%); 
+  background-attachment: fixed; 
+  color: $dark-font-color;
+}
+
+body.dark img {
+  filter: contrast(110%) grayscale(20%) brightness(0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: $dark-background-color;
+    color: $dark-font-color;
+  }
 }
 
 .page-body {
@@ -29,6 +47,12 @@ body {
   margin: 1em auto 2em auto;
   padding: 4em;
   width: 85vw;
+
+  body.dark & {
+    background: $dark-background-color;
+    box-shadow: 0.2em 0.2em .5em rgba($dark-font-color, 0.15);
+    color: $dark-font-color;
+  }
 }
 
 label {
@@ -46,6 +70,10 @@ input, select {
   margin-right: 2em;
   padding: 10px;
   height: 3.2em;
+
+  body.dark & {
+    border: 1px solid $dark-mint;
+  }
 }
 
 button {
@@ -57,6 +85,11 @@ button {
   padding: 0.8em 2em;
   min-height: 3.2em;
   background: rgba($mint, 0.7);
+
+  body.dark & {
+    background: $dark-mint;
+    color: $dark-font-color;
+  }
 }
 
 .divider {
@@ -71,6 +104,10 @@ button {
     #0000,#000 1deg calc(var(--a) - 1deg),#0000 var(--a));
   mask: 50% calc(-1*var(--b))/var(--_g) exclude,50%/var(--_g);
   margin: 1.5em 0px;
+
+  body.dark & {
+    background: $dark-peach;
+  }
 }
 
 h1 {
@@ -82,7 +119,13 @@ sub {
   font: 0.8em $primary-font;
   display: block;
   color: $drop-shadow;
+
+  body.dark & {
+    color: rgba($dark-font-color, 0.75);
+  }
 }
+
+
 
 // Scrollbar from shoplight, webkit styles affect chrome/safari
 ::-webkit-scrollbar {

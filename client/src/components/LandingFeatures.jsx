@@ -4,9 +4,13 @@ import "../styles/LandingFeatures.scss";
 import search from "../assets/index_search.svg";
 import hands from "../assets/index_hands.svg";
 import unlock from "../assets/index_unlock.svg";
+import { useTokenContext } from "../contexts/TokenContext";
 
 
 const landingFeatures = function() {
+
+  const { user } = useTokenContext();
+
     return (
     <>
       <article className="features-container">
@@ -41,10 +45,13 @@ const landingFeatures = function() {
         </section>
       </article>
 
+      {user ?
+      <></>
+      : 
       <article className="features-signup">
-        {/* Experience your destination like a true local — no tourists allowed! <br /> */}
         Join now!
       </article>
+      }
     </>
   );
 };
