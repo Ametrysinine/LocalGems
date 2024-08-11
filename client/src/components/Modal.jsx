@@ -3,11 +3,12 @@
 import { Button, Modal, Carousel } from "flowbite-react";
 import { useState } from "react";
 import MapContainer from "./MapContainer";
+import { useUserContext } from "../contexts/UserContext";
 import "../styles/Modal.scss";
 import upvote from "../assets/icon_upvote.svg";
 import downvote from "../assets/icon_downvote.svg";
 import heart from "../assets/icon_heart.svg";
-import { useUserContext } from "../contexts/UserContext";
+import close from "../assets/x.svg";
 
 export default function Component(props) {
   const [openModal, setOpenModal] = useState(false);
@@ -80,6 +81,10 @@ export default function Component(props) {
 
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)} size={"6xl"}>
 
+      <div className="modal-button-close"> 
+        <img src={close} onClick={() => setOpenModal(false)} alt="Close" />
+      </div>
+
           <Modal.Body className="modal-container">
             <div className="modal-gem-img"> {gemImage()} </div>
             
@@ -119,7 +124,7 @@ export default function Component(props) {
                 </section>
 
                 <section class="bottom">
-                  <Button onClick={() => setOpenModal(false)}>CLOSE</Button>
+                  {/* <button onClick={() => setOpenModal(false)}>{close}</button> */}
                   <img src={upvote} onClick={() => upvoteGem(props.gem.gem_id)} alt="Upvote" />
                   <img src={downvote} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" />
                   <img src={heart} onClick={() => favoriteGem(props.gem.gem_id)} alt="Add to favorites" />
