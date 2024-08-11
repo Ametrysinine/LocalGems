@@ -52,8 +52,7 @@ export default function Navbar() {
               <div className="nav-bar-link">
                 <NavLink 
                   to="/my-gems" 
-                  activeStyle={{ color: '' }}
-                  style={({ isActive }) => ({ color: isActive ? '#779187' : '' })}
+                  className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
                 >
                   My Gems
                 </NavLink>
@@ -61,8 +60,7 @@ export default function Navbar() {
               <div className="nav-bar-link">
                 <NavLink 
                   to="/explore" 
-                  activeStyle={{ color: '' }}
-                  style={({ isActive }) => ({ color: isActive ? '#779187' : '' })}
+                  className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
                 >
                   Explore
                 </NavLink>
