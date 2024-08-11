@@ -83,3 +83,29 @@ sub {
   display: block;
   color: $drop-shadow;
 }
+
+// Scrollbar from shoplight, webkit styles affect chrome/safari
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $stone;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: $peach;
+}
+
+// These are firefox
+@supports (-moz-appearance: none) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: $stone transparent;
+  }
+
+  *::-moz-scrollbar-thumb:hover {
+    background-color:  $peach;
+  }
+}
