@@ -53,7 +53,7 @@ router.post("/:key/:amount", async (req, res) => {  // Template code to incremen
   const hasCurrency = await (user.currency[key] >= -amount)
 
   if (amount < 0 && !hasCurrency) { // Check to ensure not going negative
-    res.send(await user).status(401).json({ message: `Not enough ${key} for transaction`})
+    res.send(await user).status(401);
   }
 
   await collection.findOneAndUpdate({user_id: userId}, {$inc: {[searchString]: amount}}, {returnNewDocument: true})
@@ -70,9 +70,20 @@ router.post("/transaction", async (req, res) => {
 
 
 //For updating our currency in DB when we create a gem
-router.post("/unlock_gem", async (req, res) => {  
+router.post("/unlock_gem/:gem_id/:amount", async (req, res) => {  
   console.log(`\nEntered the POST Currency route with the following data:\n`, req.body);
+  const userId = req.body.user_id;
+  const user = await collection.findOne({user_id: userId});
 
+  const gemId = req.params.gem_id;
+  const amount = Number(req.params.amount); // 1, -1, 2, -2, etc
+
+  const hasCurrency = await (user.currency[key] >= -amount)
+  if (amount < 0 && !hasCurrency) { // Check to ensure not going negative
+    res.send(await user).status(401);
+  }
+
+  res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { unlocked_gems: gemId } }));
 
 });
 
