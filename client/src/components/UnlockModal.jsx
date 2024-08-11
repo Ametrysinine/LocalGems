@@ -74,10 +74,10 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
           return ["Citrine", "citrines", "Services"];
       }
     };
+    const gemStoneType = gemName(gemData?.type)[1]
 
     const checkCurrencyAmount = async () => {
-      const gemStoneType = gemName(gemData?.type)[1]
-    	console.log(`checkCurrencyAmount - checking if we have any ${gemStoneType} on server`);
+    console.log(`checkCurrencyAmount - checking if we have any ${gemStoneType} on server`);
       
       await fetch (`/api/currency/${gemStoneType}/-1`, {
       method: "POST",
@@ -91,7 +91,7 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       if (response.status === 200) {  
         setAreYouSureWindow(false);      
         setSpinnyCircle(true);  
-        validTransaction(response);
+        setTimeout(validTransaction(response), 2500);
       }
       else{
         setAreYouSureWindow(false); 
@@ -103,18 +103,27 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
   
 
   
-  const validTransaction = function(response) {   
+  const validTransaction = async function(response) {   
     console.log(`Success, transaction went through!\nGot back;`, response.body);
     
-    setTimeout(() => {      
       setSpinnyCircle(false); 
       setSuccessWindow(true);
 
-      // Update currency in state
-      const cloneOfUser = {...userFromDB};  
-      cloneOfUser.currency[gemStoneType] -= 1;
-      setUserFromDB(cloneOfUser); 
       
+      await fetch (`/api/gems/unlock_gem/${gemData.gem_id}/`, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userFromDB),
+      }).then(res => res.json())
+        .then(obj => {
+          const cloneOfUser2 = {...obj};
+          console.log('SETTING USER TO: ', JSON.stringify(cloneOfUser2))
+          setUserFromDB(cloneOfUser2);
+        })
+        
       //--------------------------------
       //do a second await POST here that adds this entry to users unlocked gems list
 
@@ -123,7 +132,6 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
 
       //--------------------------------
       
-    }, 2500);
     };
 
     const failTransaction = function(response) { 

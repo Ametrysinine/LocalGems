@@ -19,15 +19,17 @@ router.post("/favourite/:gem_id", async (req, res) => {
   res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { favourited_gems: gemObj } }));
 });
 
-// // Add a gem to unlocked_gems----------------------------------------------------------------------------------------
-// router.get("/unlock/:user_id/:gem_id", async (req, res) => {
-//   console.log("-----correct path to unlock!-----");
 
-//   const collection = await db.collection("users");
-//   const userId = req.params.user_id;
-//   const gemObj = {"$oid": req.params.gem_id} // $oid signifies object ID
-//   res.status(200).send(await collection.updateOne({user_id: userId}, {$addToSet: {unlocked_gems: gemObj}}));
-// });
+// Gem is already bought, just unlocking
+router.post("/unlock_gem/:gem_id/", async (req, res) => {  
+  console.log(`\nEntered the POST Currency route with the following data:\n`, req.body);
+  const collection = await db.collection("users");
+  const userId = req.body.user_id;
+
+  const gemId = req.params.gem_id 
+
+  res.status(200).send(await collection.findOneAndUpdate({ user_id: userId }, { $addToSet: { unlocked_gems: gemId } }));
+});
 
 // Retrieve all gems when no filter is applied------------------------------------------------------------------------------
 router.get("/", async (req, res) => {

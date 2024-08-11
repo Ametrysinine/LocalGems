@@ -75,11 +75,4 @@ router.post("/transaction", async (req, res) => {
 });
 
 
-//For updating our currency in DB when we create a gem
-router.post("/unlock_gem", async (req, res) => {  
-  console.log(`\nEntered the POST Currency route with the following data:\n`, req.body);
-
-
-});
-
 export default router;

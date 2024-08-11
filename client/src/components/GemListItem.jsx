@@ -19,7 +19,7 @@ const GemListItem = (props) => {
     if (!userFromDB) {
       console.log(`GemListItem.jsx: no info yet for user`);
     }
-    console.log(`GemListItem.jsx has set a user: `, userFromDB);
+    // console.log(`GemListItem.jsx has set a user: `, userFromDB);
   }, [userFromDB]);
 
   useEffect(() => {
