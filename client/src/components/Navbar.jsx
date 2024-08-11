@@ -49,15 +49,24 @@ export default function Navbar() {
 
           <div className="nav-bar-main">
             <div className="nav-bar-buttons">
-              {/* <div className="nav-bar-link">
-                <a href="/">Friends</a>
-              </div>  */}
               <div className="nav-bar-link">
-                <a href="/my-gems">My Gems</a>
+                <NavLink 
+                  to="/my-gems" 
+                  activeStyle={{ color: '' }}
+                  style={({ isActive }) => ({ color: isActive ? '#779187' : '' })}
+                >
+                  My Gems
+                </NavLink>
               </div> 
               <div className="nav-bar-link">
-                <a href="/explore">Explore</a>
-              </div> 
+                <NavLink 
+                  to="/explore" 
+                  activeStyle={{ color: '' }}
+                  style={({ isActive }) => ({ color: isActive ? '#779187' : '' })}
+                >
+                  Explore
+                </NavLink>
+              </div>
             </div>
             
             <div className="nav-bar-currency-container">
