@@ -63,7 +63,7 @@
 
   body.dark & {
     background: rgba($dark-background-color, 0.85);
-    box-shadow: 0.2em 0.2em .5em rgba($dark-background-color, 0.5);
+    box-shadow: 0.2em 0.2em .5em rgba($dark-font-color, 0.15);
     color: $dark-font-color;
   }
 }
@@ -104,6 +104,6 @@
 
   body.dark & {
     color: $dark-font-color;
-    text-shadow: 0.05em 0.05em .1em rgba($dark-drop-shadow, .25);
+    text-shadow: 0em 0.05em .5em rgba($dark-background-color, .5);
   }
 }

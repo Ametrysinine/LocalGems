@@ -17,7 +17,7 @@ body {
 
 body.dark {
   background: $dark-background-color;
-  background: radial-gradient(circle, #e8dedb 0%, #6d898d 45%, $dark-background-color 90%); 
+  background: radial-gradient(circle, #e8dedb 0%, #6d898d 45%, #2e4447 90%); 
   background-attachment: fixed; 
   color: $dark-font-color;
 }
@@ -49,9 +49,9 @@ body.dark img {
   width: 85vw;
 
   body.dark & {
-    background: $dark-font-color;
-    box-shadow: .2em .2em .75em $dark-drop-shadow;
-    color: $dark-background-color;
+    background: $dark-background-color;
+    box-shadow: 0.2em 0.2em .5em rgba($dark-font-color, 0.15);
+    color: $dark-font-color;
   }
 }
 

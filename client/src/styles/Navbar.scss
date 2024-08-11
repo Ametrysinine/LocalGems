@@ -18,10 +18,9 @@
     align-items: center;
 
   body.dark & {
-    
-    background: $dark-font-color;
-    color: $dark-background-color;
-    box-shadow: .2em .2em .75em $dark-drop-shadow;
+    background: $dark-background-color;
+    box-shadow: 0.2em 0.2em .5em rgba($dark-font-color, 0.15);
+    color: $dark-font-color;
   }
 }
 
