@@ -21,8 +21,18 @@
   }
   
   text {
-    fill: $background-color;
+    fill: var(--header-title);
     text-transform: uppercase;
+  }
+
+  body.dark & {
+    text-shadow: 0em 0.1em .1em rgba($dark-drop-shadow, .25);
+  }
+}
+
+.dark.landing-header-title {
+  text {
+    fill: yellow;
   }
 }
 

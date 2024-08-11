@@ -13,22 +13,23 @@ body {
   font: 1em $primary-font;
   color: $font-color;
   overflow-x: hidden;
+}
 
-  &.dark {
-    background: $dark-background-color;
-    background: radial-gradient(circle, rgb(109, 137, 141) 45%, rgb(55, 86, 90) 90%);
-    background-attachment: fixed; 
-  }
+body.dark {
+  background: $dark-background-color;
+  background: radial-gradient(circle, #e8dedb 0%, #6d898d 45%, #354749 90%); 
+  background-attachment: fixed; 
+  color: $dark-font-color;
 }
 
 body.dark img {
-  filter: contrast(110%) grayscale(20%) brightness(0.95) saturate(130%);
+  filter: contrast(110%) grayscale(20%) brightness(0.9);
 }
 
 @media (prefers-color-scheme: dark) {
   body {
     background-color: $dark-background-color;
-    color: #dadada;
+    color: $dark-font-color;
   }
 }
 
@@ -46,6 +47,12 @@ body.dark img {
   margin: 1em auto 2em auto;
   padding: 4em;
   width: 85vw;
+
+  body.dark & {
+    background: $dark-font-color;
+    box-shadow: .2em .2em .75em $dark-drop-shadow;
+    color: $dark-background-color;
+  }
 }
 
 label {
@@ -63,6 +70,10 @@ input, select {
   margin-right: 2em;
   padding: 10px;
   height: 3.2em;
+
+  body.dark & {
+    border: 1px solid $dark-mint;
+  }
 }
 
 button {
@@ -74,6 +85,11 @@ button {
   padding: 0.8em 2em;
   min-height: 3.2em;
   background: rgba($mint, 0.7);
+
+  body.dark & {
+    background: $dark-mint;
+    color: $dark-font-color;
+  }
 }
 
 .divider {
@@ -88,6 +104,10 @@ button {
     #0000,#000 1deg calc(var(--a) - 1deg),#0000 var(--a));
   mask: 50% calc(-1*var(--b))/var(--_g) exclude,50%/var(--_g);
   margin: 1.5em 0px;
+
+  body.dark & {
+    background: $dark-peach;
+  }
 }
 
 h1 {
@@ -99,5 +119,9 @@ sub {
   font: 0.8em $primary-font;
   display: block;
   color: $drop-shadow;
+
+  body.dark & {
+    color: $dark-mint;
+  }
 }
 

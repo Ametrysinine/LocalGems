@@ -16,11 +16,19 @@
     grid-template-columns: 1fr 1fr auto;
     justify-items: stretch;
     align-items: center;
+
+  body.dark & {
+    
+    background: $dark-font-color;
+    color: $dark-background-color;
+    box-shadow: .2em .2em .75em $dark-drop-shadow;
+  }
 }
 
 .nav-bar-logo {
     width: 180px;
     object-fit: cover;
+    padding-right: 1.5em;
 }
 
 .nav-bar-signed-in{
@@ -40,21 +48,33 @@
 .nav-currency-bar{
   display: flex;
   .nav-currency{
-    min-width: 111px;
+    min-width: 5.5em;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    font-size: 0.8em;
+    font-weight: 300;
     img{
-      height: 40px;
+      height: 2.5em;
+      padding-left: 0.65em;
     }
   }
 }
 
-.nav-bar-main{
+.nav-bar-currency-container {
   display: flex;
-  flex-direction: row;
-  justify-content: end;
+  justify-content: center;
+  align-items: center;
+
+  justify-self: end;
+  padding-right: 3em;
+}
+
+.nav-bar-main{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
 }
 
 .nav-bar-buttons{
@@ -65,17 +85,23 @@
 
 .nav-bar-link {
   justify-self: end;
-  padding-right: 34px;
+  padding-right: 0.5em;
+
   a {
-    font: 1em $mono-font;
+    font: 0.9em $mono-font;
     padding: 5px 12px 5px 12px;
-    border-radius: $radius;
-    background-color: $peach;
     transition: all  0.2s ease-in-out;
     
     &:hover {
-      background: $stone;
       color: #fff;
+      border-radius: $radius;
+      background-color: $peach;
+    }
+  }
+
+  body.dark & {
+    a:hover {
+      background: $dark-peach;
     }
   }
 }
@@ -90,11 +116,15 @@
     padding-right: 30px;
   }
   .nav-bar-user-pfp{
-    height: 55px;
-    width: 55px;
+    height: 45px;
+    width: 45px;
     object-fit: cover;
     border-radius: $pill;
-    outline: 3px solid $stone;
+    outline: 4px solid $peach;
+
+    body.dark & {
+      outline: 4px solid $dark-peach;
+    }
   }
 }
 
@@ -108,7 +138,8 @@
 .nav-bar-user-dropdown-content {
   position: absolute;
   transform: translate(-70px, 20px);
-  background-color: #f9f9f9;
+  background-color: $background-color;
+  border-radius: $radius;
   display: flex;
   flex-direction: column;
   min-width: 160px;
@@ -132,6 +163,11 @@
   p{
     padding-left: 10px;
   }
+
+  body.dark & {
+    background: $dark-font-color;
+    color: $dark-background-color;
+  }
 }
 
 .nav-bar-user-dropdown:hover .nav-bar-user-dropdown-content, .nav-bar-user-dropdown:focus .nav-bar-user-dropdown-content{
@@ -141,16 +177,12 @@
 
 // -------- For the dropdown on the GemCounter component
 
-.nav-currency {
-  position: relative;
-  display: inline-block;
-}
-
 .nav-currency-content {
   position: absolute;
   transform: translate(0px, 90px);
   width: 237px;
-  background-color: #f9f9f9;
+  background-color: $background-color;
+  border-radius: $radius;
   display: flex;
   flex-direction: column;
   min-width: 100px;
@@ -163,6 +195,11 @@
 
   p{
     padding-left: 10px;
+  }
+
+  body.dark & {
+    background: $dark-font-color;
+    color: $dark-background-color;
   }
 }
 
