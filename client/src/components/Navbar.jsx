@@ -4,6 +4,7 @@ import "../styles/Navbar.scss";
 import NavGemCounter from "./NavGemCounter";
 import { useTokenContext } from "../contexts/TokenContext";
 import { useUserContext } from "../contexts/UserContext";
+import logo from "../assets/local-gems-logo.png";
 
 // import useValidateToken from "../hooks/useValidateToken";
 
@@ -41,7 +42,7 @@ export default function Navbar() {
 
   return (
     <div className="nav-bar">
-        <a href="/"><img className="nav-bar-logo" src="assets/nav_logo.png"/></a>
+        <a href="/"><img className="nav-bar-logo" src={logo}/></a>
 
       {user ?
         <div className="nav-bar-signed-in">   
