@@ -51,6 +51,15 @@ export default function Navbar() {
             <div className="nav-bar-buttons">
               <div className="nav-bar-link">
                 <NavLink 
+                  to="/" 
+                  className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+                >
+                  Local Gems
+                </NavLink>
+              </div> 
+
+              <div className="nav-bar-link">
+                <NavLink 
                   to="/my-gems" 
                   className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
                 >
@@ -63,6 +72,14 @@ export default function Navbar() {
                   className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
                 >
                   Explore
+                </NavLink>
+              </div>
+              <div className="nav-bar-link">
+                <NavLink 
+                  to="/friends" 
+                  className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+                >
+                  Friends
                 </NavLink>
               </div>
             </div>
@@ -95,12 +112,31 @@ export default function Navbar() {
         </div>      
         : 
         <div className="nav-bar-logged-out">
-          <div className="nav-bar-link">
-            <a href="/login">Log In</a>
-          </div>      
-          <div className="nav-bar-link">
-            <a href="/sign-up">Sign Up</a>
-          </div>     
+          <div className="nav-bar-main">
+            <div className="nav-bar-buttons">
+              <div className="nav-bar-link">
+                <NavLink 
+                    to="/" 
+                    className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+                  >
+                    Local Gems
+                </NavLink>
+              </div>
+            </div>
+
+            <div className="nav-bar-link">
+              <NavLink 
+                    to="/login" 
+                    className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+                  >
+                    Log In
+              </NavLink>
+              {/* <a href="/login">Log In</a> */}
+            </div>      
+            <div className="nav-bar-link">
+              <a href="/sign-up">Sign Up</a>
+            </div>    
+          </div> 
         </div>
 
       }

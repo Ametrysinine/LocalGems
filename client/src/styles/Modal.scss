@@ -4,14 +4,27 @@
   width: 80vw;
 }
 
-.modal-close-button {
-  padding-left: 100px;
-}
 
 .modal-container {
   display: flex;
   align-items: flex-start;
   gap: 2em;
+  padding: 2em 3em 3em 2em;
+}
+
+.modal-button-close {
+  width: calc(100% - 2em);
+  display: flex;
+  justify-content: flex-end;
+  transform: translateY(1em) translateX(0.5em);
+
+  img {
+    height: 1em;
+
+    body.dark & {
+      filter: invert(1);
+    }
+  }
 }
 
 .modal-gem-img  {
@@ -79,6 +92,11 @@
       padding: 3px 10px;
       font: 0.7em $mono-font;
       color: $font-color;
+
+      body.dark & {
+        border: 1px solid $dark-peach;
+        color: $dark-font-color;
+      }
     }
   }
 
@@ -87,28 +105,19 @@
     align-self: flex-end;
 
     display: grid;
-    width: 100%;
-    grid-template-columns: 1fr auto auto auto;
+    width: 50%;
+    grid-template-columns: auto auto auto;
     align-items: center;
-
-    button {
-      width: 150px;
-    }
   
     img {
       width: 22px;
       margin-left: 2em;
+
+      body.dark & {
+        filter: invert(1);
+        opacity: 0.7;
+      }
     }
-  }
-}
-
-.modal-button-close {
-  width: calc(100% - 24px);
-  display: flex;
-  justify-content: flex-end;
-
-  img {
-    height: 1.25em;
   }
 }
 
@@ -118,36 +127,42 @@
   max-height: 600px;
 }
 
-//Cynthias solution to the view button
-.view-button {
-  font: 0.8em $mono-font;
-  display: flex;
-  width: 40px;
-  height: 25px;
-  justify-content: center;
-  align-items: center;
-  color: #151414;
-  border: 1px solid #ddd;
-  border-radius: $radius;
-  padding: 5px 10px;
-  background-color: #f9f9f9; 
-  transition: background-color 0.3s ease;
-  overflow-wrap: break-word;
-  cursor: pointer;
-}
+// //Cynthias solution to the view button
+// .view-button {
+//   font: 0.8em $mono-font;
+//   display: flex;
+//   width: 40px;
+//   height: 25px;
+//   justify-content: center;
+//   align-items: center;
+//   color: #151414;
+//   border: 1px solid #ddd;
+//   border-radius: $radius;
+//   padding: 5px 10px;
+//   background-color: #f9f9f9; 
+//   transition: background-color 0.3s ease;
+//   overflow-wrap: break-word;
+//   cursor: pointer;
+// }
 
-//Chris' solution to the view button
-//moves it overtop of the image and makes it transparent except for the text
+// //Chris' solution to the view button
+// //moves it overtop of the image and makes it transparent except for the text
 .modal-view-button{
   position: absolute;
-  transform: translate(-140px, 0px);
-  background-color: rgba(255, 255, 255, 0);
-  height: 140px;
-  width: 140px;
+  transform: translate(-125px, 58px);
+  background: rgba($background-color, 0.8);
+  border-radius: $pill;
   display: flex;
   justify-content: center;  
   align-items: center;
+  transition: background-color 0.3s ease;
+
   &:hover{
-    background-color: rgba(255, 255, 255, 0) !important;
+    background: $mint;
+    color: $background-color;
+  }
+
+  body.dark &:hover{
+    background: $dark-drop-shadow;
   }
 }

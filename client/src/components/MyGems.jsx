@@ -92,8 +92,7 @@ const MyGems = () => {
         <div className={`create-gem-form ${showCreateGem ? 'active' : ''}`}>
           {showCreateGem && <CreateGemForm onSuccess={handleCreateGemSuccess} />}
         </div>
-        <br />
-        <hr />
+
         <div className="my-gems-navbar">
           <br />
           <button onClick={() => setFilter("posted_gems")} className={getButtonClass("posted_gems")}>

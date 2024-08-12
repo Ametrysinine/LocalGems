@@ -43,6 +43,7 @@ $dark-mint: #5F797D;
 body.dark {
   --header-title: #{$dark-font-color};
   --background-color-rgba: 43, 56, 57;
+  --background-color: #{$dark-background-color};
 }
 
 // Misc

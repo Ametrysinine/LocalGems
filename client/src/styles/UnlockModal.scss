@@ -28,8 +28,8 @@
   align-items: center;      /* Vertical align*/
   flex-direction: column;
   // border: 3px dashed limegreen;
-  h3{
-    font-size: 20px;
+  h3 {
+    font-size: 1em;
     font-weight: normal;
     padding: 15px 15px 0px 15px;
     text-align: center;
@@ -44,8 +44,9 @@
   align-items: center;      /* Vertical align*/
   
   img{
-    height: 100px;
-    width: 100px;
+    height: 6em;
+    width: 6em;
+    margin-right: 1em;
   }
   h2{
     font-size: 60px;
@@ -73,7 +74,7 @@
   }
   .gem-type_citrine{
     color: rgb(255, 245, 65);
-    text-shadow: 4px 4px #d6a513; ;
+    text-shadow: 3px 3px #d6a513; ;
   }
 }
 
@@ -82,11 +83,13 @@
 .unlockModal-container{
   position: relative;
   height: 40%;
+
   width: 30%;
   z-index: 999;
   background-color: white; 
   box-shadow: .3em .3em .75em $drop-shadow;
   border-radius: 4em;
+
     .unlockModal-are-you-sure, .unlockModal-success-window, .unlockModal-error-window{
       // border: 3px dashed rebeccapurple;
       display: flex;
@@ -98,29 +101,27 @@
 .unlockModal-button{
   // border: 3px dashed limegreen;
   padding-top: 20px;
-  width: 70%;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
   button{
-    height: 50px;
-    width: 130px;
-    font-size: 15px;
-    padding: 0;
+    min-width: 130px;
+    padding: 0 1em;
   }
   button:active{
     transform: scale(0.95); 
     box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.6);
   }
 .success{
-  background-color: rgb(119, 249, 119);
+  background-color: rgb(156, 238, 156);
+  margin-right: 2em;
 }
 .success:hover{
   background-color: rgb(100, 223, 100);
   color: white;
 }
 .close{
-    background-color: rgb(251, 126, 126);
+    background-color: rgb(247, 125, 125);
     color: white;
   }
   .close:hover{

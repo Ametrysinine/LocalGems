@@ -46,9 +46,11 @@ export default function NavGemCounter() {
 
         <div className="nav-currency-content">
           <p>Create entries in the <b>Food</b> category to earn Rubies</p>
-          <ul>Restauraunts</ul>
-          <ul>Mom N Pop Shops</ul>
-          <ul>Unique Cuisine</ul>
+          <ul>
+            <li>Restauraunts</li>
+            <li>Mom N Pop Shops</li>
+            <li>Unique Cuisine</li>
+          </ul>
         </div>
       </div>
 
@@ -58,9 +60,11 @@ export default function NavGemCounter() {
 
         <div className="nav-currency-content">
           <p>Create entries in the <b>Entertainment</b> category to earn Sapphires</p>
-          <ul>Escape Rooms</ul>
-          <ul>Karaoke Lounges</ul>
-          <ul>Live Music Venues</ul>
+          <ul>
+            <li>Escape Rooms</li>
+            <li>Karaoke Lounges</li>
+            <li>Live Music Venues</li>
+          </ul>
         </div>
       </div>
       
@@ -70,9 +74,11 @@ export default function NavGemCounter() {
 
         <div className="nav-currency-content">
           <p>Create entries in the <b>Outdoors</b> category to earn Emeralds</p>
-          <ul>Hiking Trails</ul>
-          <ul>Camping Spots</ul>
-          <ul>Scenic Spots</ul>
+          <ul>
+            <li>Hiking Trails</li>
+            <li>Camping Spots</li>
+            <li>Scenic Spots</li>
+          </ul>
         </div>
       </div>
 
@@ -82,9 +88,11 @@ export default function NavGemCounter() {
 
         <div className="nav-currency-content">
           <p>Create entries in the <b>Shopping</b> category to earn Topazs</p>
-          <ul>Specialty Shops</ul>
-          <ul>Street Markets</ul>
-          <ul>Boutique Stores</ul>
+          <ul>
+            <li>Specialty Shops</li>
+            <li>Street Markets</li>
+            <li>Boutique Stores</li>
+          </ul>
         </div>
       </div>
 
@@ -94,9 +102,11 @@ export default function NavGemCounter() {
 
         <div className="nav-currency-content">
           <p>Create entries in the <b>Nightlife</b> category to earn Amethysts</p>
-          <ul>Nightclubs</ul>
-          <ul>Bars and Pubs</ul>
-          <ul>Rooftop Venues</ul>
+          <ul>
+            <li>Nightclubs</li>
+            <li>Bars and Pubs</li>
+            <li>Rooftop Venues</li>
+          </ul>
         </div>
       </div>
 
@@ -106,9 +116,11 @@ export default function NavGemCounter() {
 
         <div className="nav-currency-content">
           <p>Create entries in the <b>Services</b> category to earn Citrines</p>
-          <ul>Barbers and Stylists</ul>
-          <ul>Beauty Salons</ul>
-          <ul>Custom Tailoring</ul>
+          <ul>
+            <li>Barbers and Stylists</li>
+            <li>Beauty Salons</li>
+            <li>Custom Tailoring</li>
+          </ul>
         </div>
       </div>
     </div> 

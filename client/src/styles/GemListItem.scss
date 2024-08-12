@@ -1,41 +1,53 @@
 @import 'variables';
 
 .gem-list__item {
-  display: flex;
-  align-items: space-between;
-  flex: 0 1 calc(33.33% - 10px);
+  // display: flex;
+  // align-items: space-between;
+  // flex: 0 1 calc(33.33% - 10px);
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 16px;
   padding: 8px;
   border-width: 0.5px;
   border: 1px solid $peach;
-  border-radius: 15px;
   overflow-wrap: break-word;
   border-style: solid;
-  border-radius: 4px;
-  width: 350px;
-  font-size: x-small;
+  border-radius: 1em;
+  min-width: 350px;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 0.5em 0.5em;
 
   body.dark & {
     background: $dark-background-color;
     color: $dark-font-color;
+    border: 1px solid $dark-peach;
   }
 }
 
 .gem-image {
-  width: 400px; 
-  max-height: 400px; 
   object-fit: cover;
+  aspect-ratio: 1 / 1;
 }
 
 .blurred {
+  scale: 1.2;
+  filter: blur(5px);
+  overflow:hidden;
+}
+
+.dark .blurred {
+  scale: 1.2;
   filter: blur(5px);
   overflow:hidden;
 }
 
 .gem-left-container {
-  width: 250px;
+  min-width: 100px;
+  min-height: 100px;
+  overflow: hidden;
   padding-right: 10px;
 }
 
@@ -43,6 +55,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-right: 8px;
 }
 
 .type-location{
@@ -62,45 +75,56 @@
 
 .edit-button {
   display: flex;
-  width: 45px;
   height: 25px;
   justify-content: center;
   align-items: center;
   font-size: 1.0em;
-  color: #151414;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  color: $font-color;
+  border: 1px solid $mint;
+  border-radius: $radius;
   padding: 5px 10px;
-  background-color: #f9f9f9; 
+  background: var(--background-color); 
   transition: background-color 0.3s ease;
   overflow-wrap: break-word;
   cursor: pointer;
+  margin-right: 0.5em;
+
+  body.dark & {
+    color: $background-color;
+    border: 1px solid $dark-green;
+    border-radius: $radius;
+    padding: 5px 10px;
+    background-color: $dark-green;
+  }
 }
 
 .edit-button:hover {
-  color: #ffffff;
-  background-color: #000000;
+  color: $background-color;
+  background-color: $mint;
 }
 
-.delete-button {
+.delete-button, .unlist-button {
   display: flex;
-  width: 45px;
   height: 25px;
   justify-content: center;
   align-items: center;
   font-size: 1.0em;
-  color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  color: $background-color;
+  border-radius: $radius;
   padding: 5px 10px;
-  background-color: #000000;
+  background-color: $font-color;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  margin-right: 0.5em;
 }
 
-.delete-button:hover {
-  color: #000000;
-  background-color: #ffffff;
+.delete-button:hover, .unlist-button:hover {
+  color: $background-color;
+  background-color: $mint;
+
+  body.dark &{
+    background: $dark-mint;
+  }
 }
 
 .upvote-counter {
@@ -110,89 +134,129 @@
   justify-content: center;
   align-items: center;
   font-size: 1.0em;
-  color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  color: $background-color;
+  border: 1px solid $dark-green;
+  border-radius: $radius;
   padding: 5px 10px;
-  background-color: #000000;
+  background-color: $dark-green;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  margin-right: 0.5em;
 }
 
 .thumbs-image {
   width: 10px;
   height: 10px;
+  margin-right: 5px;
 }
 
 .reveal-button {
   display: flex;
-  width: 60px;
   height: 25px;
   justify-content: center;
   align-items: center;
   font-size: 1.0em;
-  color: #151414;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  color: $font-color;
+  border: 1px solid $drop-shadow;
+  border-radius: $radius;
   padding: 5px 10px;
-  background-color: #f9f9f9; 
+  background-color: $background-color; 
   transition: background-color 0.3s ease;
   overflow-wrap: break-word;
   cursor: pointer;
+  margin-right: 0.5em;
+
+  img {
+    margin-left: 5px;
+  }
 }
 
 .reveal-button:hover {
-  background-color: #aeecab;
+  color: $background-color;
+  background-color: $drop-shadow;
   cursor: pointer;
 }
 
-.view-button {
-  display: flex;
-  width: 45px;
-  height: 25px;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.0em;
-  color: #151414;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 5px 10px;
-  background-color: #f9f9f9; 
-  transition: background-color 0.3s ease;
-  overflow-wrap: break-word;
-  cursor: pointer;
-}
+// .view-button {
+//   display: flex;
+//   width: 45px;
+//   height: 25px;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 1.0em;
+//   color: #151414;
+//   border: 1px solid #ddd;
+//   border-radius: $radius;
+//   padding: 5px 10px;
+//   background-color: #f9f9f9; 
+//   transition: background-color 0.3s ease;
+//   overflow-wrap: break-word;
+//   cursor: pointer;
+//   margin-right: 0.5em;
+// }
 
-.unlist-button {
-  display: flex;
-  width: 45px;
-  height: 25px;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.0em;
-  color: #151414;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 5px 10px;
-  background-color: #f9f9f9; 
-  transition: background-color 0.3s ease;
-  overflow-wrap: break-word;
-  cursor: pointer;
-}
+// .unlist-button {
+//   display: flex;
+//   width: 45px;
+//   height: 25px;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 1.0em;
+//   color: $font-color;
+//   border: 1px solid #ddd;
+//   border-radius: $radius;
+//   padding: 5px 10px;
+//   background-color: #f9f9f9; 
+//   transition: background-color 0.3s ease;
+//   overflow-wrap: break-word;
+//   cursor: pointer;
+//   margin-right: 0.5em;
+// }
 
 .gem-currency-image {
   width: 20px;
   height: 20px;
 }
 
+.gem-list__item .gem-tags {
+  width: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+  box-sizing: border-box;
+  margin-right: 0.5em;
+  padding-bottom: 5px;
+
+  &::-webkit-scrollbar {
+    width: 1em;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $peach;
+  }
+}
+
 .gem-tag {
-  color: #000000;
+  display: inline-block;
   border-width: 0.5px;
   border: 1px solid $peach;
-  border-radius: 15px;
-  padding-left: 2px;
-  padding-bottom: 2px;
+  border-radius: $pill;
+  padding: 2px 8px;
   margin: 2px;
+  font: 0.8em $mono-font;
+
+  body.dark & {
+    border: 1px solid $dark-peach;
+  }
+
+  &:hover {
+    border: 1px solid $peach;
+    background: rgba($peach, 0.35)
+  }
 }
 
 .gem-title {

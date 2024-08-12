@@ -1,6 +1,5 @@
 @import 'variables';
 
-
 textarea {
   width: 300px;  /* Default width */
   height: 100px; /* Default height */
@@ -65,7 +64,7 @@ textarea {
   display: flex;
   justify-content: center;
   border-radius: $radius;
-  color: white;
+  color: $background-color;
   
   button {
     width: 100%;

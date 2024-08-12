@@ -241,6 +241,7 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
                 </div>
             </div>
             <h3 className="unlockModal-error-window_requirement">You need at least 1 {gemName(gemData?.type)[0]} to unlock this hidden Gem. Create a new Gem in the {gemName(gemData?.type)[2]} category to earn one</h3>
+
           </div>
           <div  className="unlockModal-button">
             <button className="success" onClick={()=>{navigate('/my-gems')}}>Take me there</button>

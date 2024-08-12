@@ -71,13 +71,9 @@ export default function Component(props) {
   }
 
 
-
-
-
-
   return (
     <>
-      <Button className="modal-view-button" onClick={() => setOpenModal(true)}>View</Button>
+      <button className="modal-view-button" onClick={() => setOpenModal(true)}>View</button>
 
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)} size={"6xl"}>
 
@@ -97,17 +93,6 @@ export default function Component(props) {
                 </section>
 
                 <div className="divider"></div>
-
-                {/* <section className="h-80 w-full">
-                  <Carousel slide={false} indicators={false}>
-                    {props.gem.images.map((URL, index) => (
-                      <img key={index} 
-                        src={URL} 
-                        className="gem-carousel-img" 
-                        loading="lazy"/>
-                    ))}
-                  </Carousel>
-                </section> */}
                 
                 <section className="review">
                   <b>What's great about it? 
@@ -124,7 +109,6 @@ export default function Component(props) {
                 </section>
 
                 <section class="bottom">
-                  {/* <button onClick={() => setOpenModal(false)}>{close}</button> */}
                   <img src={upvote} onClick={() => upvoteGem(props.gem.gem_id)} alt="Upvote" />
                   <img src={downvote} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" />
                   <img src={heart} onClick={() => favoriteGem(props.gem.gem_id)} alt="Add to favorites" />
