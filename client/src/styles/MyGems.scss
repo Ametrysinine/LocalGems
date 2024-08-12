@@ -23,7 +23,6 @@
 .create-a-gem {
   display: flex;
   justify-content: center;
-  color: $background-color;
   border-radius: 10px 10px 0px 0px;
   
   button {
@@ -46,6 +45,10 @@
   label {
     font-size: 0.9em;
     font-weight: 600;
+  }
+
+  & button {
+    color: $font-color;
   }
 }
 
