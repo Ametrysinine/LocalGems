@@ -1,3 +1,5 @@
+@import 'variables';
+
 .my-gems-navbar{
   display: flex;
   flex-direction: row;
@@ -8,7 +10,7 @@
   .filter-button {
     padding: 10px;
     margin: 5px;
-    background-color: #ffffff;
+    background: transparent;
     cursor: pointer;
     transition: background-color 0.3s;
 
@@ -21,7 +23,7 @@
 .create-a-gem {
   display: flex;
   justify-content: center;
-  color: white;
+  color: $background-color;
   border-radius: 10px 10px 0px 0px;
   
   button {
@@ -35,26 +37,37 @@
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  transition: height 2s ease-in-out;
-  height: 0%;
-  padding-top: 3em;
+  // transition: 2s ease-in-out;
+  // height: 0%;
+  max-height: 0;
+  transition: 1s ease-in-out;
+  background: var(--background-color);
 }
 
 .create-gem-form.active {
-  height: 100%;
-  // max-height: ;
+  max-height: 1000px; 
+  transition: 1s ease-in-out;
 }
 
 .gems-nav-button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 2em 0px;
+  font-size: 1.25em;
 
   img {
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
     display: flex;
     justify-content: center;
+    margin-right: 1em;
+  }
+
+  body.dark & {
+    img {
+      filter: invert(1);
+    }
   }
 }
 
