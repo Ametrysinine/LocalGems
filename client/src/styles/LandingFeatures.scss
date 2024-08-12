@@ -107,3 +107,116 @@
     text-shadow: 0em 0.05em .5em rgba($dark-background-color, .5);
   }
 }
+
+
+
+.map-section{
+  // border: 3px dashed limegreen;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.map-container{
+  position: relative;
+  width: 80%;
+  height: 1000px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 2em;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.map-container-frame{
+  width: 94%;
+  height: 94%;
+  // border: 3px dashed fuchsia;
+  border-radius: 2em;
+  overflow: hidden;
+  img{
+    scale: 100%;
+  }
+}
+
+.map-container-tagline{
+  // border: 3px dashed fuchsia;
+  position: absolute;
+  font-size: 3.4em;
+  font-weight: 700;
+  padding: 20px;
+  border-radius: 24px;
+  transform: translateY(-350px);
+  color: $font-color;                  // darkmode-ify this
+  background-color: white;
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+}
+
+
+
+
+
+// styles having to do with gempopups begin
+
+
+.map-ruby, .map-sapphire, .map-emerald, .map-topaz, .map-amethyst, .map-citrine{
+  position: absolute;
+}
+.map-ruby{
+  left: 0;
+}
+
+
+
+.map-currency{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  min-width: 5.5em;
+  font-size: 0.8em;
+  font-weight: 300;
+  img{
+    height: 60px;
+    padding-left: 0.65em;
+  }    
+}
+
+.map-currency:hover{
+  outline: 3px dashed firebrick;
+  height: 60px; /* Adjust based on your content height */
+  // padding: 12px 16px;
+  }
+
+.map-currency-content {
+  position: absolute;
+  transform: translate(0px, 90px);
+  width: 237px;
+  background-color: $background-color;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 0px 16px;
+  z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+
+  p{
+    padding-left: 10px;
+  }
+
+  body.dark & {
+    background: $dark-font-color;
+    color: $dark-background-color;
+  }
+}
+
+
+
+
