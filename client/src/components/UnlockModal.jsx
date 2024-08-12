@@ -188,7 +188,7 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       {successWindow ? 
         <div className="unlockModal-success-window"> 
           <div className="unlockModal-message">
-            <h3>Order went thru! Yay</h3>
+            <h2>Order went thru! Yay</h2>
             <div className="success-animation">
               {/* Animation will go here*/}
             </div>
@@ -204,12 +204,12 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       {errorWindow ? 
         <div className="unlockModal-error-window"> 
           <div className="unlockModal-message">
-            <h3>Insufficient gemstones </h3>
+            <h2>Insufficient gemstones </h2>
             <div className="error-animation">
               {/* Animation will go here*/}
             </div>
-            <h3>You need at least 1 {gemName(gemData?.type)[0]}.</h3>
-            <h2>Create a new Gem in the {gemName(gemData?.type)[2]} category to earn one.</h2>
+            <h3>You need at least <b>1 {gemName(gemData?.type)[0]}</b>.</h3>
+            <span>Create a new Gem in the {gemName(gemData?.type)[2]} category to earn one.</span>
           </div>
           <div  className="unlockModal-button">
             <button className="success">Take me there</button>

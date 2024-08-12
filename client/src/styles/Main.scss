@@ -115,6 +115,10 @@ h1 {
   text-transform: uppercase;
 }
 
+h2 {
+  font: 1.25em/2em $mono-font
+}
+
 sub {
   font: 0.8em $primary-font;
   display: block;
