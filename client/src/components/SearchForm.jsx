@@ -33,8 +33,8 @@ const SearchForm = (props) => {
           />
         </div>
 
-        <div>
-          <label>Search by type:</label>
+        <div className="search-form-dropdown">
+          <div><label>Search by type:</label>
           <select
             className='inputDropdown'
             value={type}
@@ -46,7 +46,7 @@ const SearchForm = (props) => {
             <option value="entertainment">Entertainment</option>
             <option value="nightlife">Nightlife</option>
             <option value="services">Services</option>
-          </select>
+          </select></div>
 
           <button onClick={() => onSearch(city, keyword, type)}>Submit</button>
         </div>
