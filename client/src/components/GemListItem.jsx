@@ -112,7 +112,7 @@ const GemListItem = (props) => {
             {props.gem.total_score}
           </div>
           <div className="unlist-button">
-            Remove
+            Unfavorite
           </div>
         </div>
       );
@@ -139,7 +139,7 @@ const GemListItem = (props) => {
             <img src="thumbs-up-white.png" alt="thumbs up" className="thumbs-image" />
             {props.gem.total_score}
           </div>
-          <div className="view-button">View</div>
+          {/* <div className="view-button">View</div> */}
         </div>
       );
     }
@@ -240,9 +240,10 @@ const GemListItem = (props) => {
           </div>
         )}
 
-        <br />
+        <sub>Posted: {dateConversion(props.gem.date_shared)}</sub>
+
         <div className="bottom-row">
-          Posted: {dateConversion(props.gem.date_shared)}
+          {/* Posted: {dateConversion(props.gem.date_shared)} */}
           {bottomRowRight()}
         </div>
 
