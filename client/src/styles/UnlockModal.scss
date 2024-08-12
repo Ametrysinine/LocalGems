@@ -32,9 +32,9 @@
     font-size: 20px;
     font-weight: normal;
     padding: 15px 15px 0px 15px;
+    text-align: center;
   }
 }
-
   
 .gem-type {
   // border: 3px dashed saddlebrown;
@@ -81,25 +81,18 @@
 
 .unlockModal-container{
   position: relative;
-  height: 30%;
+  height: 40%;
   width: 30%;
   z-index: 999;
   background-color: white; 
   box-shadow: .3em .3em .75em $drop-shadow;
   border-radius: 4em;
-  .unlock-step-1_are-you-sure{
-    // border: 3px dashed rebeccapurple;
-    display: flex;
-    align-items: center;      /* Vertical align*/
-    flex-direction: column;
-    }
     .unlockModal-are-you-sure, .unlockModal-success-window, .unlockModal-error-window{
       // border: 3px dashed rebeccapurple;
       display: flex;
-      align-items: center;      /* Vertical align*/
+      align-items: center;  
       flex-direction: column;
     }
-
   }
 
 .unlockModal-button{
@@ -125,10 +118,130 @@
 } 
 
 
+.unlockModal-processing-window{
+  .gempal-logo{
+    // border: 3px dashed limegreen;
+    width: 150px;
+    padding: 20px 0;
+  }    
+  h3{
+    padding-top: 25px;
+    // border: 3px dashed limegreen;
+    font-size: 2.5em;
+  }
+}
+.processing-wheel{  
+  margin: 0;
+  padding: 0;
+  width: 100px;
+  animation: rotate 1.5s linear infinite;
+  transform-origin: center;  
+}
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% {transform: rotate(360deg); }
+}
+
+
+.unlockModal-success-window{
+  h3{
+   padding-top: 25px;
+   font-size: 2.5em;
+ }
+.unlock-icon{
+  border: 3px dashed limegreen;
+ }
+ .unlock-top{
+  width: 140px;
+  z-index: 30;
+ }
+ .unlock-bottom{
+  position: relative;
+  transform: translateY(-50px);  
+  width: 140px;
+ }
+}
 
 
 
 
+.unlockModal-error-window{
+   h3{
+    padding-top: 25px;
+    font-size: 2.5em;
+  }
+  .empty-bag{  
+    width: 70px;
+    padding-bottom: 20px;      // backwards because img is upsidedown, it actually pads the top
+    transform: rotate(215deg);
+    animation: shake 4s ease-out infinite;
+  }
+  @keyframes shake {
+    0%, 100% { transform: rotate(225deg) translateY(0); }
+    16% { transform: rotate(225deg) translateY(0px); }
+    33% { transform: rotate(200deg) translateY(10px); }
+    50% { transform: rotate(200deg) translateY(-10px); }
+    66% { transform: rotate(200deg) translateY(10px); }
+    83% { transform: rotate(200deg) translateY(-10px); }
+  }
+
+  .dust-instances{
+    transform: translate(-16px, -18px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    .instance1{
+      transform: translate(-22px, -8px);
+      .dust1{
+        width: 4px;
+      }
+    }
+    .instance2{
+      transform: translate(-4px, -18px);
+      .dust2{
+        width: 3px;
+      }
+    }
+    .instance3{
+      transform: translate(0px, -14px);
+      .dust3{
+        width: 5px;
+      }
+    }
+    .instance4{
+      transform: translate(8px, -18px);
+      .dust4{
+        width: 3px;
+      }
+    }
+    .instance5{
+      transform: translate(-15px, -11px);
+      .dust5{
+        width: 6px;
+      }
+    }
+  }
+
+
+  .dust1, .dust2, .dust3, .dust4, .dust5{
+    animation: wavyFall 4s infinite ease-in-out;
+  }
+
+  @keyframes wavyFall{
+    0% { transform: translateX(0) translateY(0); opacity: 0; }
+    10% { transform: translateX(-3px) translateY(4px); opacity: 0; }
+    20% { transform: translateX(3px) translateY(8px); opacity: 0; }
+    30% { transform: translateX(-3px) translateY(12px); opacity: 0; }
+    40% { transform: translateX(3px) translateY(16px); }
+    50% { transform: translateX(-3px) translateY(20px); }
+    60% { transform: translateX(3px) translateY(24px); }
+    70% { transform: translateX(-3px) translateY(28px); }
+    80% { transform: translateX(3px) translateY(32px); }
+    90% { transform: translateX(-3px) translateY(36px); }
+    100% { transform: translateX(0) translateY(40px); } 
+  }
+}
 
 
 
@@ -139,41 +252,41 @@
 
 // Spinny fx borrowed from https://codepen.io/bio2cs/pen/VwwBVaN
 
-.spinner {
-  animation: spinner-rotate 1.4s linear infinite;
-  -webkit-animation: spinner-rotate 1.4s linear infinite;
-  -moz-animation: spinner-rotate 1.4s linear infinite;
-  width:174px;
-  height:174px;
-  position: relative;
-}
+// .spinner {
+//   animation: spinner-rotate 1.4s linear infinite;
+//   -webkit-animation: spinner-rotate 1.4s linear infinite;
+//   -moz-animation: spinner-rotate 1.4s linear infinite;
+//   width:174px;
+//   height:174px;
+//   position: relative;
+// }
 
-.spinner-dot {
-  width:274px;
-  height:274px;
-  position: relative;
-  top: 0;
-}
+// .spinner-dot {
+//   width:274px;
+//   height:274px;
+//   position: relative;
+//   top: 0;
+// }
 
-@keyframes spinner-rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes spinner-rotate {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
 
-@-webkit-keyframes spinner-rotate {
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
+// @-webkit-keyframes spinner-rotate {
+//   to {
+//     -webkit-transform: rotate(360deg);
+//   }
+// }
 
-@-moz-keyframes spinner-rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @-moz-keyframes spinner-rotate {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
 
-.path {
-  stroke-dasharray: 170;
-  stroke-dashoffset: 20;
-}
+// .path {
+//   stroke-dasharray: 170;
+//   stroke-dashoffset: 20;
+// }
