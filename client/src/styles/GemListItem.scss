@@ -1,9 +1,9 @@
 @import 'variables';
 
 .gem-list__item {
-  display: flex;
-  align-items: space-between;
-  flex: 0 1 calc(33.33% - 10px);
+  // display: flex;
+  // align-items: space-between;
+  // flex: 0 1 calc(33.33% - 10px);
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 16px;
@@ -14,8 +14,10 @@
   overflow-wrap: break-word;
   border-style: solid;
   border-radius: 4px;
-  width: 350px;
-  font-size: x-small;
+  min-width: 350px;
+  font-size: 0.8em;
+  display: grid;
+  grid-template-columns: 40% 60%;
 
   body.dark & {
     background: $dark-background-color;
@@ -24,8 +26,6 @@
 }
 
 .gem-image {
-  width: 400px; 
-  max-height: 400px; 
   object-fit: cover;
 }
 
@@ -35,7 +35,9 @@
 }
 
 .gem-left-container {
-  width: 250px;
+  min-width: 100px;
+  min-height: 100px;
+  overflow: hidden;
   padding-right: 10px;
 }
 
