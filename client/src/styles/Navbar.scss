@@ -210,13 +210,24 @@ img.nav-bar-logo {
   overflow: hidden;
   transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
 
-  p{
+  b {
+    font-weight: bold;
+  }
+
+  p {
     padding-left: 10px;
   }
 
   body.dark & {
     background: $dark-font-color;
     color: $dark-background-color;
+  }
+
+  ul {
+    all: unset;
+    list-style-type: disc;
+    padding: 1em 3em 0em 3em;
+    line-height: 150%;
   }
 }
 
