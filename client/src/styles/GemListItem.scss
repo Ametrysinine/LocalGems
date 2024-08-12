@@ -109,7 +109,7 @@
   justify-content: center;
   align-items: center;
   font-size: 1.0em;
-  color: #ffffff;
+  color: $background-color;
   border-radius: $radius;
   padding: 5px 10px;
   background-color: $font-color;
@@ -118,7 +118,7 @@
   margin-right: 0.5em;
 }
 
-.delete-button:hover {
+.delete-button:hover, .unlist-button:hover {
   color: $background-color;
   background-color: $mint;
 
@@ -251,6 +251,11 @@
 
   body.dark & {
     border: 1px solid $dark-peach;
+  }
+
+  &:hover {
+    border: 1px solid $peach;
+    background: rgba($peach, 0.35)
   }
 }
 
