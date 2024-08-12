@@ -4,14 +4,23 @@
   width: 80vw;
 }
 
-.modal-close-button {
-  padding-left: 100px;
-}
 
 .modal-container {
   display: flex;
   align-items: flex-start;
   gap: 2em;
+  padding: 2em 3em 3em 2em;
+}
+
+.modal-button-close {
+  width: calc(100% - 2em);
+  display: flex;
+  justify-content: flex-end;
+  transform: translateY(1em) translateX(0.5em);
+
+  img {
+    height: 1em;
+  }
 }
 
 .modal-gem-img  {
@@ -87,28 +96,14 @@
     align-self: flex-end;
 
     display: grid;
-    width: 100%;
-    grid-template-columns: 1fr auto auto auto;
+    width: 50%;
+    grid-template-columns: auto auto auto;
     align-items: center;
-
-    button {
-      width: 150px;
-    }
   
     img {
       width: 22px;
       margin-left: 2em;
     }
-  }
-}
-
-.modal-button-close {
-  width: calc(100% - 24px);
-  display: flex;
-  justify-content: flex-end;
-
-  img {
-    height: 1.25em;
   }
 }
 
