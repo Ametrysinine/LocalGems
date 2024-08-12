@@ -70,9 +70,13 @@ input, select {
   margin-right: 2em;
   padding: 10px;
   height: 3.2em;
+  display: flow;
+  align-items: center;
 
   body.dark & {
     border: 1px solid $dark-mint;
+    background: $dark-font-color;
+    color: $dark-background-color;
   }
 }
 
@@ -88,7 +92,14 @@ button {
 
   body.dark & {
     background: $dark-mint;
-    color: $dark-font-color;
+  }
+}
+
+textarea {
+  body.dark & {
+    border: 1px solid $dark-mint;
+    background: $dark-font-color;
+    color: $dark-background-color;
   }
 }
 
