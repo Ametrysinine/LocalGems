@@ -33,6 +33,11 @@ body.dark {
   background: radial-gradient(circle, #e8dedb 0%, #6d898d 45%, #2e4447 90%); 
   background-attachment: fixed; 
   color: $dark-font-color;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $dark-peach;
+    border-radius: $pill;
+  }
 }
 
 body.dark img {
