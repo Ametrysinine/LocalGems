@@ -74,14 +74,6 @@ export default function Navbar() {
                   Explore
                 </NavLink>
               </div>
-              <div className="nav-bar-link">
-                <NavLink 
-                  to="/friends" 
-                  className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
-                >
-                  Friends
-                </NavLink>
-              </div>
             </div>
             
             <div className="nav-bar-currency-container">
