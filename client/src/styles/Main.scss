@@ -13,6 +13,19 @@ body {
   font: 1em $primary-font;
   color: $font-color;
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $peach;
+    border-radius: $pill;
+  }
 }
 
 body.dark {
