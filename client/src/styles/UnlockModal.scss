@@ -31,15 +31,10 @@
   h3 {
     font-size: 1em;
     font-weight: normal;
-  }
-
-  span {
-    font: 0.8em $primary-font;
-    display: block;
-    padding: 2em 0em 1em 0em;
+    padding: 15px 15px 0px 15px;
+    text-align: center;
   }
 }
-
   
 .gem-type {
   // border: 3px dashed saddlebrown;
@@ -87,27 +82,18 @@
 
 .unlockModal-container{
   position: relative;
-  min-height: 30%;
+  height: 40%;
+
   width: 30%;
   z-index: 999;
   background-color: white; 
   box-shadow: .3em .3em .75em $drop-shadow;
   border-radius: 4em;
-  padding: 2em 3em;
-  display: grid;
-  align-items: center;
-  font-size: 16px;
 
-  .unlock-step-1_are-you-sure{
-    // border: 3px dashed rebeccapurple;
-    display: flex;
-    align-items: center;      /* Vertical align*/
-    flex-direction: column;
-    }
     .unlockModal-are-you-sure, .unlockModal-success-window, .unlockModal-error-window{
       // border: 3px dashed rebeccapurple;
       display: flex;
-      align-items: center;      /* Vertical align*/
+      align-items: center;  
       flex-direction: column;
     }
   }
@@ -122,21 +108,201 @@
     min-width: 130px;
     padding: 0 1em;
   }
+  button:active{
+    transform: scale(0.95); 
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.6);
+  }
 .success{
   background-color: rgb(156, 238, 156);
   margin-right: 2em;
+}
+.success:hover{
+  background-color: rgb(100, 223, 100);
+  color: white;
 }
 .close{
     background-color: rgb(247, 125, 125);
     color: white;
   }
+  .close:hover{
+    background-color: rgb(238, 109, 109);
+    color: black;
+  }
 } 
 
 
+.unlockModal-processing-window{
+  .gempal-logo{
+    // border: 3px dashed limegreen;
+    width: 150px;
+    padding: 30px 0;
+  }    
+  h3{
+    padding-top: 35px;
+    // border: 3px dashed limegreen;
+    font-size: 2.5em;
+  }
+}
+.processing-wheel{  
+  margin: 0;
+  padding: 0;
+  width: 130px;
+  animation: rotate 1.5s linear infinite;
+  transform-origin: center;  
+}
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% {transform: rotate(360deg); }
+}
 
 
+.unlockModal-success-window{
+  h3{
+   padding-top: 25px;
+   font-size: 2.5em;
+ }
+  .unlock-icon{
+    // border: 3px dashed red;
+    position: relative;            // required in order for unlock-bottom to render below unlock-top
+    height: 120px;
+    width: 120px;
+    animation: wobble 3s infinite; /* Adjust duration as needed */
+    animation-delay: 4s; /* Delay before animation starts */
+  }
+  .unlock-top{
+    position: absolute;
+    width: 100px;
+    z-index: 30;
+    transform: translateY(20px); 
+  }
+  .unlock-bottom{
+    z-index: 10;
+    position: absolute;
+    transform: translateY(25px);  
+    width: 150px;
+    
+  }
+  
+  .unlock-bottom-motion{
+    transform-origin: center 30px; 
+    animation: unlockMotion 2s 1 forwards;
+  }
 
+  @keyframes wobble {    
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(15deg); }
+    30% { transform: rotate(-10deg); }
+    45% { transform: rotate(5deg); }
+    60% { transform: rotate(-5deg); }
+    75% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+  }
 
+  @keyframes unlockMotion {
+    0% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-30px); }
+    100% { transform: translateY(-30px) rotateY(180deg); }
+  }
+}
+
+.unlockModal-error-window{
+   h3{
+    padding-top: 25px;
+    font-size: 2.5em;
+  }
+  h2{
+    font-size: 1.4em;
+    padding: 2px;
+    border-radius: 5px;
+  }
+  .unlockModal-error-window_requirement{
+    font-size: 2em;
+  }
+
+  .empty-bag{  
+    width: 70px;
+    padding-bottom: 20px;      // backwards because img is upsidedown, it actually pads the top
+    transform: rotate(215deg);
+    animation: shake 4s ease-out infinite;
+  }
+  @keyframes shake {
+    0%, 100% { transform: rotate(225deg) translateY(0); }
+    16% { transform: rotate(225deg) translateY(0px); }
+    33% { transform: rotate(200deg) translateY(10px); }
+    50% { transform: rotate(200deg) translateY(-10px); }
+    66% { transform: rotate(200deg) translateY(10px); }
+    83% { transform: rotate(200deg) translateY(-10px); }
+  }
+
+  .dust-instances{
+    transform: translate(-16px, -18px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    .instance1{
+      transform: translate(-22px, -8px);
+      .dust1{
+        width: 4px;
+      }
+    }
+    .instance2{
+      transform: translate(-4px, -18px);
+      .dust2{
+        width: 3px;
+      }
+    }
+    .instance3{
+      transform: translate(0px, -14px);
+      .dust3{
+        width: 5px;
+      }
+    }
+    .instance4{
+      transform: translate(8px, -18px);
+      .dust4{
+        width: 3px;
+      }
+    }
+    .instance5{
+      transform: translate(-15px, -11px);
+      .dust5{
+        width: 6px;
+      }
+    }
+  }
+
+  .dust1, .dust2, .dust3, .dust4, .dust5{
+    animation: wavyFall 4s infinite ease-in-out;
+  }
+
+  @keyframes wavyFall{
+    0% { transform: translateX(0) translateY(0); opacity: 0; }
+    10% { transform: translateX(-3px) translateY(5px); opacity: 0; }
+    20% { transform: translateX(3px) translateY(10px); opacity: 0; }
+    30% { transform: translateX(-3px) translateY(15px); opacity: 0; }
+    40% { transform: translateX(3px) translateY(20px); }
+    50% { transform: translateX(-3px) translateY(25px); }
+    60% { transform: translateX(3px) translateY(30px); }
+    70% { transform: translateX(-3px) translateY(35px); }
+    80% { transform: translateX(3px) translateY(40px); }
+    90% { transform: translateX(-3px) translateY(45px); }
+    100% { transform: translateX(0) translateY(50px); } 
+  }
+
+}
+
+  //very WET but i needed to shift buttons over a touch
+  //remember to fix up later - Chris
+  .unlockModal-error-window .unlockModal-button{
+    // border: 3px dashed limegreen;
+    padding-top: 10px;
+  }
+  .unlockModal-error-window .unlockModal-button{
+    // border: 3px dashed limegreen;
+    padding-top: 10px;
+  }
+  
 
 
 
@@ -147,41 +313,41 @@
 
 // Spinny fx borrowed from https://codepen.io/bio2cs/pen/VwwBVaN
 
-.spinner {
-  animation: spinner-rotate 1.4s linear infinite;
-  -webkit-animation: spinner-rotate 1.4s linear infinite;
-  -moz-animation: spinner-rotate 1.4s linear infinite;
-  width:174px;
-  height:174px;
-  position: relative;
-}
+// .spinner {
+//   animation: spinner-rotate 1.4s linear infinite;
+//   -webkit-animation: spinner-rotate 1.4s linear infinite;
+//   -moz-animation: spinner-rotate 1.4s linear infinite;
+//   width:174px;
+//   height:174px;
+//   position: relative;
+// }
 
-.spinner-dot {
-  width:274px;
-  height:274px;
-  position: relative;
-  top: 0;
-}
+// .spinner-dot {
+//   width:274px;
+//   height:274px;
+//   position: relative;
+//   top: 0;
+// }
 
-@keyframes spinner-rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes spinner-rotate {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
 
-@-webkit-keyframes spinner-rotate {
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
+// @-webkit-keyframes spinner-rotate {
+//   to {
+//     -webkit-transform: rotate(360deg);
+//   }
+// }
 
-@-moz-keyframes spinner-rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @-moz-keyframes spinner-rotate {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
 
-.path {
-  stroke-dasharray: 170;
-  stroke-dashoffset: 20;
-}
+// .path {
+//   stroke-dasharray: 170;
+//   stroke-dashoffset: 20;
+// }

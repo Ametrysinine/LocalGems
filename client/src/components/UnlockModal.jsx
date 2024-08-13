@@ -1,24 +1,34 @@
 "use client";
 
-// import { Button, Modal } from "flowbite-react";
 import "../styles/UnlockModal.scss"
 import { useState } from "react";
 import { useUserContext } from "../contexts/UserContext";
-import spinner from "../assets/spinner.svg";
+import { useNavigate } from "react-router-dom";
 
+// importing assests
+import spinnyWheel from "../assets/transaction/flaticon_processing.png";
+import gemPalLogo from "../assets/transaction/logo_gempal.png";
+import emptyBag from "../assets/transaction/flaticon_empty_bag.png";
+import dust2 from "../assets/transaction/flaticon_dust2.png";
+import unlockBottom from "../assets/transaction/flaticon_unlock_top.png";
+import unlockTop from "../assets/transaction/flaticon_unlock_bottom.png";
 
 export default function UnlockModal({gemData, setUnlockModalVisibility}) {
-
   //for tracking and cond-rend which part of the transaction youre on
   const [areYouSureWindow, setAreYouSureWindow] = useState(true);
-  const [spinnyCircle, setSpinnyCircle] = useState(false);
+  const [spinnyCircle, setSpinnyCircle] = useState(false);  
   const [successWindow, setSuccessWindow] = useState(false);
   const [errorWindow, setErrorWindow] = useState(false);
+
+  //How long the processing wheel stays for    //revert back to 3500 for demo
+  const spinnyDuration = 3500 ;
 
   //state for userObject
   const { userFromDB, setUserFromDB } = useUserContext(); 
 
-  // console.log(`\nGemData coming into UnlockModal:`, gemData);
+  const navigate = useNavigate();
+
+  console.log(`\nGemData coming into UnlockModal:`, gemData);
     const gemImage = (type) => {
       switch (type) {
         case 'food':
@@ -91,7 +101,9 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       if (response.status === 200) {  
         setAreYouSureWindow(false);      
         setSpinnyCircle(true);  
-        setTimeout(validTransaction(response), 2500);
+        setTimeout(() => {
+          validTransaction(response)}
+        ,spinnyDuration);
       }
       else{
         setAreYouSureWindow(false); 
@@ -123,15 +135,7 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
           console.log('SETTING USER TO: ', JSON.stringify(cloneOfUser2))
           setUserFromDB(cloneOfUser2);
         })
-        
-      //--------------------------------
-      //do a second await POST here that adds this entry to users unlocked gems list
-
-
-
-
-      //--------------------------------
-      
+              
     };
 
     const failTransaction = function(response) { 
@@ -139,9 +143,8 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       setTimeout(() => {
         setSpinnyCircle(false);  
         setErrorWindow(true);
-      }, 2500);  
+      }, spinnyDuration);  
     };
-
 
 
     const resetStatesAndCloseModal = function() {       
@@ -150,7 +153,7 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       setSpinnyCircle(false);
       setSuccessWindow(false);
       setErrorWindow(false);
-      console.log(`modal closed and states reset`);
+      // console.log(`modal closed and states reset`);
     };
     
   return (
@@ -162,14 +165,17 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
         <div className="unlockModal-are-you-sure"> 
           <div className="unlockModal-message">
             <h3>
-              {`Are you sure you want to reveal this gem at the cost of a ${gemName(gemData?.type)[0]}?`}
+              {`To unlock this Hidden ${gemName(gemData?.type)[2]} Gem in ${gemData?.city} you need to spend the corresponding Gemstone.`}
             </h3>
             <div className="unlockModal-gemstone">
             {gemImage(gemData?.type)}
             </div>
+            <h3>
+              {`Are you sure you want to reveal this Hidden Gem at the cost of 1 ${gemName(gemData?.type)[0]}?`}
+            </h3>
           </div>                    
             <div  className="unlockModal-button">
-              <button className="success" onClick={checkCurrencyAmount}>Yes, Lets go</button>
+              <button className="success" onClick={checkCurrencyAmount}>Yes, Lets Go</button>
               <button className="close" onClick={resetStatesAndCloseModal}>Maybe Later</button>
             </div>
         </div>
@@ -178,8 +184,9 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       {spinnyCircle ? 
         <div className="unlockModal-processing-window"> 
           <div className="unlockModal-message">
-            <h3>Processing...</h3>
-            <img className="spinner-container" src={spinner}  alt="Processing wheel"/>
+            <img className="gempal-logo" src={gemPalLogo}  alt="GemPal logo"/>
+            <img className="processing-wheel" src={spinnyWheel}  alt="Order processing indicator"/>
+            <h3>Processing Transaction...</h3>
           </div>
         </div>
       : <></>}
@@ -188,14 +195,22 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       {successWindow ? 
         <div className="unlockModal-success-window"> 
           <div className="unlockModal-message">
-            <h2>Order went thru! Yay</h2>
+            <h3>Success, Hidden Gem Unlocked!</h3>
             <div className="success-animation">
-              {/* Animation will go here*/}
+              <div className="unlock-icon">
+
+                <div className="unlock-bottom">
+                  <img className="unlock-bottom-motion" src={unlockBottom}  alt="Success, hidden gem unlocked"/>
+                </div>
+                <div className="unlock-top">
+                <img src={unlockTop}  alt="Success, hidden gem unlocked"/>
+                </div>
+              </div>
             </div>
-            <h3>View your new find in /mygems, or keep shopping.</h3>
+            <h3>{`You can view your new discovery,\n or keep exploring hidden gems.`}</h3>
           </div>
           <div  className="unlockModal-button">
-            <button className="success">View Unlocked Gems</button>
+            <button className="success" onClick={()=>{navigate('/my-gems')}}>View My Discovery</button>
             <button className="close" onClick={resetStatesAndCloseModal}>Keep Exploring</button>
           </div>
        </div>
@@ -204,15 +219,32 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
       {errorWindow ? 
         <div className="unlockModal-error-window"> 
           <div className="unlockModal-message">
-            <h2>Insufficient gemstones </h2>
+            <h3>Oops, Insufficient Gemstones! </h3>
             <div className="error-animation">
-              {/* Animation will go here*/}
+              <img className="empty-bag" src={emptyBag}  alt="Empty Bag Image, need more gemstones to unlock"/>
+                <div className="dust-instances">
+                  <div className="instance1">
+                    <img className="dust1" src={dust2}  alt="Falling dust"/>
+                  </div>
+                  <div className="instance2">
+                    <img className="dust2" src={dust2}  alt="Falling dust"/>
+                  </div>
+                  <div className="instance3">
+                    <img className="dust3" src={dust2}  alt="Falling dust"/>
+                  </div>
+                  <div className="instance4">
+                    <img className="dust4" src={dust2}  alt="Falling dust"/>
+                  </div>
+                  <div className="instance5">
+                    <img className="dust5" src={dust2}  alt="Falling dust"/>
+                  </div>            
+                </div>
             </div>
-            <h3>You need at least <b>1 {gemName(gemData?.type)[0]}</b>.</h3>
-            <span>Create a new Gem in the {gemName(gemData?.type)[2]} category to earn one.</span>
+            <h3 className="unlockModal-error-window_requirement">You need at least 1 {gemName(gemData?.type)[0]} to unlock this hidden Gem. Create a new Gem in the {gemName(gemData?.type)[2]} category to earn one</h3>
+
           </div>
           <div  className="unlockModal-button">
-            <button className="success">Take me there</button>
+            <button className="success" onClick={()=>{navigate('/my-gems')}}>Take me there</button>
             <button className="close" onClick={resetStatesAndCloseModal}>Close</button>
           </div>
        </div>
