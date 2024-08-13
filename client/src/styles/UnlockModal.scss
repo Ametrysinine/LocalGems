@@ -29,7 +29,7 @@
   flex-direction: column;
   // border: 3px dashed limegreen;
   h3 {
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: normal;
     padding: 15px 15px 0px 15px;
     text-align: center;
@@ -140,7 +140,7 @@
   h3{
     padding-top: 35px;
     // border: 3px dashed limegreen;
-    font-size: 2.5em;
+    font-size: 2.5em;       
   }
 }
 .processing-wheel{  
@@ -159,7 +159,7 @@
 .unlockModal-success-window{
   h3{
    padding-top: 25px;
-   font-size: 2.5em;
+   font-size: 2.1em;       //perfect for +125% zoom at 1920 x 1200 res
  }
   .unlock-icon{
     // border: 3px dashed red;
@@ -208,7 +208,7 @@
 .unlockModal-error-window{
    h3{
     padding-top: 25px;
-    font-size: 2.5em;
+    font-size: 2.3em;
   }
   h2{
     font-size: 1.4em;
@@ -216,7 +216,7 @@
     border-radius: 5px;
   }
   .unlockModal-error-window_requirement{
-    font-size: 2em;
+    font-size: 1.7em;
   }
 
   .empty-bag{  

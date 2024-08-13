@@ -1,6 +1,8 @@
+// Deprecated component, was planned for use at the bottom of LandingFeatures.jsx to dynamically show gem dropdowns
+// Replaced with static images
 
-export default function LandingFeaturesMapGems() {  
-  
+
+export default function LandingFeaturesMapGems() {    
   return(
     <> 
 

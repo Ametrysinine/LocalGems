@@ -8,7 +8,9 @@ import { useTokenContext } from "../contexts/TokenContext";
 
 import featureMap2 from "../assets/redwood_v2.jpg";
 import featureMap3 from "../assets/redwood_v3.jpg";
-import LandingFeaturesMapGems from "./LandingFeaturesMapGems";
+import featureMap4 from "../assets/map_condensed_withgems.jpg";
+import featureMap5 from "../assets/map_condensed.jpg";
+import featureMap6 from "../assets/map_condensed_gems_only.png";
 
 const landingFeatures = function() {
 
@@ -54,23 +56,22 @@ const landingFeatures = function() {
       <></>
       : 
       <>
-        <article className="features-signup">
+        {/* <article className="features-signup">
           Join now!
-        </article>
-
-      </>
-      }
+        </article> */}
         <section className="map-section">
           <div className="map-container">
             <div className="map-container-frame">
-              <img src={featureMap3} alt="Map showing an illustration of hidden gems for users to uncover" />
+              <img src={featureMap4} alt="Map showing an illustration of hidden gems for users to uncover" />
             </div>
             <h2 className="map-container-tagline">
-              Uncover Local Gems near you!
-            </h2>            
-            <LandingFeaturesMapGems />
+            Join now and uncover Local Gems near you!
+            </h2>
           </div>
         </section>      
+
+      </>
+      }
     </>
   );
 };

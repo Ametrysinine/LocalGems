@@ -20,8 +20,8 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
   const [successWindow, setSuccessWindow] = useState(false);
   const [errorWindow, setErrorWindow] = useState(false);
 
-  //How long the processing wheel stays for    //revert back to 3500 for demo
-  const spinnyDuration = 3500 ;
+  //How long the processing wheel stays for    //revert back to 1500 for demo
+  const spinnyDuration = 1500 ;
 
   //state for userObject
   const { userFromDB, setUserFromDB } = useUserContext(); 
@@ -165,7 +165,7 @@ export default function UnlockModal({gemData, setUnlockModalVisibility}) {
         <div className="unlockModal-are-you-sure"> 
           <div className="unlockModal-message">
             <h3>
-              {`To unlock this Hidden ${gemName(gemData?.type)[2]} Gem in ${gemData?.city} you need to spend the corresponding Gemstone.`}
+              {`To unlock this Hidden ${gemName(gemData?.type)[2]} Gem in ${gemData?.city} you need to spend the corresponding Gemstone:`}
             </h3>
             <div className="unlockModal-gemstone">
             {gemImage(gemData?.type)}
