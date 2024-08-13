@@ -6,8 +6,11 @@ import MapContainer from "./MapContainer";
 import { useUserContext } from "../contexts/UserContext";
 import "../styles/Modal.scss";
 import upvote from "../assets/icon_upvote.svg";
+import upvoteFilled from "../assets/icon_upvote_filled.svg";
 import downvote from "../assets/icon_downvote.svg";
+import downvoteFilled from "../assets/icon_downvote_filled.svg";
 import heart from "../assets/icon_heart.svg";
+import heartFilled from "../assets/icon_heart_filled.svg";
 import close from "../assets/x.svg";
 
 export default function Component(props) {
@@ -84,7 +87,7 @@ export default function Component(props) {
           <Modal.Body className="modal-container">
             <div className="modal-gem-img"> {gemImage()} </div>
             
-            <divleft className="modal-info">
+            <div className="modal-info">
                 <section className="details">
                   <span className="name"> 
                     {props.gem.name} 
@@ -109,15 +112,30 @@ export default function Component(props) {
                 </section>
 
                 <section class="bottom">
-                  <img src={upvote} onClick={() => upvoteGem(props.gem.gem_id)} alt="Upvote" />
-                  <img src={downvote} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" />
-                  <img src={heart} onClick={() => favoriteGem(props.gem.gem_id)} alt="Add to favorites" />
-                </section>
-            </divleft>
+                  <div className="modal-upvote">
+                    <img src={upvote} onClick={() => upvoteGem(props.gem.gem_id)} alt="Upvote" className="top-img" />
+                    <img src={upvoteFilled} className="bottom-img" />
+                  </div>
 
-            <divright className="modal-map">
+                  <div className="modal-downvote">
+                    <img src={downvote} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" className="top-img" />
+                    <img src={downvoteFilled} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" className="bottom-img" />
+                  </div>
+
+                  <div className="modal-heart">
+                    <img src={heart} onClick={() => favoriteGem(props.gem.gem_id)} alt="Add to favorites" className="top-img"/>
+                    <img src={heartFilled} onClick={() => favoriteGem(props.gem.gem_id)} alt="Add to favorites" className="bottom-img"/>
+                  </div>
+
+                  {/* <img src={upvote} onClick={() => upvoteGem(props.gem.gem_id)} alt="Upvote" /> */}
+                  {/* <img src={downvote} onClick={() => downvoteGem(props.gem.gem_id)} alt="Downvote" /> */}
+                  {/* <img src={heart} onClick={() => favoriteGem(props.gem.gem_id)} alt="Add to favorites" /> */}
+                </section>
+            </div>
+
+            <div className="modal-map">
               <MapContainer className="size-full" gems={[props.gem]}/>
-            </divright>
+            </div>
           </Modal.Body>
       </Modal>
     </>
