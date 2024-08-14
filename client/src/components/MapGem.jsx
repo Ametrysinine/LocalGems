@@ -65,7 +65,7 @@ export const MapGem = (props) => {
           <div className="gem-map-container">
             {/* <img src={images[0]} alt="location image" className="size-48"></img> */}
 
-            <section className="h-60 w-full">
+            <section className="gem-map-carousel">
               <Carousel slide={false} indicators={false}>
                 {props.images.map((URL, index) => (
                   <img key={index} 
