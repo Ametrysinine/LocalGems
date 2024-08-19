@@ -4,7 +4,7 @@ import { Carousel } from 'flowbite-react';
 import "../styles/MapGem.scss";
 
 export const MapGem = (props) => {
-  const [infowindowOpen, setInfowindowOpen] = useState(false);
+  const [infowindowOpen, setInfowindowOpen] = useState(true);
   const [img, setImg] = useState();
   const [markerRef, marker] = useAdvancedMarkerRef();
 
