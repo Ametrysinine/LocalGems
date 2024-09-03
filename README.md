@@ -88,10 +88,10 @@ Once both client and servers are running without error, Go to http://localhost:5
 
 # Contribution Credits
 LocalGems was built in part by the skilled contributions of the following developers:
-- Cynthia Lam
-- Christopher Pytel
-- Lubi Islam
-- Jeremiah Chua 
+- Cynthia Lam - https://github.com/cynthia-lam
+- Christopher Pytel - https://github.com/ChrisPytel
+- Lubi Islam - https://github.com/lubi25
+- Jeremiah Chua:  https://github.com/Ametrysinine
 
 
 
